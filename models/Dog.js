@@ -1,0 +1,35 @@
+const mongoose = require('mongoose');
+
+const DogSchema = mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  sex: String,
+  group: String,
+  birthday: { type: Date },
+  status: [String],
+  tags: [String],
+  color: [String],
+  breed: [String],
+  weight: String,
+  entryCreatedOn: { type: Date, default: Date.now },
+  intakeDate: Date,
+  origin: String,
+  currentLocation: String,
+  bio: String,
+  vet: String,
+  notes: String,
+  medical: String,
+  isFixed: Boolean,
+  needsFoster: Boolean,
+  parents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dog' }],
+  siblings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dog' }],
+  children: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dog' }],
+  currentFoster: { type: mongoose.Schema.Types.ObjectID, ref: 'Person' },
+  prevFoster: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Person' }],
+  adopter: { type: mongoose.Schema.Types.ObjectID, ref: 'Person' },
+  applicants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Person' }],
+  vettingCoordinator: { type: mongoose.Schema.Types.ObjectID, ref: 'Person' },
+  fosterCoordinator: { type: mongoose.Schema.Types.ObjectID, ref: 'Person' },
+  adoptionCoordinator: { type: mongoose.Schema.Types.ObjectID, ref: 'Person' },
+});
+
+module.exports = mongoose.model('Dog', DogSchema);
