@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const dogs = await Dog.find().sort({
-      name: -1,
+      intakeDate: -1,
     });
     res.json(dogs);
   } catch (err) {
