@@ -331,9 +331,9 @@ tapMaster.forEach(async (entry) => {
       case 'On Hold - ALL':
         if (
           currentDog.status.length === 0 ||
-          !currentDog.status.includes('foster')
+          !currentDog.status.includes('fostered')
         ) {
-          currentDog.status = [...currentDog.status, 'foster'];
+          currentDog.status = [...currentDog.status, 'fostered'];
         }
         if (
           currentDog.status.length === 0 ||
@@ -345,9 +345,9 @@ tapMaster.forEach(async (entry) => {
       case 'In Foster - Vetting Outstanding':
         if (
           currentDog.status.length === 0 ||
-          !currentDog.status.includes('foster')
+          !currentDog.status.includes('fostered')
         ) {
-          currentDog.status = [...currentDog.status, 'foster'];
+          currentDog.status = [...currentDog.status, 'fostered'];
         }
         if (
           currentDog.vettingStatus.length === 0 ||
