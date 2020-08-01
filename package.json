@@ -9,7 +9,7 @@
     "server": "nodemon server.js",
     "msandbox": "node scripts/mongooseSandbox.js",
     "process": "node scripts/populateDataFromVetting.js",
-    "client": "npm run dev --prefix client",
+    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Patrick Strassmann",
