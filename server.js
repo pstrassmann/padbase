@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const morgan = require('morgan');
 const dotenv = require('dotenv')
 
 // Load config
@@ -10,6 +11,11 @@ connectDB();
 
 // Allow express to parse json
 app.use(express.json({ extended: false }));
+
+// Logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.use('/api/dogs', require('./routes/dogs'));
 app.use('/api/people', require('./routes/persons'));
