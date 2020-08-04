@@ -1,0 +1,25 @@
+@use "scss/dogItem";
+
+:root {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dog-data-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dog-data-container {
+  margin-top: 1rem;
+  width: 650px;
+  border-radius: 5px;
+}

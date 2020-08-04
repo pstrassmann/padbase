@@ -1,0 +1,66 @@
+$fostered: #277da1;
+$fta: #577590;
+$adopted: #43aa8b;
+$vetting-complete: #00a6a6;
+$intake: #9593d9;
+$onhold: #f9844a;
+$vetting-incomplete: #ed5356;
+$pending-records: #e5c244;
+$deceased: #2a2929;
+$missing-status: #848383;
+
+
+.status-pill {
+  padding: 0.2rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.fostered {
+  background: $fostered;
+  color: white;
+}
+
+.adopted {
+  background: $adopted;
+  color: white;
+}
+
+.intake {
+  background: $intake;
+  color: white;
+}
+
+.onhold {
+  background: $onhold;
+  color: white;
+}
+
+.deceased {
+  background: $deceased;
+  color: white;
+}
+
+.vetting-complete {
+  background: $vetting-complete;
+  color: white;
+}
+.vetting-incomplete {
+  background: $vetting-incomplete;
+  color: white;
+}
+
+.fta {
+  background: $fta;
+  color: white;
+}
+
+.pending-records {
+  background: $pending-records;
+  color: white;
+}
+
+.missing-status {
+  background: $missing-status;
+  color: white;
+}

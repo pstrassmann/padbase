@@ -1,0 +1,141 @@
+@use 'dogItem_status_pills';
+$label-color: #999797;
+$light-background: #FFFFFF;
+
+.dog-item {
+  border-radius: 5px;
+  margin: 0.2rem 0;
+  background: $light-background;
+  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
+  transition: box-shadow 0.05s ease-in;
+    &:hover {
+      box-shadow: 0px 0px 3px 2px rgba(29, 97, 170, 0.5);
+    }
+}
+
+.dog-item-header {
+  display: grid;
+  grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr;
+  grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus';
+  font-size: 0.9rem;
+}
+
+.dog-item-body {
+  @extend .dog-item-header;
+  font-size: 0.8rem;
+  grid-template-areas:
+          'pic fc fc fc foster foster foster foster'
+          'pic vc vc vc foster foster foster foster'
+          'pic ac ac ac foster foster foster foster'
+          'breed vetd vetd vetd vetd vetd vetd .'
+          'vetname vetd vetd vetd vetd vetd vetd .';
+  padding-bottom: 0.6rem;
+}
+
+.dog-item-name {
+  grid-area: name;
+  margin-left: 0.5rem;
+}
+
+.dog-item-sex {
+  grid-area: sex;
+}
+
+.dog-item-weight {
+  grid-area: dogweight;
+}
+.dog-item-age {
+  grid-area: age;
+}
+.dog-item-fixed {
+  grid-area: dogfixed;
+}
+.dog-item-intake {
+  grid-area: intake;
+}
+.dog-item-status {
+  grid-area: status;
+}
+.dog-item-vstatus {
+  grid-area: vstatus;
+}
+.dog-item-pic {
+  grid-area: pic;
+  margin-left: 0.5rem;
+  img {
+    width: 85%;
+    height: 85%;
+    border: 1px solid $label-color;
+    border-radius: 10px;
+  }
+}
+.dog-item-breed {
+  grid-area: breed;
+  margin: 0.5rem 0 0 0.5rem;
+}
+.dog-item-vetname {
+  grid-area: vetname;
+  margin-left: 0.5rem;
+}
+.dog-item-fc {
+  grid-area: fc;
+}
+.dog-item-ac {
+  grid-area: ac;
+}
+.dog-item-vc {
+  grid-area: vc;
+}
+.dog-item-vetd {
+  grid-area: vetd;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.2rem 0;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.8rem;
+}
+.dog-item-foster {
+  grid-area: foster;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.foster-icon {
+  margin-right: 0.3rem;
+}
+.dog-item-altstatus {
+  grid-area: altstatus;
+}
+
+.dog-item-header-cell {
+  position: relative;
+  padding: 1rem 0 0.6rem 0;
+}
+
+.dog-item-body-cell {
+  @extend .dog-item-header-cell;
+  padding: 1rem 0 0 0;
+}
+
+.dog-item-label {
+  position: absolute;
+  top: 2px;
+  left: auto;
+  color: $label-color;
+  font-size: 0.6rem;
+}
+
+.dog-item-inline-label {
+  color: $label-color;
+  font-size: 0.75rem;
+  margin-right: 0.4rem;
+}
+
