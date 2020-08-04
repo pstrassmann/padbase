@@ -8,9 +8,16 @@ const router = express.Router();
 // @route     GET api/dogs
 router.get('/', async (req, res) => {
   try {
-    const dogs = await Dog.find().sort({
-      intakeDate: -1,
-    });
+    const dogs = await Dog.find()
+      .limit(50)
+      .populate({path: 'fosterCoordinator', select: '_id firstName lastName'})
+      .populate({path: 'adoptionCoordinator', select: '_id firstName lastName'})
+      .populate({path: 'vettingCoordinator', select: '_id firstName lastName'})
+      .populate({path: 'currentFoster', select: '_id firstName lastName phone email address'})
+      .sort({
+        intakeDate: -1,
+        name: 1,
+      });
     res.json(dogs);
   } catch (err) {
     res.status(500).json({ error: 'Server error' });

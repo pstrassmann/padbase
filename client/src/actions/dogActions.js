@@ -9,8 +9,6 @@ export const getDogs = () => async (dispatch) => {
     if (dogsJSON.error) {
       console.error(dogsJSON.error);
     } else {
-      // console.log('dispatching');
-      console.log(dogsJSON);
       dispatch({
         type: GET_DOGS,
         payload: dogsJSON,
