@@ -14,8 +14,10 @@ const AllDogs = (props) => {
     getDogs();
   }, []);
 
+  const loading = <p>Loading...</p>;
+
   if (dogs === null) {
-    return <p>Loading...</p>;
+    return loading;
   } else {
     return (
       <div className="dog-data-wrapper">
@@ -28,7 +30,7 @@ const AllDogs = (props) => {
             ))}
           </div>
         )}
-        </div>
+      </div>
     );
   }
 };
