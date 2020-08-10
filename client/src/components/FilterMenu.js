@@ -1,80 +1,59 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { connect } from 'react-redux';
-import { setSearchByType } from '../actions/dogActions';
 
-const SearchByMenu = ({searchByType, setSearchByType}) => {
+const FilterMenu = () => {
 
-  const [searchByMenuActive, setSearchByMenuActive] = useState(false);
-digg
+  const [filterByMenuActive, setFilterByMenuActive] = useState(false);
+
   const handleClickDropdown = () => {
-    setSearchByMenuActive(!searchByMenuActive);
+    setFilterByMenuActive(!filterByMenuActive);
   };
 
   const handleClickOption = (optionStr) => {
-    setSearchByType(optionStr);
-    setSearchByMenuActive(false);
+    // setSearchByType(optionStr);
+    setFilterByMenuActive(false);
   }
 
   return (
     <OutsideClickHandler
       onOutsideClick={() => {
-        if (searchByMenuActive) {
-          setSearchByMenuActive(false);
+        if (filterByMenuActive) {
+          setFilterByMenuActive(false);
         }
       }}
     >
-      <div className="search-by-menu">
-        <div className="search-by-selected-label" onClick={handleClickDropdown}>
-          {searchByType}
-          <div
-            className={`search-by-selected-label__icon ${
-              searchByMenuActive ? 'search-by-selected-label__icon-active' : ''
-            }`}
-          >
+      <div className="filter-by-menu">
+        <div className="filter-by-menu-button" onClick={handleClickDropdown}>
+          Filters
+          <div className={`filter-by-menu-button__icon ${filterByMenuActive ? 'filter-by-menu-button__icon-active' : '' }`}>
             <i className="fas fa-chevron-down" />
           </div>
         </div>
-        <div
-          className={`search-by-dropdown ${
-            searchByMenuActive ? 'search-by-dropdown__unhide' : ''
-          }`}
-        >
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('name')}>
+        <div className={`filter-by-dropdown ${filterByMenuActive ? 'filter-by-dropdown__unhide' : ''}`}>
+          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Sex: Male')}>
             <div>
               <i className="fas fa-signature fa-sm" />
             </div>
-            Name
+            Sex: Male
           </div>
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('breed')}>
+          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Sex: Female')}>
             <div>
-              <i className="fas fa-dog fa-sm" />
+              <i className="fas fa-signature fa-sm" />
             </div>
-            Breed
+            Sex: Female
           </div>
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('foster')}>
+          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Spay/Neuter: True')}>
             <div>
-              <i className="fas fa-house-user fa-sm" />
+              <i className="fas fa-signature fa-sm" />
             </div>
-            Foster
+            Spay/Neuter: True
           </div>
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('foster coordinator')}>
+          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Spay/Neuter: False')}>
             <div>
-              <i className="fas fa-laptop-house fa-sm" />
+              <i className="fas fa-signature fa-sm" />
             </div>
-            Foster Coordinator
-          </div>
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('adoption coordinator')}>
-            <div>
-              <i className="fas fa-user-check fa-sm" />
-            </div>
-            Adoption Coordinator
-          </div>
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('vetting coordinator')}>
-            <div>
-              <i className="fas fa-laptop-medical fa-sm" />
-            </div>
-            Vetting Coordinator
+            Spay/Neuter: False
           </div>
         </div>
       </div>
@@ -83,7 +62,6 @@ digg
 };
 
 const mapStateToProps = (state) => ({
-  searchByType: state.dog.searchByType
-});
+})
 
-export default connect(mapStateToProps, { setSearchByType })(SearchByMenu);
+export default connect(null, null)(FilterMenu);
