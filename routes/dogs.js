@@ -9,7 +9,6 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const dogs = await Dog.find()
-      .limit(50)
       .populate({path: 'fosterCoordinator', select: '_id firstName lastName'})
       .populate({path: 'adoptionCoordinator', select: '_id firstName lastName'})
       .populate({path: 'vettingCoordinator', select: '_id firstName lastName'})

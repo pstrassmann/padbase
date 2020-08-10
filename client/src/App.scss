@@ -1,6 +1,10 @@
 @use "scss/dogItem";
+@use "scss/dogSearchBar";
 
-:root {
+$bkg-color-dark: #1D3557;
+$font-color-light: #FFF;
+
+root {
   box-sizing: border-box;
 }
 
@@ -11,15 +15,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: $bkg-color-dark;
+  color: $font-color-light;
 }
 
-.dog-data-wrapper {
+.home-content-wrapper {
   display: flex;
   justify-content: center;
+  margin-top: 40vh;
 }
 
-.dog-data-container {
-  margin-top: 1rem;
+.home-content {
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
+}
+
+.dog-cards-container {
   width: 650px;
-  border-radius: 5px;
 }

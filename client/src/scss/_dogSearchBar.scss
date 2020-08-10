@@ -1,0 +1,53 @@
+@use 'dogSearchBar-search-by-menu';
+
+$bkg-color-medium: #2B739C;
+$search-border-radius: 5px;
+$search-bar-height: 2.5rem;
+
+.home-dog-search-bar-wrapper {
+  position: relative;
+  width: 55%;
+  //border: 1px solid red;
+  margin-bottom: 1rem;
+}
+
+.home-dog-search-bar {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  height: 2.5rem;
+  //margin-bottom: 3rem;
+}
+.home-dog-search-bar__input {
+  border: none;
+  width: 100%;
+  padding-left: 0.5rem;
+  border-top-right-radius: $search-border-radius;
+  border-bottom-right-radius: $search-border-radius;
+  background-color: $bkg-color-medium;
+  transition: background-color 200ms ease-in;
+  color: white;
+  &::placeholder {
+    color: white;
+  }
+  &:focus {
+    outline: none;
+    background-color: #8c89cb;
+  }
+  &:focus + div {
+    background-color: #8c89cb;
+  }
+}
+
+.home-dog-search-bar__search-icon {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 0.5rem;
+  color: white;
+  background-color: $bkg-color-medium;
+  transition: background-color 200ms ease-in;
+  border-top-left-radius: $search-border-radius;
+  border-bottom-left-radius: $search-border-radius;
+}

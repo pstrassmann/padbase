@@ -1,16 +1,16 @@
 @use 'dogItem_status_pills';
-$label-color: #999797;
-$light-background: #FFFFFF;
+$label-color: #b1afaf;
+$light-border: #c7c5c5;
+$bkg-color-light: #1b2239;
+$bkg-color-darkish: #323e68;
+$bkg-color-darkish-hover: #394676;
+$border-color-darkish: #435289;
 
 .dog-item {
-  border-radius: 5px;
   margin: 0.2rem 0;
-  background: $light-background;
-  box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.15);
-  transition: box-shadow 0.05s ease-in;
-    &:hover {
-      box-shadow: 0px 0px 3px 2px rgba(29, 97, 170, 0.5);
-    }
+  &:hover div {
+    background: $bkg-color-darkish-hover;
+  }
 }
 
 .dog-item-header {
@@ -18,6 +18,16 @@ $light-background: #FFFFFF;
   grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr;
   grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus';
   font-size: 0.9rem;
+  border-radius: 5px;
+  background: $bkg-color-darkish;
+  border: 1px solid $border-color-darkish;
+}
+
+.dog-item-header--expanded {
+  @extend .dog-item-header;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
 }
 
 .dog-item-body {
@@ -30,63 +40,66 @@ $light-background: #FFFFFF;
           'breed vetd vetd vetd vetd vetd vetd .'
           'vetname vetd vetd vetd vetd vetd vetd .';
   padding-bottom: 0.6rem;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-.dog-item-name {
+
+.dog-item__name {
   grid-area: name;
   margin-left: 0.5rem;
 }
 
-.dog-item-sex {
+.dog-item__sex {
   grid-area: sex;
 }
 
-.dog-item-weight {
+.dog-item__weight {
   grid-area: dogweight;
 }
-.dog-item-age {
+.dog-item__age {
   grid-area: age;
 }
-.dog-item-fixed {
+.dog-item__fixed {
   grid-area: dogfixed;
 }
-.dog-item-intake {
+.dog-item__intake {
   grid-area: intake;
 }
-.dog-item-status {
+.dog-item__status {
   grid-area: status;
 }
-.dog-item-vstatus {
+.dog-item__vstatus {
   grid-area: vstatus;
 }
-.dog-item-pic {
+.dog-item__pic {
   grid-area: pic;
   margin-left: 0.5rem;
   img {
     width: 85%;
     height: 85%;
-    border: 1px solid $label-color;
     border-radius: 10px;
   }
 }
-.dog-item-breed {
+.dog-item__breed {
   grid-area: breed;
   margin: 0.5rem 0 0 0.5rem;
 }
-.dog-item-vetname {
+.dog-item__vetname {
   grid-area: vetname;
   margin-left: 0.5rem;
 }
-.dog-item-fc {
+.dog-item__fc {
   grid-area: fc;
 }
-.dog-item-ac {
+.dog-item__ac {
   grid-area: ac;
 }
-.dog-item-vc {
+.dog-item__vc {
   grid-area: vc;
 }
-.dog-item-vetd {
+.dog-item__vetd {
   grid-area: vetd;
   display: grid;
   grid-auto-flow: column;
@@ -96,7 +109,7 @@ $light-background: #FFFFFF;
   margin: 0.5rem 0 0 0;
   font-size: 0.8rem;
 }
-.dog-item-foster {
+.dog-item__foster {
   grid-area: foster;
   display: flex;
   flex-direction: column;
@@ -108,24 +121,24 @@ $light-background: #FFFFFF;
   }
 }
 
-.foster-icon {
+.dog-item__foster-icon {
   margin-right: 0.3rem;
 }
-.dog-item-altstatus {
+.dog-item__altstatus {
   grid-area: altstatus;
 }
 
-.dog-item-header-cell {
+.dog-item__header-cell {
   position: relative;
   padding: 1rem 0 0.6rem 0;
 }
 
-.dog-item-body-cell {
-  @extend .dog-item-header-cell;
+.dog-item__body-cell {
+  @extend .dog-item__header-cell;
   padding: 1rem 0 0 0;
 }
 
-.dog-item-label {
+.dog-item__label {
   position: absolute;
   top: 2px;
   left: auto;
@@ -133,9 +146,31 @@ $light-background: #FFFFFF;
   font-size: 0.6rem;
 }
 
-.dog-item-inline-label {
+.dog-item__inline-label {
   color: $label-color;
   font-size: 0.75rem;
   margin-right: 0.4rem;
 }
+
+// animations
+
+.dog-item-body-animation-enter {
+  height: 0;
+  overflow: hidden;
+}
+
+.dog-item-body-animation-enter-active {
+  height: 180px;
+  transition: height 200ms ease-out;
+}
+
+.dog-item-body-animation-exit {
+  height: 180px;
+}
+
+.dog-item-body-animation-exit-active {
+  height: 0;
+  overflow: hidden;
+  transition: height 200ms ease-out;
+ }
 
