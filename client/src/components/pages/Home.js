@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import SearchBar from '../SearchBar';
+import FilterMenu from '../FilterMenu';
 import HomeDogCards from '../HomeDogCards';
 import Spinner from '../Spinner';
 import { getDogs } from '../../actions/dogActions';
@@ -18,6 +19,7 @@ const Home = ({ loading, getDogs }) => {
       ) : (
         <div className="home-content">
           <SearchBar />
+          <FilterMenu />
           <HomeDogCards />
         </div>
       )}

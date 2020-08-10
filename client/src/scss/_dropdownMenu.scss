@@ -1,10 +1,6 @@
 @use 'colors';
 
-.search-by-menu {
-  //border: 1px solid red;
-  position: absolute;
-  right: 0;
-  top: 0.70rem;
+.dropdown-menu-head {
   width: 10rem;
   z-index: 1;
   color: colors.$dark-grey-3;
@@ -12,11 +8,9 @@
   font-size: 0.75rem;
 }
 
-.search-by-selected-label {
+.dropdown-menu-button {
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 0.5rem;
   text-transform: capitalize;
   width: fit-content;
   padding: 0.2rem 0.4rem;
@@ -28,20 +22,17 @@
   }
 }
 
-.search-by-selected-label__icon {
+.dropdown-menu-button__icon {
   margin-left: 0.5rem;
   transition: transform 200ms ease-out;
 }
 
-.search-by-selected-label__icon-active {
+.dropdown-menu-button__icon-active {
   transform: rotate(180deg);
 }
 
-.search-by-dropdown {
+.dropdown-menu-dropdown {
   visibility: hidden;
-  position: absolute;
-  top: 1.6rem;
-  right: 0;
   width: 100%;
   border-radius: 5px;
   background-color: colors.$true-white;
@@ -49,11 +40,11 @@
   overflow: hidden;
 }
 
-.search-by-dropdown__unhide {
+.dropdown-menu-dropdown__unhide {
   visibility: visible;
 }
 
-.search-by-dropdown__option {
+.dropdown-menu-dropdown__option {
   display: flex;
   align-items: center;
   width: 100%;
@@ -70,7 +61,7 @@
   }
 }
 
-.search-by-dropdown__option div {
+.dropdown-menu-dropdown__option div {
   display: inline-block;
   font-size: 0.8rem;
   width: 1.2rem;

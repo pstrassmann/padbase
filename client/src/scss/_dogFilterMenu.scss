@@ -1,10 +1,9 @@
 @use 'colors';
 
-.search-by-menu {
-  //border: 1px solid red;
-  position: absolute;
+.filter-by-menu {
+  position: relative;
   right: 0;
-  top: 0.70rem;
+  //top: 0.70rem;
   width: 10rem;
   z-index: 1;
   color: colors.$dark-grey-3;
@@ -12,10 +11,10 @@
   font-size: 0.75rem;
 }
 
-.search-by-selected-label {
+.filter-by-menu-button {
   display: flex;
   align-items: center;
-  position: absolute;
+  //position: absolute;
   right: 0.5rem;
   text-transform: capitalize;
   width: fit-content;
@@ -28,16 +27,16 @@
   }
 }
 
-.search-by-selected-label__icon {
+.filter-by-menu-button__icon {
   margin-left: 0.5rem;
   transition: transform 200ms ease-out;
 }
 
-.search-by-selected-label__icon-active {
+.filter-by-menu-button__icon-active {
   transform: rotate(180deg);
 }
 
-.search-by-dropdown {
+.filter-by-dropdown {
   visibility: hidden;
   position: absolute;
   top: 1.6rem;
@@ -49,11 +48,11 @@
   overflow: hidden;
 }
 
-.search-by-dropdown__unhide {
+.filter-by-dropdown__unhide {
   visibility: visible;
 }
 
-.search-by-dropdown__option {
+.filter-by-dropdown__option {
   display: flex;
   align-items: center;
   width: 100%;
@@ -70,7 +69,7 @@
   }
 }
 
-.search-by-dropdown__option div {
+.filter-by-dropdown__option div {
   display: inline-block;
   font-size: 0.8rem;
   width: 1.2rem;

@@ -1,8 +1,9 @@
+@use 'scss/colors';
 @use "scss/dogItem";
 @use "scss/dogSearchBar";
+@use "scss/dogFilterMenu";
 
-$bkg-color-dark: #1D3557;
-$font-color-light: #FFF;
+
 
 root {
   box-sizing: border-box;
@@ -15,8 +16,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $bkg-color-dark;
-  color: $font-color-light;
+  background: colors.$dark-blue-5;
+  color: colors.$true-white;
 }
 
 .home-content-wrapper {

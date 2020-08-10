@@ -1,6 +1,6 @@
 @use 'dogSearchBar-search-by-menu';
+@use 'colors';
 
-$bkg-color-medium: #2B739C;
 $search-border-radius: 5px;
 $search-bar-height: 2.5rem;
 
@@ -25,7 +25,7 @@ $search-bar-height: 2.5rem;
   padding-left: 0.5rem;
   border-top-right-radius: $search-border-radius;
   border-bottom-right-radius: $search-border-radius;
-  background-color: $bkg-color-medium;
+  background-color: colors.$medium-blue-5;
   transition: background-color 200ms ease-in;
   color: white;
   &::placeholder {
@@ -33,10 +33,10 @@ $search-bar-height: 2.5rem;
   }
   &:focus {
     outline: none;
-    background-color: #8c89cb;
+    background-color: colors.$medium-purple-5;
   }
   &:focus + div {
-    background-color: #8c89cb;
+    background-color: colors.$medium-purple-5;
   }
 }
 
@@ -46,7 +46,7 @@ $search-bar-height: 2.5rem;
   height: 100%;
   padding-left: 0.5rem;
   color: white;
-  background-color: $bkg-color-medium;
+  background-color: colors.$medium-blue-5;
   transition: background-color 200ms ease-in;
   border-top-left-radius: $search-border-radius;
   border-bottom-left-radius: $search-border-radius;
