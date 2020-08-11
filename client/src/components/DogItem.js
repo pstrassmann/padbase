@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 
 const DogItem = React.forwardRef((props, ref) => {
     const dog = props.dog;
-    // const toggleExpanded = props.toggleExpanded;
-    // const expandedDogCards = props.expandedDogCards;
     const DogItem = () => {
       const [expanded, setExpanded] = useState(false);
       const [expandedClass, setExpandedClass] = useState(false);

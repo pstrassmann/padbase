@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronDown, faSignature, faDog, faHouseUser, faLaptopHouse, faUserCheck, faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
 import { setSearchByType } from '../actions/dogActions';
 
 const SearchByMenu = ({searchByType, setSearchByType}) => {
@@ -32,7 +34,7 @@ const SearchByMenu = ({searchByType, setSearchByType}) => {
               searchByMenuActive ? 'search-by-selected-label__icon-active' : ''
             }`}
           >
-            <i className="fas fa-chevron-down" />
+            <FontAwesomeIcon icon={faChevronDown} />
           </div>
         </div>
         <div
@@ -42,37 +44,37 @@ const SearchByMenu = ({searchByType, setSearchByType}) => {
         >
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('name')}>
             <div>
-              <i className="fas fa-signature fa-sm" />
+              <FontAwesomeIcon icon={ faSignature } size="sm" />
             </div>
             Name
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('breed')}>
             <div>
-              <i className="fas fa-dog fa-sm" />
+              <FontAwesomeIcon icon={ faDog } size="sm" />
             </div>
             Breed
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('foster')}>
             <div>
-              <i className="fas fa-house-user fa-sm" />
+              <FontAwesomeIcon icon={ faHouseUser } size="sm" />
             </div>
             Foster
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('foster coordinator')}>
             <div>
-              <i className="fas fa-laptop-house fa-sm" />
+              <FontAwesomeIcon icon={ faLaptopHouse } size="sm" />
             </div>
             Foster Coordinator
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('adoption coordinator')}>
             <div>
-              <i className="fas fa-user-check fa-sm" />
+              <FontAwesomeIcon icon={ faUserCheck } size="sm" />
             </div>
             Adoption Coordinator
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('vetting coordinator')}>
             <div>
-              <i className="fas fa-laptop-medical fa-sm" />
+              <FontAwesomeIcon icon={ faLaptopMedical } size="sm" />
             </div>
             Vetting Coordinator
           </div>

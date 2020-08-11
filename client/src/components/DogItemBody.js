@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPhone, faEnvelope, faHome } from '@fortawesome/free-solid-svg-icons'
 import { formatDate } from '../utils/dates';
 import default_dog from '../images/default_dog.png';
 
@@ -101,15 +103,15 @@ const DogItemBody = ({ dog }) => {
           <>
             <div>{fosterInfo.fullName}</div>
             <div>
-              <i className="dog-item__foster-icon fas fa-phone fa-sm" />
+              <FontAwesomeIcon icon={ faPhone } size="sm" className="dog-item__foster-icon" />
               {fosterInfo.phone}
             </div>
             <div>
-              <i className="dog-item__foster-icon far fa-envelope fa-sm" />
+              <FontAwesomeIcon icon={ faEnvelope } size="sm" className="dog-item__foster-icon" />
               {fosterInfo.email}
             </div>
             <div>
-              <i className="dog-item__foster-icon fas fa-home fa-sm" />
+              <FontAwesomeIcon icon={ faHome } size="sm" className="dog-item__foster-icon" />
               {fosterInfo.address}
             </div>
           </>

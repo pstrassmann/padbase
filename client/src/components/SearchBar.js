@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 import SearchByMenu from './SearchByMenu';
 import {searchDogs, resetDogSearch } from '../actions/dogActions';
 
@@ -15,6 +17,11 @@ const SearchBar = ({ searchDogs, resetDogSearch }) => {
     }
   };
 
+  const handleClearSearch = () => {
+    setSearchText('');
+    resetDogSearch();
+  }
+
   return (
     <>
       <div className="home-dog-search-bar-wrapper">
@@ -27,7 +34,9 @@ const SearchBar = ({ searchDogs, resetDogSearch }) => {
             className="home-dog-search-bar__input"
           />
           <div className="home-dog-search-bar__search-icon">
-            <i className="fas fa-search fa-sm" />
+            {searchText === '' ?
+            <FontAwesomeIcon icon={ faSearch } size="sm" />
+            : <FontAwesomeIcon icon={ faTimes } size="sm" onClick={handleClearSearch}/>}
           </div>
         </div>
         <SearchByMenu />
