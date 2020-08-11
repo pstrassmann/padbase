@@ -29,9 +29,15 @@ body {
 .home-content {
   display: flex;
   flex-direction: column;
+  width: 650px;
   //align-items: center;
 }
 
+.home-content__header {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
 .dog-cards-container {
-  width: 650px;
+  //width: 650px;
 }

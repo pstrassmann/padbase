@@ -3,7 +3,7 @@ import {
   SET_LOADING,
   SET_SEARCH_BY_TYPE,
   SEARCH_DOGS,
-  RESET_DOGS,
+  RESET_DOGS, ADD_DOG_FILTER, REMOVE_DOG_FILTER, CLEAR_ALL_DOG_FILTERS
 } from './types';
 
 export const getDogs = () => async (dispatch) => {
@@ -48,5 +48,24 @@ export const searchDogs = (text) => (dispatch) => {
 export const resetDogSearch = () => (dispatch) => {
   dispatch({
     type: RESET_DOGS,
+  });
+};
+
+export const addDogFilter = (filter) => (dispatch) => {
+  dispatch({
+    type: ADD_DOG_FILTER,
+    payload: filter,
+  });
+};
+
+export const removeDogFilter = (filter) => (dispatch) => {
+  dispatch({
+    type: REMOVE_DOG_FILTER,
+    payload: filter,
+  });
+};
+export const clearAllDogFilters = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_ALL_DOG_FILTERS,
   });
 };

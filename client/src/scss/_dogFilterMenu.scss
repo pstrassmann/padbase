@@ -3,8 +3,7 @@
 .filter-by-menu {
   position: relative;
   right: 0;
-  //top: 0.70rem;
-  width: 10rem;
+  //width: 10rem;
   z-index: 1;
   color: colors.$dark-grey-3;
   user-select: none;
@@ -14,16 +13,16 @@
 .filter-by-menu-button {
   display: flex;
   align-items: center;
-  //position: absolute;
-  right: 0.5rem;
-  text-transform: capitalize;
+  height: 2.5rem;
   width: fit-content;
-  padding: 0.2rem 0.4rem;
+  padding: 0rem 0.4rem;
   border-radius: 5px;
   cursor: pointer;
-  background-color: colors.$true-white;
+  color: colors.$true-white;
+  font-size: 0.80rem;
+  background-color: colors.$medium-blue-5;
   &:hover {
-    background-color: colors.$light-white-1;
+    background-color: colors.$medium-purple-5;
   }
 }
 
@@ -39,9 +38,9 @@
 .filter-by-dropdown {
   visibility: hidden;
   position: absolute;
-  top: 1.6rem;
-  right: 0;
-  width: 100%;
+  top: 2.3rem;
+  left: 0;
+  width: 14rem;
   border-radius: 5px;
   background-color: colors.$true-white;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
@@ -75,3 +74,47 @@
   width: 1.2rem;
 }
 
+// Active filters -- status pills
+
+.dog-filters-wrapper {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+  //border: 1px solid red;
+}
+
+.dog-filters-pre-text {
+  margin-right: 0.5rem;
+}
+
+.dog-active-filter {
+  display: flex;
+  align-items: baseline;
+  background-color: colors.$dark-purple-1;
+  padding: 0.2rem 0.4rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.3rem;
+  border-radius: 4px;
+}
+
+.dog-active-filter__icon {
+  cursor: pointer;
+  font-size: 0.6rem;
+  margin-right: 0.3rem;
+  transition: color 100ms ease;
+  &:hover {
+    color: lightgrey;
+  }
+}
+
+.dog-filter-clear-button {
+  @extend .dog-active-filter;
+  background-color: colors.$dark-grey-1;
+  color: colors.$true-white;
+  cursor: pointer;
+  &:hover {
+    color: colors.$dark-grey-1;
+    background-color: colors.$true-white;
+  }
+}

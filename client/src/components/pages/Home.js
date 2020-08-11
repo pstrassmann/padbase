@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import SearchBar from '../SearchBar';
 import FilterMenu from '../FilterMenu';
+import ActiveFilters from '../ActiveFilters';
 import HomeDogCards from '../HomeDogCards';
 import Spinner from '../Spinner';
 import { getDogs } from '../../actions/dogActions';
 
 const Home = ({ loading, getDogs }) => {
-
   useEffect(() => {
     getDogs();
   }, []);
@@ -18,8 +18,11 @@ const Home = ({ loading, getDogs }) => {
         <Spinner />
       ) : (
         <div className="home-content">
-          <SearchBar />
-          <FilterMenu />
+          <div className="home-content__header">
+            <SearchBar />
+            <FilterMenu />
+          </div>
+          <ActiveFilters/>
           <HomeDogCards />
         </div>
       )}

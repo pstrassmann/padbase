@@ -1,4 +1,13 @@
-import { GET_DOGS, SEARCH_DOGS, SET_LOADING, SET_SEARCH_BY_TYPE, RESET_DOGS } from '../actions/types';
+import {
+  GET_DOGS,
+  SEARCH_DOGS,
+  SET_LOADING,
+  SET_SEARCH_BY_TYPE,
+  RESET_DOGS,
+  ADD_DOG_FILTER,
+  REMOVE_DOG_FILTER,
+  CLEAR_ALL_DOG_FILTERS,
+} from '../actions/types';
 
 // Escapes special characters from search
 const escapeRegExp = (string) => {
@@ -8,9 +17,10 @@ const escapeRegExp = (string) => {
 const initialState = {
   dogs: null,
   dogMatches: null,
-  expandedDogCards: [],
   loading: true,
   searchByType: 'name',
+  filters: [],
+
 };
 
 export default (state = initialState, action) => {
@@ -59,6 +69,23 @@ export default (state = initialState, action) => {
       return {
         ...state,
         dogMatches: state.dogs,
+      }
+    case ADD_DOG_FILTER:
+      if (state.filters.includes(action.payload)) {
+        return state;
+      } else return {
+        ...state,
+        filters: [...state.filters, action.payload],
+      }
+    case REMOVE_DOG_FILTER:
+        return {
+        ...state,
+        filters: state.filters.filter(e => e !== action.payload),
+      }
+    case CLEAR_ALL_DOG_FILTERS:
+        return {
+        ...state,
+        filters: [],
       }
     default:
       return state;
