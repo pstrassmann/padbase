@@ -356,6 +356,20 @@ tapMaster.forEach(async (entry) => {
           currentDog.vettingStatus = [...currentDog.vettingStatus, 'incomplete'];
         }
         break;
+      case 'In Foster - Vetting Complete':
+        if (
+          currentDog.status.length === 0 ||
+          !currentDog.status.includes('fostered')
+        ) {
+          currentDog.status = [...currentDog.status, 'fostered'];
+        }
+        if (
+          currentDog.vettingStatus.length === 0 ||
+          !currentDog.vettingStatus.includes('complete')
+        ) {
+          currentDog.vettingStatus = [...currentDog.vettingStatus, 'complete'];
+        }
+        break;
       case 'Adopted - Pending Records':
         if (
           !currentDog.status.length === 0 ||
@@ -403,7 +417,8 @@ tapMaster.forEach(async (entry) => {
     }
 
     //SAVE OR LOG
-    // await currentDog.save();
+    // if (currentDog.name === 'Poi') console.log(currentDog);
+    await currentDog.save();
 
   } catch (e) {
     console.error(e);

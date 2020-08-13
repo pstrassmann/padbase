@@ -8,7 +8,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "msandbox": "node scripts/mongooseSandbox.js",
-    "process": "node scripts/populateDataFromVetting.js",
+    "process": "node scripts/populateDataFromTapMaster.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
