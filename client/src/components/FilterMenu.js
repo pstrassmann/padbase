@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMars, faVenus, faCut, faTimes, faCheck, faFileMedical, faSyringe, faBone, faBabyCarriage,
 } from '@fortawesome/free-solid-svg-icons'
-import { addDogFilter } from '../actions/dogActions';
+import { addDogFilter, searchDogs, } from '../actions/dogActions';
 
-const FilterMenu = ({ addDogFilter }) => {
+const FilterMenu = ({ addDogFilter, searchDogs, cachedDogSearchText }) => {
 
   const [filterByMenuActive, setFilterByMenuActive] = useState(false);
 
@@ -17,6 +17,9 @@ const FilterMenu = ({ addDogFilter }) => {
   const handleClickOption = (filterStr) => {
     addDogFilter(filterStr);
     setFilterByMenuActive(false);
+    if (cachedDogSearchText !== '') {
+      searchDogs(cachedDogSearchText);
+    }
   }
 
   return (
@@ -83,11 +86,11 @@ const FilterMenu = ({ addDogFilter }) => {
             </div>
             Needs Rabies Vaccine
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Adult dog: Cleared for Adoption')}>
+          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Adult Dog: Cleared for Adoption')}>
             <div>
               <FontAwesomeIcon icon={ faBone } size="sm" />
             </div>
-            Adult dog: Cleared for Adoption
+            Adult Dog: Cleared for Adoption
           </div>
           <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Puppy: Cleared for Adoption')}>
             <div>
@@ -101,4 +104,8 @@ const FilterMenu = ({ addDogFilter }) => {
   );
 };
 
-export default connect(null, { addDogFilter })(FilterMenu);
+const mapStateToProps = (state) => ({
+  cachedDogSearchText: state.dog.cachedDogSearchText,
+})
+
+export default connect(mapStateToProps, { addDogFilter, searchDogs })(FilterMenu);

@@ -3,7 +3,11 @@ import {
   SET_LOADING,
   SET_SEARCH_BY_TYPE,
   SEARCH_DOGS,
-  RESET_DOGS, ADD_DOG_FILTER, REMOVE_DOG_FILTER, CLEAR_ALL_DOG_FILTERS
+  RESET_DOGS,
+  ADD_DOG_FILTER,
+  REMOVE_DOG_FILTER,
+  CLEAR_ALL_DOG_FILTERS,
+  APPLY_DOG_FILTERS, CACHE_DOG_SEARCH_TEXT
 } from './types';
 
 export const getDogs = () => async (dispatch) => {
@@ -38,6 +42,13 @@ export const setSearchByType = (searchByType) => (dispatch) => {
   })
 }
 
+export const cacheDogSearchText = (text) => (dispatch) => {
+  dispatch({
+    type: CACHE_DOG_SEARCH_TEXT,
+    payload: text,
+  });
+};
+
 export const searchDogs = (text) => (dispatch) => {
   dispatch({
     type: SEARCH_DOGS,
@@ -51,11 +62,18 @@ export const resetDogSearch = () => (dispatch) => {
   });
 };
 
+export const applyDogFilters = (dispatch) =>  {
+  dispatch({
+    type: APPLY_DOG_FILTERS,
+  });
+};
+
 export const addDogFilter = (filter) => (dispatch) => {
   dispatch({
     type: ADD_DOG_FILTER,
     payload: filter,
   });
+  applyDogFilters(dispatch);
 };
 
 export const removeDogFilter = (filter) => (dispatch) => {
@@ -63,9 +81,13 @@ export const removeDogFilter = (filter) => (dispatch) => {
     type: REMOVE_DOG_FILTER,
     payload: filter,
   });
+  applyDogFilters(dispatch);
 };
+
 export const clearAllDogFilters = () => (dispatch) => {
   dispatch({
     type: CLEAR_ALL_DOG_FILTERS,
   });
+  applyDogFilters(dispatch);
+
 };

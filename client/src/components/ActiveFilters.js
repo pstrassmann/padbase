@@ -2,15 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { removeDogFilter, clearAllDogFilters } from '../actions/dogActions';
+import { removeDogFilter, clearAllDogFilters, searchDogs } from '../actions/dogActions';
 
-const ActiveFilters = ({ filters, removeDogFilter, clearAllDogFilters }) => {
+const ActiveFilters = ({ filters, removeDogFilter, clearAllDogFilters, cachedDogSearchText, searchDogs }) => {
   const handleRemoveClick = (filter) => {
     removeDogFilter(filter);
+    if (cachedDogSearchText !== '') {
+      searchDogs(cachedDogSearchText);
+    }
   }
 
   const handleClearAll = () => {
     clearAllDogFilters();
+    if (cachedDogSearchText !== '') {
+      searchDogs(cachedDogSearchText);
+    }
   }
 
   if (filters.length === 0) return <></>;
@@ -34,6 +40,7 @@ const ActiveFilters = ({ filters, removeDogFilter, clearAllDogFilters }) => {
 
 const mapStateToProps = (state) => ({
   filters: state.dog.filters,
+  cachedDogSearchText: state.dog.cachedDogSearchText,
 });
 
-export default connect(mapStateToProps, { removeDogFilter, clearAllDogFilters })(ActiveFilters);
+export default connect(mapStateToProps, { removeDogFilter, clearAllDogFilters, searchDogs, })(ActiveFilters);
