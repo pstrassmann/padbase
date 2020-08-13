@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faSignature, faDog, faHouseUser, faLaptopHouse, faUserCheck, faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
-import { setSearchByType } from '../actions/dogActions';
+import { faChevronDown, faSignature, faBaby, faLayerGroup, faDog, faHouseUser, faLaptopHouse, faUserCheck, faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
+import { setSearchByType, searchDogs } from '../actions/dogActions';
 
-const SearchByMenu = ({searchByType, setSearchByType}) => {
+const SearchByMenu = ({searchByType, setSearchByType, searchDogs, cachedDogSearchText}) => {
 
   const [searchByMenuActive, setSearchByMenuActive] = useState(false);
 
@@ -16,6 +16,9 @@ const SearchByMenu = ({searchByType, setSearchByType}) => {
   const handleClickOption = (optionStr) => {
     setSearchByType(optionStr);
     setSearchByMenuActive(false);
+    if (cachedDogSearchText !== '') {
+      searchDogs(cachedDogSearchText);
+    }
   }
 
   return (
@@ -42,11 +45,23 @@ const SearchByMenu = ({searchByType, setSearchByType}) => {
             searchByMenuActive ? 'search-by-dropdown__unhide' : ''
           }`}
         >
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('name')}>
+          <div className="search-by-dropdown__option" onClick={() => handleClickOption('dog name')}>
             <div>
               <FontAwesomeIcon icon={ faSignature } size="sm" />
             </div>
-            Name
+            Dog Name
+          </div>
+          <div className="search-by-dropdown__option" onClick={() => handleClickOption('parent name')}>
+            <div>
+              <FontAwesomeIcon icon={ faBaby } size="sm" />
+            </div>
+            Parent Name
+          </div>
+          <div className="search-by-dropdown__option" onClick={() => handleClickOption('group name')}>
+            <div>
+              <FontAwesomeIcon icon={ faLayerGroup } size="sm" />
+            </div>
+            Group Name
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('breed')}>
             <div>
@@ -85,7 +100,8 @@ const SearchByMenu = ({searchByType, setSearchByType}) => {
 };
 
 const mapStateToProps = (state) => ({
-  searchByType: state.dog.searchByType
+  searchByType: state.dog.searchByType,
+  cachedDogSearchText: state.dog.cachedDogSearchText,
 });
 
-export default connect(mapStateToProps, { setSearchByType })(SearchByMenu);
+export default connect(mapStateToProps, { setSearchByType, searchDogs })(SearchByMenu);
