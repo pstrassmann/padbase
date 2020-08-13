@@ -66,6 +66,11 @@ const DogItemBody = ({ dog }) => {
   const adoptionCoordinatorName = getCoordinatorName(dog.adoptionCoordinator);
   const vettingCoordinatorName = getCoordinatorName(dog.vettingCoordinator);
   const fosterInfo = getFosterInfo(dog.currentFoster);
+  const initialDateWCurrentFoster = formatDate(dog.initialDateWithCurrentFoster);
+  const originLoc = dog.origin ? capitalizeWords(dog.origin) : 'N/A';
+  const groupName = dog.group ? capitalizeWords(dog.group) : 'N/A';
+  const mother = dog.parents.length > 0 ? dog.parents[0].name : 'N/A';
+  const fee = 'N/A';
   const vettingDates = formatVettingDates(dog.vettingDates);
   const tvtStatus = getPosNegStatus(dog.medical, 'tvt');
   const fourDXStatus = getPosNegStatus(dog.medical, 'fourDX');
@@ -79,7 +84,23 @@ const DogItemBody = ({ dog }) => {
         <div className="dog-item__label">Breed</div>
         {breed}
       </div>
-      <div className="dog-item__vetname dog-item__body-cell">
+      <div className="dog-item__origin dog-item__body-cell">
+        <div className="dog-item__label">Origin</div>
+        {originLoc}
+      </div>
+      <div className="dog-item__mother dog-item__body-cell">
+        <div className="dog-item__label">Mama Name</div>
+        {mother}
+      </div>
+      <div className="dog-item__groupName dog-item__body-cell">
+        <div className="dog-item__label">Group Name</div>
+        {groupName}
+      </div>
+      <div className="dog-item__fee dog-item__body-cell">
+        <div className="dog-item__label">Fee</div>
+        {fee}
+      </div>
+      <div className="dog-item__vetName dog-item__body-cell">
         <div className="dog-item__label">Primary Vet</div>
         {primaryVet}
       </div>
@@ -95,13 +116,22 @@ const DogItemBody = ({ dog }) => {
         <div className="dog-item__label">Vetting Coordinator</div>
         {vettingCoordinatorName}
       </div>
-      <div className="dog-item__foster dog-item__body-cell">
-        <div className="dog-item__label">Foster</div>
         {fosterInfo.name === 'N/A' ? (
-          <div>N/A</div>
+          <div className="dog-item__fosterName dog-item__body-cell">
+            <div className="dog-item__label">Foster</div>
+            N/A
+          </div>
         ) : (
           <>
-            <div>{fosterInfo.fullName}</div>
+            <div className="dog-item__fosterName dog-item__body-cell">
+              <div className="dog-item__label">Foster</div>
+              {fosterInfo.fullName}
+            </div>
+            <div className="dog-item__fosterDate dog-item__body-cell">
+              <div className="dog-item__label">Initial Date w/ Foster</div>
+              { initialDateWCurrentFoster }
+            </div>
+            <div className="dog-item__fosterInfo">
             <div>
               <FontAwesomeIcon icon={ faPhone } size="sm" className="dog-item__foster-icon" />
               {fosterInfo.phone}
@@ -114,9 +144,9 @@ const DogItemBody = ({ dog }) => {
               <FontAwesomeIcon icon={ faHome } size="sm" className="dog-item__foster-icon" />
               {fosterInfo.address}
             </div>
+            </div>
           </>
         )}
-      </div>
       <div className="dog-item__vetd">
         <div>
           <span className="dog-item__inline-label">Rabies</span>

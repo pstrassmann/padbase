@@ -29,11 +29,11 @@
   @extend .dog-item-header;
   font-size: 0.8rem;
   grid-template-areas:
-          'pic fc fc fc foster foster foster foster'
-          'pic vc vc vc foster foster foster foster'
-          'pic ac ac ac foster foster foster foster'
-          'breed vetd vetd vetd vetd vetd vetd .'
-          'vetname vetd vetd vetd vetd vetd vetd .';
+          'pic fc fc fc fosterName fosterName fosterDate fosterDate'
+          'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo'
+          'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo'
+          'breed mother mother vetName vetName vetd vetd vetd'
+          'origin groupName groupName fee fee vetd vetd vetd';
   padding-bottom: 0.6rem;
   border-top: none;
   border-top-left-radius: 0;
@@ -79,11 +79,22 @@
 }
 .dog-item__breed {
   grid-area: breed;
-  margin: 0.5rem 0 0 0.5rem;
+  margin: 0.5rem 0.2rem 0 0.5rem;
 }
-.dog-item__vetname {
-  grid-area: vetname;
-  margin-left: 0.5rem;
+
+.dog-item__origin {
+  grid-area: origin;
+  margin: 0 0 0 0.5rem;
+}
+
+.dog-item__mother {
+  grid-area: mother;
+  margin: 0.5rem 0 0 0;
+}
+
+.dog-item__vetName {
+  grid-area: vetName;
+  margin: 0.5rem 0 0 0;
 }
 .dog-item__fc {
   grid-area: fc;
@@ -94,18 +105,36 @@
 .dog-item__vc {
   grid-area: vc;
 }
+
+
+.dog-item__groupName {
+  grid-area: groupName
+}
+.dog-item__fee {
+  grid-area: fee
+}
+
 .dog-item__vetd {
   grid-area: vetd;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 0.2rem 0;
-  margin: 0.5rem 0 0 0;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0 0;
+  margin: 0 0 0 0;
   font-size: 0.8rem;
 }
-.dog-item__foster {
-  grid-area: foster;
+
+.dog-item__fosterName {
+  grid-area: fosterName;
+  margin-right: 0.1rem;
+}
+.dog-item__fosterDate {
+  grid-area: fosterDate;
+}
+
+.dog-item__fosterInfo {
+  grid-area: fosterInfo;
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -155,17 +184,17 @@
 }
 
 .dog-item-body-animation-enter-active {
-  height: 180px;
+  height: 185px;
   transition: height 200ms ease-out;
 }
 
 .dog-item-body-animation-exit {
-  height: 180px;
+  height: 185px;
 }
 
 .dog-item-body-animation-exit-active {
   height: 0;
   overflow: hidden;
-  transition: height 200ms ease-out;
+  transition: height 200ms ease-in;
  }
 
