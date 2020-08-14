@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPhone, faEnvelope, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faPhone, faEnvelope, faHome, faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
+import DogItemBodyTail from './DogItemBodyTail';
 import { formatDate } from '../utils/dates';
+import { capitalizeWords } from '../utils/text';
 import default_dog from '../images/default_dog.png';
+import { CSSTransition } from 'react-transition-group';
 
-const DogItemBody = ({ dog }) => {
+const DogItemBody = ({ dog, itemExpanded }) => {
+
+  const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
+  const [expandedClass, setExpandedClass] = useState(false);
+
+  const handleExpandBodyTail = () => {
+    setBodyTailExpanded(!bodyTailExpanded);
+    if (!bodyTailExpanded) {
+      setExpandedClass(true);
+    } else {
+      setTimeout(() => setExpandedClass(false), 200);
+    }
+  }
+
   const formatBreed = (breed) => {
     if (breed.length === 0) return 'N/A';
     return capitalizeWords(breed.join(', '));
-  };
-
-  const capitalizeWords = (s) => {
-    const re = /(\b[a-z](?!\s))/g;
-    const capitalized = s.replace(re, (x) => x.toUpperCase());
-    return capitalized;
   };
 
   const getCoordinatorName = (coordinator) => {
@@ -76,7 +86,10 @@ const DogItemBody = ({ dog }) => {
   const fourDXStatus = getPosNegStatus(dog.medical, 'fourDX');
 
   return (
-    <div className="dog-item-body">
+    <>
+    <div className={
+      expandedClass ? 'dog-item-body--tail-expanded' : 'dog-item-body'
+    }>
       <div className="dog-item__pic">
         <img src={default_dog} alt="Default dog pic" />
       </div>
@@ -193,7 +206,20 @@ const DogItemBody = ({ dog }) => {
           {fourDXStatus}
         </div>
       </div>
+      <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
+        <FontAwesomeIcon icon={faAngleDoubleDown} size="sm" className="dog-item__angleDoubleDown__icon"/>
+      </div>
     </div>
+    <CSSTransition
+      key={dog._id + 'bodyTail'}
+      in={bodyTailExpanded && itemExpanded}
+      unmountOnExit
+      timeout={{ enter: 200, exit: 200 }}
+      classNames="dog-item-body-tail-animation"
+    >
+      <DogItemBodyTail dog={dog} />
+    </CSSTransition>
+    </>
   );
 };
 

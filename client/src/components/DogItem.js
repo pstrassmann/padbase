@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+
 import { formatDate, formatAge } from '../utils/dates';
 import DogItemBody from './DogItemBody';
 import { connect } from 'react-redux';
@@ -49,10 +52,8 @@ const DogItem = React.forwardRef((props, ref) => {
       const bodyExitTransitionTime = 200;
       const expandBody = () => {
         setExpanded(!expanded);
-        // toggleExpanded(dog._id);
         if (!expanded) {
           setExpandedClass(true);
-          // W
         } else {
           setTimeout(() => setExpandedClass(false), bodyExitTransitionTime);
         }
@@ -113,6 +114,11 @@ const DogItem = React.forwardRef((props, ref) => {
               {primaryVettingStatus}
             </span>
           </div>
+          { expanded ? <></> :
+            <div className="dog-item__angleDownIcon">
+              <FontAwesomeIcon icon={ faAngleDown } size="sm" className="dog-item__angleDownIcon"/>
+            </div>
+          }
         </div>
       );
 
@@ -126,7 +132,7 @@ const DogItem = React.forwardRef((props, ref) => {
             timeout={{ enter: 200, exit: bodyExitTransitionTime }}
             classNames="dog-item-body-animation"
           >
-            <DogItemBody dog={dog} />
+            <DogItemBody dog={dog} itemExpanded={expanded} />
           </CSSTransition>
         </div>
       );

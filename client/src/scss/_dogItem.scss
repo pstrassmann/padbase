@@ -10,8 +10,8 @@
 
 .dog-item-header {
   display: grid;
-  grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr;
-  grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus';
+  grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 0.3fr;
+  grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus angleDownIcon';
   font-size: 0.9rem;
   border-radius: 5px;
   background: colors.$dark-blue-4;
@@ -29,17 +29,62 @@
   @extend .dog-item-header;
   font-size: 0.8rem;
   grid-template-areas:
-          'pic fc fc fc fosterName fosterName fosterDate fosterDate'
-          'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo'
-          'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo'
-          'breed mother mother vetName vetName vetd vetd vetd'
-          'origin groupName groupName fee fee vetd vetd vetd';
-  padding-bottom: 0.6rem;
+          'pic fc fc fc fosterName fosterName fosterDate fosterDate .'
+          'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo .'
+          'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo .'
+          'breed mother mother vetName vetName vetd vetd vetd .'
+          'origin groupName groupName fee fee vetd vetd vetd angleDoubleDown';
+  padding-bottom: 0.3rem;
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-top-right-radius: 0;
 }
 
+.dog-item-body--tail-expanded {
+  @extend .dog-item-body;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+
+.dog-item-body-tail {
+  @extend .dog-item-body;
+  grid-template-areas:
+        'history history history . . otherVets otherVets fleaMedBrand .'
+        'medNotes medNotes medNotes medNotes . vetAppts vetAppts vetAppts .'
+        'notes notes notes notes notes notes notes notes .';
+  padding-bottom: 0.3rem;
+}
+
+
+.dog-item__header-cell {
+  position: relative;
+  padding: 1rem 0 0.6rem 0;
+}
+
+.dog-item__body-cell {
+  @extend .dog-item__header-cell;
+  padding: 1rem 0 0 0;
+}
+.dog-item__body-tail-cell {
+  @extend .dog-item__header-cell;
+  padding: 1rem 0 0.3rem 0;
+}
+
+.dog-item__label {
+  position: absolute;
+  top: 2px;
+  left: auto;
+  color: colors.$light-grey-3;
+  font-size: 0.6rem;
+}
+
+.dog-item__inline-label {
+  color: colors.$light-grey-3;
+  font-size: 0.75rem;
+  margin-right: 0.4rem;
+}
 
 .dog-item__name {
   grid-area: name;
@@ -68,6 +113,14 @@
 .dog-item__vstatus {
   grid-area: vstatus;
 }
+
+.dog-item__angleDownIcon {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  grid-area: angleDownIcon;
+}
+
 .dog-item__pic {
   grid-area: pic;
   margin-left: 0.5rem;
@@ -77,25 +130,7 @@
     border-radius: 10px;
   }
 }
-.dog-item__breed {
-  grid-area: breed;
-  margin: 0.5rem 0.2rem 0 0.5rem;
-}
 
-.dog-item__origin {
-  grid-area: origin;
-  margin: 0 0 0 0.5rem;
-}
-
-.dog-item__mother {
-  grid-area: mother;
-  margin: 0.5rem 0 0 0;
-}
-
-.dog-item__vetName {
-  grid-area: vetName;
-  margin: 0.5rem 0 0 0;
-}
 .dog-item__fc {
   grid-area: fc;
 }
@@ -106,24 +141,6 @@
   grid-area: vc;
 }
 
-
-.dog-item__groupName {
-  grid-area: groupName
-}
-.dog-item__fee {
-  grid-area: fee
-}
-
-.dog-item__vetd {
-  grid-area: vetd;
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: repeat(2,1fr);
-  grid-template-rows: repeat(6, 1fr);
-  gap: 0 0;
-  margin: 0 0 0 0;
-  font-size: 0.8rem;
-}
 
 .dog-item__fosterName {
   grid-area: fosterName;
@@ -148,35 +165,88 @@
 .dog-item__foster-icon {
   margin-right: 0.3rem;
 }
-.dog-item__altstatus {
-  grid-area: altstatus;
+
+.dog-item__breed {
+  grid-area: breed;
+  margin: 0.5rem 0.2rem 0 0.5rem;
 }
 
-.dog-item__header-cell {
-  position: relative;
-  padding: 1rem 0 0.6rem 0;
+.dog-item__origin {
+  grid-area: origin;
+  margin: 0 0 0 0.5rem;
 }
 
-.dog-item__body-cell {
-  @extend .dog-item__header-cell;
-  padding: 1rem 0 0 0;
+.dog-item__mother {
+  grid-area: mother;
+  margin: 0.5rem 0 0 0;
 }
 
-.dog-item__label {
-  position: absolute;
-  top: 2px;
-  left: auto;
-  color: colors.$light-grey-3;
-  font-size: 0.6rem;
+.dog-item__vetName {
+  grid-area: vetName;
+  margin: 0.5rem 0 0 0;
 }
 
-.dog-item__inline-label {
-  color: colors.$light-grey-3;
-  font-size: 0.75rem;
-  margin-right: 0.4rem;
+.dog-item__groupName {
+  grid-area: groupName
+}
+.dog-item__fee {
+  grid-area: fee
 }
 
-// animations
+.dog-item__vetd {
+  grid-area: vetd;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(6, 1fr);
+  margin: 0 0 0 0;
+  font-size: 0.8rem;
+}
+
+.dog-item__angleDoubleDown {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  grid-area: angleDoubleDown;
+}
+
+.dog-item__angleDoubleDown__icon {
+  border: 1px solid #909090;
+  padding: 0.1rem 0.2rem;
+  border-radius: 3px;
+}
+
+.dog-item__history {
+  grid-area: history;
+  margin: 0 0 0 0.5rem;
+}
+
+.dog-item__otherVets {
+  grid-area: otherVets;
+}
+
+.dog-item__fleaMedBrand {
+  grid-area: fleaMedBrand;
+}
+
+.dog-item__medNotes {
+  grid-area: medNotes;
+  margin: 0 0 0 0.5rem;
+
+}
+
+.dog-item__vetAppts {
+  grid-area: vetAppts;
+}
+
+.dog-item__notes {
+  grid-area: notes;
+  margin: 0 0 0 0.5rem;
+}
+
+
+
+// animations for body main
 
 .dog-item-body-animation-enter {
   height: 0;
@@ -193,6 +263,28 @@
 }
 
 .dog-item-body-animation-exit-active {
+  height: 0;
+  overflow: hidden;
+  transition: height 200ms ease-in;
+ }
+
+// animations for body tail
+
+.dog-item-body-tail-animation-enter {
+  height: 0;
+  overflow: hidden;
+}
+
+.dog-item-body-tail-animation-enter-active {
+  height: 90px;
+  transition: height 200ms ease-out;
+}
+
+.dog-item-body-tail-animation-exit {
+  height: 90px;
+}
+
+.dog-item-body-tail-animation-exit-active {
   height: 0;
   overflow: hidden;
   transition: height 200ms ease-in;
