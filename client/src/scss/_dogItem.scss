@@ -33,7 +33,7 @@
           'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo .'
           'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo .'
           'breed mother mother vetName vetName vetd vetd vetd .'
-          'origin groupName groupName fee fee vetd vetd vetd angleDoubleDown';
+          'origin groupName groupName fee fee vetd vetd vetd .';
   padding-bottom: 0.3rem;
   border-top: none;
   border-top-left-radius: 0;
@@ -204,13 +204,14 @@
 }
 
 .dog-item__angleDoubleDown {
+  position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
-  grid-area: angleDoubleDown;
 }
 
 .dog-item__angleDoubleDown__icon {
+  position: absolute;
   border: 1px solid #909090;
   padding: 0.1rem 0.2rem;
   border-radius: 3px;

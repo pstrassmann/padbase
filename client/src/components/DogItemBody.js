@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone, faEnvelope, faHome, faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 import DogItemBodyTail from './DogItemBodyTail';
 import { formatDate } from '../utils/dates';
 import { capitalizeWords } from '../utils/text';
 import default_dog from '../images/default_dog.png';
+import { useSpring, useTransition, animated } from "react-spring";
+import { useMeasure } from "react-use";
 import { CSSTransition } from 'react-transition-group';
 
 const DogItemBody = ({ dog, itemExpanded }) => {
 
   const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
   const [expandedClass, setExpandedClass] = useState(false);
+
+  // const [ref, { height }] = useMeasure();
 
   const handleExpandBodyTail = () => {
     setBodyTailExpanded(!bodyTailExpanded);
@@ -206,19 +210,8 @@ const DogItemBody = ({ dog, itemExpanded }) => {
           {fourDXStatus}
         </div>
       </div>
-      <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
-        <FontAwesomeIcon icon={faAngleDoubleDown} size="sm" className="dog-item__angleDoubleDown__icon"/>
-      </div>
     </div>
-    <CSSTransition
-      key={dog._id + 'bodyTail'}
-      in={bodyTailExpanded && itemExpanded}
-      unmountOnExit
-      timeout={{ enter: 200, exit: 200 }}
-      classNames="dog-item-body-tail-animation"
-    >
-      <DogItemBodyTail dog={dog} />
-    </CSSTransition>
+      <DogItemBodyTail dog={dog}/>
     </>
   );
 };
