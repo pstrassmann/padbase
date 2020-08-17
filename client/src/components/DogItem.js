@@ -10,8 +10,9 @@ import { connect } from 'react-redux';
 const DogItem = React.forwardRef((props, ref) => {
     const dog = props.dog;
     const DogItem = () => {
-      const [expanded, setExpanded] = useState(false);
+      const [bodyExpanded, setBodyExpanded] = useState(false);
       const [expandedClass, setExpandedClass] = useState(false);
+      const [bodyInitialized, setBodyInitialized] = useState(false);
 
       const formatWeight = (weight) => {
         if (!weight) return 'N/A';
@@ -51,12 +52,15 @@ const DogItem = React.forwardRef((props, ref) => {
 
       const bodyExitTransitionTime = 200;
       const expandBody = () => {
-        setExpanded(!expanded);
-        if (!expanded) {
-          setExpandedClass(true);
-        } else {
-          setTimeout(() => setExpandedClass(false), bodyExitTransitionTime);
+        if (!bodyInitialized) {
+          setBodyInitialized(true)
         }
+        setBodyExpanded(!bodyExpanded);
+        // if (!expanded) {
+        //   setExpandedClass(true);
+        // } else {
+        //   setTimeout(() => setExpandedClass(false), bodyExitTransitionTime);
+        // }
       };
       const name = dog.name;
       const sex = dog.sex || 'N/A';
@@ -73,9 +77,7 @@ const DogItem = React.forwardRef((props, ref) => {
         <div
           ref={ref}
           key={dog._id + 'header'}
-          className={
-            expandedClass ? 'dog-item-header--expanded' : 'dog-item-header'
-          }
+          className='dog-item-header'
           onClick={expandBody}
         >
           <div className="dog-item__name dog-item__header-cell">
@@ -114,7 +116,7 @@ const DogItem = React.forwardRef((props, ref) => {
               {primaryVettingStatus}
             </span>
           </div>
-          { expanded ? <></> :
+          { bodyExpanded ? <></> :
             <div className="dog-item__angleDownIcon">
               <FontAwesomeIcon icon={ faAngleDown } size="sm" className="dog-item__angleDownIcon"/>
             </div>
@@ -125,15 +127,7 @@ const DogItem = React.forwardRef((props, ref) => {
       return (
         <div className="dog-item">
           {dogItemHeader}
-          <CSSTransition
-            key={dog._id + 'body'}
-            in={expanded}
-            unmountOnExit
-            timeout={{ enter: 200, exit: bodyExitTransitionTime }}
-            classNames="dog-item-body-animation"
-          >
-            <DogItemBody dog={dog} itemExpanded={expanded} />
-          </CSSTransition>
+          {bodyInitialized && <DogItemBody dog={dog} bodyExpanded={bodyExpanded}/>}
         </div>
       );
     };

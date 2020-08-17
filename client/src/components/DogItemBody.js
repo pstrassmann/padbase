@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPhone, faEnvelope, faHome, faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 import DogItemBodyTail from './DogItemBodyTail';
@@ -9,20 +9,24 @@ import { useSpring, useTransition, animated } from "react-spring";
 import { useMeasure } from "react-use";
 import { CSSTransition } from 'react-transition-group';
 
-const DogItemBody = ({ dog, itemExpanded }) => {
+const DogItemBody = ({ dog, bodyExpanded }) => {
 
+  const [bodyTailInitialized, setBodyTailInitialized] = useState(false);
   const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
-  const [expandedClass, setExpandedClass] = useState(false);
+  // const [expandedClass, setExpandedClass] = useState(false);
 
-  // const [ref, { height }] = useMeasure();
+  const [ref, { height }] = useMeasure();
+
+  const expand = useSpring({
+    overflow: 'hidden',
+    height: bodyExpanded ? `${height}px` : '0px',
+  });
 
   const handleExpandBodyTail = () => {
-    setBodyTailExpanded(!bodyTailExpanded);
-    if (!bodyTailExpanded) {
-      setExpandedClass(true);
-    } else {
-      setTimeout(() => setExpandedClass(false), 200);
+    if (!bodyTailInitialized) {
+      setBodyTailInitialized(true);
     }
+    setBodyTailExpanded(!bodyTailExpanded);
   }
 
   const formatBreed = (breed) => {
@@ -91,9 +95,9 @@ const DogItemBody = ({ dog, itemExpanded }) => {
 
   return (
     <>
-    <div className={
-      expandedClass ? 'dog-item-body--tail-expanded' : 'dog-item-body'
-    }>
+    <animated.div style={expand}>
+      <div ref={ref}>
+    <div className='dog-item-body'>
       <div className="dog-item__pic">
         <img src={default_dog} alt="Default dog pic" />
       </div>
@@ -210,8 +214,13 @@ const DogItemBody = ({ dog, itemExpanded }) => {
           {fourDXStatus}
         </div>
       </div>
+      <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
+        <FontAwesomeIcon icon={faAngleDoubleDown} size="sm" className="dog-item__angleDoubleDown__icon"/>
+      </div>
     </div>
-      <DogItemBodyTail dog={dog}/>
+      </div>
+      </animated.div>
+        {bodyTailInitialized && <DogItemBodyTail dog={dog} bodyExpanded = {bodyExpanded} bodyTailExpanded={bodyTailExpanded}/>}
     </>
   );
 };

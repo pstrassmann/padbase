@@ -3,6 +3,10 @@
 
 .dog-item {
   margin: 0.2rem 0;
+  overflow: hidden;
+  background: colors.$dark-blue-4;
+  border: 1px solid colors.$dark-blue-2;
+  border-radius: 5px;
   &:hover div {
     background: colors.$dark-blue-3;
   }
@@ -13,16 +17,6 @@
   grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 0.3fr;
   grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus angleDownIcon';
   font-size: 0.9rem;
-  border-radius: 5px;
-  background: colors.$dark-blue-4;
-  border: 1px solid colors.$dark-blue-2;
-}
-
-.dog-item-header--expanded {
-  @extend .dog-item-header;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: none;
 }
 
 .dog-item-body {
@@ -33,19 +27,9 @@
           'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo .'
           'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo .'
           'breed mother mother vetName vetName vetd vetd vetd .'
-          'origin groupName groupName fee fee vetd vetd vetd .';
+          'origin groupName groupName fee fee vetd vetd vetd angleDoubleDown';
+  padding-top: 1px;
   padding-bottom: 0.3rem;
-  border-top: none;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top-right-radius: 0;
-}
-
-.dog-item-body--tail-expanded {
-  @extend .dog-item-body;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: none;
 }
 
 .dog-item-body-tail {
@@ -54,7 +38,6 @@
         'history history history . . otherVets otherVets fleaMedBrand .'
         'medNotes medNotes medNotes medNotes . vetAppts vetAppts vetAppts .'
         'notes notes notes notes notes notes notes notes .';
-  padding-bottom: 0.3rem;
 }
 
 
@@ -141,7 +124,6 @@
   grid-area: vc;
 }
 
-
 .dog-item__fosterName {
   grid-area: fosterName;
   margin-right: 0.1rem;
@@ -199,19 +181,17 @@
   grid-auto-flow: column;
   grid-template-columns: repeat(2,1fr);
   grid-template-rows: repeat(6, 1fr);
-  margin: 0 0 0 0;
   font-size: 0.8rem;
 }
 
 .dog-item__angleDoubleDown {
-  position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
+  grid-area: angleDoubleDown;
 }
 
 .dog-item__angleDoubleDown__icon {
-  position: absolute;
   border: 1px solid #909090;
   padding: 0.1rem 0.2rem;
   border-radius: 3px;

@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
-import { useSpring, useTransition, animated } from "react-spring";
+import { useSpring, animated } from "react-spring";
 import { useMeasure } from "react-use";
 import { capitalizeWords } from '../utils/text';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleDown } from '@fortawesome/free-solid-svg-icons';
 
-const DogItemBodyTail = ({dog}) => {
-
-  const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
+const DogItemBodyTail = ({dog, bodyExpanded, bodyTailExpanded}) => {
 
   const [ref, {height}] = useMeasure();
 
-  const handleExpandBodyTail = () => {
-    setBodyTailExpanded(!bodyTailExpanded);
-  }
-
   const expand = useSpring({
-    // config: { friction: 10 },
     overflow: 'hidden',
-    height: bodyTailExpanded ? `${height}` : '0px'
+    height: bodyExpanded && bodyTailExpanded ? `${height}px` : '0px',
   });
 
   const getOtherVetsUsed = (dogMedicalObj) => {
@@ -40,9 +31,6 @@ const DogItemBodyTail = ({dog}) => {
 
   return (
     <>
-      <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
-        <FontAwesomeIcon icon={faAngleDoubleDown} size="sm" className="dog-item__angleDoubleDown__icon"/>
-      </div>
     <animated.div style={expand}>
       <div ref={ref} className="dog-item-body-tail">
       <div className="dog-item__history dog-item__body-tail-cell">
