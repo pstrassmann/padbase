@@ -5,6 +5,7 @@ import {
   faEnvelope,
   faHome,
   faAngleDoubleDown,
+  faEdit,
 } from '@fortawesome/free-solid-svg-icons';
 import DogItemBodyTail from './DogItemBodyTail';
 import { formatDate } from '../utils/dates';
@@ -104,9 +105,9 @@ const DogItemBody = ({ dog, bodyExpanded }) => {
 
   return (
     <animated.div style={expand}>
-    <div ref={ref}  className="dog-item-body-tail-wrapper">
-      <div>
-          <div className="dog-item-body">
+    <div ref={ref}  className="dog-item-body-wrapper">
+      <div className="dog-item-body-all">
+        <div className="dog-item-body">
             <div className="dog-item__pic">
               <img src={default_dog} alt="Default dog pic" />
             </div>
@@ -236,16 +237,23 @@ const DogItemBody = ({ dog, bodyExpanded }) => {
               </div>
             </div>
           </div>
-      {bodyTailInitialized && (<DogItemBodyTail dog={dog} bodyExpanded={bodyExpanded} bodyTailExpanded={bodyTailExpanded}/>)}
+        {bodyTailInitialized && (<DogItemBodyTail dog={dog} bodyExpanded={bodyExpanded} bodyTailExpanded={bodyTailExpanded}/>)}
       </div>
-      <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
-        <animated.div style={doubleDownIconAnimation}>
+      <div className="dog-item-body__side-panel">
+        <div className="dog-item__edit">
           <FontAwesomeIcon
-            icon={faAngleDoubleDown}
-            size="sm"
-            className="dog-item__angleDoubleDown__icon"
+            icon={faEdit}
+            className="dog-item__edit__icon"
           />
-        </animated.div>
+        </div>
+        <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
+          <animated.div style={doubleDownIconAnimation}>
+            <FontAwesomeIcon
+              icon={faAngleDoubleDown}
+              className="dog-item__angleDoubleDown__icon"
+            />
+          </animated.div>
+        </div>
       </div>
     </div>
     </animated.div>

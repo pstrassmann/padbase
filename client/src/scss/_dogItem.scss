@@ -15,6 +15,7 @@
 
 .dog-item-header-wrapper {
   display: flex;
+  justify-content: space-between;
 }
 
 .dog-item-header {
@@ -32,6 +33,7 @@
   justify-content: center;
   align-items: center;
   width: 1rem;
+  font-size: 0.9rem;
   border-left: 1px solid colors.$dark-blue-2;
   border-bottom: 1px solid colors.$dark-blue-2;
   cursor: pointer;
@@ -40,9 +42,15 @@
   }
 }
 
-.dog-item-body-tail-wrapper {
+.dog-item-body-wrapper {
   display: flex;
-  align-items: flex-end;
+  //border: 1px solid red;
+}
+
+.dog-item-body-all {
+  display: flex;
+  flex-direction: column;
+  //border: 1px solid yellow;
 }
 
 .dog-item-body {
@@ -57,14 +65,39 @@
   padding-top: 1px;
 }
 
+.dog-item-body__side-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .dog-item__angleDoubleDown {
   @extend .dog-item__headerIcon;
+  justify-self: flex-end;
   height: 2.5rem;
-  align-items: center;
+  //align-self: flex-end;
   border-left: 1px solid colors.$dark-blue-2;
   border-top: 1px solid colors.$dark-blue-2;
   border-bottom: none;
   border-top-left-radius: 5px;
+}
+
+.dog-item__edit {
+  position: absolute;
+  top: 1rem;
+  padding: 0.3rem 1rem 0.3rem 0.5rem;
+  font-size: 0.8rem;
+  border-left: 1px solid colors.$dark-blue-2;
+  border-top: 1px solid colors.$dark-blue-2;
+  border-bottom: 1px solid colors.$dark-blue-2;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: colors.$dark-blue-4;
+  }
 }
 
 .dog-item-body-tail {
@@ -134,10 +167,10 @@
 
 .dog-item__pic {
   grid-area: pic;
-  margin-left: 0.5rem;
+  padding-left: 0.5rem;
   img {
-    width: 85%;
-    height: 85%;
+    width: 90%;
+    height: 90%;
     border-radius: 10px;
   }
 }
@@ -213,13 +246,6 @@
   padding-bottom: 0.3rem;
 }
 
-//.z-neg {
-//  z-index: -1;
-//}
-//
-//.dog-item__angleDoubleDown__icon {
-//}
-
 .dog-item__history {
   grid-area: history;
   margin: 0 0 0 0.5rem;
@@ -242,7 +268,6 @@
 .dog-item__vetAppts {
   grid-area: vetAppts;
 }
-
 .dog-item__notes {
   grid-area: notes;
   margin: 0 0 0 0.5rem;

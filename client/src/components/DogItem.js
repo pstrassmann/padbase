@@ -123,7 +123,7 @@ const DogItem = React.forwardRef((props, ref) => {
             { dogItemHeader }
             <animated.div style={iconDivBorderBottom} className="dog-item__headerIcon">
               <animated.div style={ iconFlip }>
-                <FontAwesomeIcon icon={ faAngleDown } size="sm"/>
+                <FontAwesomeIcon icon={ faAngleDown }/>
               </animated.div>
             </animated.div>
           </div>
