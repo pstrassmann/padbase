@@ -42,8 +42,8 @@ const SearchBar = ({ searchDogs, resetDogSearch, cacheDogSearchText }) => {
           />
           <div className="home-dog-search-bar__search-icon">
             {searchText === '' ?
-            <FontAwesomeIcon icon={ faSearch } size="sm" />
-            : <FontAwesomeIcon icon={ faTimes } size="sm" className="home-dog-search-bar__search-icon--times" onClick={handleClearSearch}/>}
+            <FontAwesomeIcon icon={ faSearch } fixedWidth/>
+            : <FontAwesomeIcon icon={ faTimes } className="home-dog-search-bar__search-icon--times" onClick={handleClearSearch} fixedWidth />}
           </div>
         </div>
         <SearchByMenu />

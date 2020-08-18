@@ -28,16 +28,11 @@ body {
 
 .home-content {
   display: flex;
+  width: 42rem;
   flex-direction: column;
-  width: 655px;
-  //align-items: center;
 }
 
 .home-content__header {
   display: flex;
   column-gap: 0.5rem;
-}
-
-.dog-cards-container {
-  //width: 660px;
 }

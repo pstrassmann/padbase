@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { CSSTransition } from 'react-transition-group';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDown, faWindowMinimize } from '@fortawesome/free-solid-svg-icons'
 
 import { formatDate, formatAge } from '../utils/dates';
+import {useSpring, animated} from 'react-spring';
+
 import DogItemBody from './DogItemBody';
 import { connect } from 'react-redux';
 
@@ -11,8 +12,16 @@ const DogItem = React.forwardRef((props, ref) => {
     const dog = props.dog;
     const DogItem = () => {
       const [bodyExpanded, setBodyExpanded] = useState(false);
-      const [expandedClass, setExpandedClass] = useState(false);
       const [bodyInitialized, setBodyInitialized] = useState(false);
+
+      const iconFlip = useSpring({
+        transform: bodyExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+      })
+
+      const iconDivBorderBottom = useSpring({
+        borderBottom: bodyExpanded ? '' : 'none',
+        borderBottomLeftRadius: bodyExpanded ? '5px' : '0px'
+      })
 
       const formatWeight = (weight) => {
         if (!weight) return 'N/A';
@@ -50,17 +59,11 @@ const DogItem = React.forwardRef((props, ref) => {
         return ['N/A', 'missing-status'];
       };
 
-      const bodyExitTransitionTime = 200;
       const expandBody = () => {
         if (!bodyInitialized) {
           setBodyInitialized(true)
         }
         setBodyExpanded(!bodyExpanded);
-        // if (!expanded) {
-        //   setExpandedClass(true);
-        // } else {
-        //   setTimeout(() => setExpandedClass(false), bodyExitTransitionTime);
-        // }
       };
       const name = dog.name;
       const sex = dog.sex || 'N/A';
@@ -74,12 +77,7 @@ const DogItem = React.forwardRef((props, ref) => {
       );
 
       const dogItemHeader = (
-        <div
-          ref={ref}
-          key={dog._id + 'header'}
-          className='dog-item-header'
-          onClick={expandBody}
-        >
+        <div className='dog-item-header'>
           <div className="dog-item__name dog-item__header-cell">
             <div className="dog-item__label">Name</div>
             {name}
@@ -116,18 +114,20 @@ const DogItem = React.forwardRef((props, ref) => {
               {primaryVettingStatus}
             </span>
           </div>
-          { bodyExpanded ? <></> :
-            <div className="dog-item__angleDownIcon">
-              <FontAwesomeIcon icon={ faAngleDown } size="sm" className="dog-item__angleDownIcon"/>
-            </div>
-          }
         </div>
       );
 
       return (
-        <div className="dog-item">
-          {dogItemHeader}
-          {bodyInitialized && <DogItemBody dog={dog} bodyExpanded={bodyExpanded}/>}
+        <div className="dog-item" ref={ref} key={dog._id + 'all'}>
+          <div className="dog-item-header-wrapper"  onClick={expandBody}>
+            { dogItemHeader }
+            <animated.div style={iconDivBorderBottom} className="dog-item__headerIcon">
+              <animated.div style={ iconFlip }>
+                <FontAwesomeIcon icon={ faAngleDown } size="sm"/>
+              </animated.div>
+            </animated.div>
+          </div>
+            { bodyInitialized && <DogItemBody dog={ dog } bodyExpanded={ bodyExpanded }/> }
         </div>
       );
     };

@@ -2,42 +2,77 @@
 @use 'colors';
 
 .dog-item {
+  position: relative;
   margin: 0.2rem 0;
   overflow: hidden;
   background: colors.$dark-blue-4;
   border: 1px solid colors.$dark-blue-2;
   border-radius: 5px;
-  &:hover div {
-    background: colors.$dark-blue-3;
+  &:hover {
+    background-color: colors.$dark-blue-3;
   }
+}
+
+.dog-item-header-wrapper {
+  display: flex;
 }
 
 .dog-item-header {
   display: grid;
-  grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr 0.3fr;
-  grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus angleDownIcon';
+  width: 41rem;
+  grid-template-columns: 2.1fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.5fr;
+  grid-template-areas: 'name sex dogweight age dogfixed intake status vstatus';
   font-size: 0.9rem;
+}
+
+
+.dog-item__headerIcon {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  width: 1rem;
+  border-left: 1px solid colors.$dark-blue-2;
+  border-bottom: 1px solid colors.$dark-blue-2;
+  cursor: pointer;
+  &:hover {
+    background-color: colors.$dark-blue-4;
+  }
+}
+
+.dog-item-body-tail-wrapper {
+  display: flex;
+  align-items: flex-end;
 }
 
 .dog-item-body {
   @extend .dog-item-header;
   font-size: 0.8rem;
   grid-template-areas:
-          'pic fc fc fc fosterName fosterName fosterDate fosterDate .'
-          'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo .'
-          'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo .'
-          'breed mother mother vetName vetName vetd vetd vetd .'
-          'origin groupName groupName fee fee vetd vetd vetd angleDoubleDown';
+          'pic fc fc fc fosterName fosterName fosterDate fosterDate'
+          'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo'
+          'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo'
+          'breed mother mother vetName vetName vetd vetd vetd'
+          'origin groupName groupName fee fee vetd vetd vetd';
   padding-top: 1px;
-  padding-bottom: 0.3rem;
+}
+
+.dog-item__angleDoubleDown {
+  @extend .dog-item__headerIcon;
+  height: 2.5rem;
+  align-items: center;
+  border-left: 1px solid colors.$dark-blue-2;
+  border-top: 1px solid colors.$dark-blue-2;
+  border-bottom: none;
+  border-top-left-radius: 5px;
 }
 
 .dog-item-body-tail {
   @extend .dog-item-body;
   grid-template-areas:
-        'history history history . . otherVets otherVets fleaMedBrand .'
-        'medNotes medNotes medNotes medNotes . vetAppts vetAppts vetAppts .'
-        'notes notes notes notes notes notes notes notes .';
+        'history history history . . otherVets otherVets fleaMedBrand'
+        'medNotes medNotes medNotes medNotes . vetAppts vetAppts vetAppts'
+        'notes notes notes notes notes notes notes notes';
 }
 
 
@@ -95,13 +130,6 @@
 }
 .dog-item__vstatus {
   grid-area: vstatus;
-}
-
-.dog-item__angleDownIcon {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  grid-area: angleDownIcon;
 }
 
 .dog-item__pic {
@@ -182,20 +210,15 @@
   grid-template-columns: repeat(2,1fr);
   grid-template-rows: repeat(6, 1fr);
   font-size: 0.8rem;
+  padding-bottom: 0.3rem;
 }
 
-.dog-item__angleDoubleDown {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  grid-area: angleDoubleDown;
-}
-
-.dog-item__angleDoubleDown__icon {
-  border: 1px solid #909090;
-  padding: 0.1rem 0.2rem;
-  border-radius: 3px;
-}
+//.z-neg {
+//  z-index: -1;
+//}
+//
+//.dog-item__angleDoubleDown__icon {
+//}
 
 .dog-item__history {
   grid-area: history;
@@ -224,50 +247,3 @@
   grid-area: notes;
   margin: 0 0 0 0.5rem;
 }
-
-
-
-// animations for body main
-
-.dog-item-body-animation-enter {
-  height: 0;
-  overflow: hidden;
-}
-
-.dog-item-body-animation-enter-active {
-  height: 185px;
-  transition: height 200ms ease-out;
-}
-
-.dog-item-body-animation-exit {
-  height: 185px;
-}
-
-.dog-item-body-animation-exit-active {
-  height: 0;
-  overflow: hidden;
-  transition: height 200ms ease-in;
- }
-
-// animations for body tail
-
-.dog-item-body-tail-animation-enter {
-  height: 0;
-  overflow: hidden;
-}
-
-.dog-item-body-tail-animation-enter-active {
-  height: 90px;
-  transition: height 200ms ease-out;
-}
-
-.dog-item-body-tail-animation-exit {
-  height: 90px;
-}
-
-.dog-item-body-tail-animation-exit-active {
-  height: 0;
-  overflow: hidden;
-  transition: height 200ms ease-in;
- }
-

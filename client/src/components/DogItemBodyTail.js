@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSpring, animated } from "react-spring";
 import { useMeasure } from "react-use";
 import { capitalizeWords } from '../utils/text';
