@@ -6,7 +6,7 @@ const formatDate = (date) => {
 };
 
 const formatAge = (birthday) => {
-  if (!birthday) return 'N/A';
+  if (!birthday || birthday === 'Invalid date') return 'N/A';
   if (moment(birthday).isAfter(Date.now())) return 'Err';
   const nowMoment = moment(Date.now());
   const monthAge = nowMoment.diff(birthday, 'months');
