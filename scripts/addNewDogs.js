@@ -6,12 +6,6 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 connectDB();
 
-// const capitalizeWords = (str) => {
-//   const splitStr = str.toLowerCase().trim().split(' ');
-//   const capitalizedStrArray = splitStr.map( (word) => word[0].toUpperCase() + word.slice(1) )
-//   return capitalizedStrArray.join(' ');
-// }
-
 const capitalizeWords = (s) => {
   const re = /(\b[a-z](?!\s))/g;
   const capitalized = s.replace(re, x => x.toUpperCase() );
@@ -60,7 +54,13 @@ currentFostersData.forEach( async (entry) => {
   });
 
   if (status) {
-    newDog.status = [status];
+    let formattedStatus;
+    if (status === 'taken') {
+      formattedStatus = 'fostered';
+    } else {
+      formattedStatus = status;
+    }
+    newDog.status = formattedStatus;
   }
 
   try {

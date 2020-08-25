@@ -314,106 +314,73 @@ tapMaster.forEach(async (entry) => {
     }
 
     switch (vettingStatus_raw) {
-      case 'Intake':
-        if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('intake')
-        ) {
-          currentDog.status = [...currentDog.status, 'intake'];
-        }
-        if (
-          currentDog.vettingStatus.length === 0 ||
-          !currentDog.vettingStatus.includes('incomplete')
-        ) {
-          currentDog.vettingStatus = [...currentDog.vettingStatus, 'incomplete'];
-        }
-        break;
-      case 'On Hold - ALL':
-        if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('fostered')
-        ) {
-          currentDog.status = [...currentDog.status, 'fostered'];
-        }
-        if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('on hold - all')
-        ) {
-          currentDog.status = [...currentDog.status, 'on hold - all'];
-        }
-        break;
-      case 'In Foster - Vetting Outstanding':
-        if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('fostered')
-        ) {
-          currentDog.status = [...currentDog.status, 'fostered'];
-        }
-        if (
-          currentDog.vettingStatus.length === 0 ||
-          !currentDog.vettingStatus.includes('incomplete')
-        ) {
-          currentDog.vettingStatus = [...currentDog.vettingStatus, 'incomplete'];
-        }
-        break;
-      case 'In Foster - Vetting Complete':
-        if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('fostered')
-        ) {
-          currentDog.status = [...currentDog.status, 'fostered'];
-        }
-        if (
-          currentDog.vettingStatus.length === 0 ||
-          !currentDog.vettingStatus.includes('complete')
-        ) {
-          currentDog.vettingStatus = [...currentDog.vettingStatus, 'complete'];
-        }
-        break;
-      case 'Adopted - Pending Records':
-        if (
-          !currentDog.status.length === 0 ||
-          !currentDog.status.includes('adopted')
-        ) {
-          currentDog.status = [...currentDog.status, 'adopted'];
-        }
-        if (currentDog.status.length > 0) {
-          currentDog.status = currentDog.status.filter((e) => e !== "foster")
-        }
-        if (
-          currentDog.vettingStatus.length === 0 ||
-          !currentDog.vettingStatus.includes('pending records')
-        ) {
-          currentDog.vettingStatus = [...currentDog.vettingStatus, 'pending records'];
-        }
-        break;
+      case 'Deceased':
+        currentDog.status = 'deceased';
+        currentDog.vettingStatus = 'deceased';
+        return;
       case 'Adopted - Vetting Complete':
         if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('adopted')
+          currentDog.status === undefined ||
+          currentDog.status !== 'adopted'
         ) {
-          currentDog.status = [...currentDog.status, 'adopted'];
+          currentDog.status = 'adopted';
         }
-        if (currentDog.status.length > 0) {
-          currentDog.status = currentDog.status.filter((e) => e !== "foster")
-        }
-        currentDog.vettingStatus = ['complete'];
-        break;
+        currentDog.vettingStatus = 'complete';
+        return;
       case 'Adopted - Vetting Outstanding':
         if (
-          currentDog.status.length === 0 ||
-          !currentDog.status.includes('adopted')
+          currentDog.status === undefined ||
+          currentDog.status !== 'adopted'
         ) {
-          currentDog.status = [...currentDog.status, 'adopted'];
+          currentDog.status = 'adopted';
         }
-        if (currentDog.status.length > 0) {
-          currentDog.status = currentDog.status.filter((e) => e !== "foster")
+        currentDog.vettingStatus = 'incomplete';
+        return;
+      case 'Adopted - Pending Records':
+        if (
+          currentDog.status === undefined ||
+          currentDog.status !== 'adopted'
+        ) {
+          currentDog.status = 'adopted';
         }
-        currentDog.vettingStatus = ['incomplete'];
-        break;
-      case 'Deceased':
-        currentDog.status = ['deceased'];
-        currentDog.vettingStatus = ['deceased'];
+        currentDog.vettingStatus = 'pending records';
+        return;
+      case 'Intake':
+        if (
+          currentDog.status === undefined ||
+          currentDog.status !== 'intake'
+        ) {
+          currentDog.status = 'intake';
+        }
+        currentDog.vettingStatus = 'incomplete';
+        return;
+      case 'On Hold - ALL':
+        if (
+          currentDog.status === undefined ||
+          currentDog.status !== 'fostered'
+        ) {
+          currentDog.status = 'fostered';
+        }
+        currentDog.vettingStatus = 'on hold - all';
+        return;
+      case 'In Foster - Vetting Outstanding':
+        if (
+          currentDog.status === undefined ||
+          currentDog.status !== 'fostered'
+        ) {
+          currentDog.status = 'fostered';
+        }
+        currentDog.vettingStatus = 'incomplete';
+        return;
+      case 'In Foster - Vetting Complete':
+        if (
+          currentDog.status === undefined ||
+          currentDog.status !== 'fostered'
+        ) {
+          currentDog.status = 'fostered';
+        }
+        currentDog.vettingStatus = 'complete';
+        return;
     }
 
     //SAVE OR LOG
