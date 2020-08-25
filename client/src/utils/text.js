@@ -4,4 +4,16 @@ const capitalizeWords = (s) => {
   return capitalized;
 };
 
-export {capitalizeWords};
+const numbersOnly = (s) => {
+  const re = /[^0-9]/g;
+  const numbersOnly = s.replace(re, "")
+  return (numbersOnly);
+}
+
+const removeSpacesAndPunctuation = (s) => {
+  const re = /([^\ws])/g;
+  const formattedString = s.replace(re, "")
+  return formattedString;
+}
+
+export {capitalizeWords, numbersOnly, removeSpacesAndPunctuation};
