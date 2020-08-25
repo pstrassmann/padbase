@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import DogItem from './DogItem';
 import Spinner from './Spinner';
+import { setNumDogsToShow } from '../actions/dogActions';
 
 const HomeDogCards = (props) => {
-  const initialNumDogsToShow = 10;
   const numDogsToAddWhenScrolling = 10;
-  const [numDogsToShow, setNumDogsToShow] = useState(initialNumDogsToShow);
 
   const {
-    dogState: { dogMatches: dogs, loading },
+    dogState: { dogMatches: dogs, numDogsToShow, loading },
+    setNumDogsToShow,
   } = props;
 
   const observer = useRef();
@@ -33,7 +32,7 @@ const HomeDogCards = (props) => {
       });
       if (node) observer.current.observe(node);
     },
-    [numDogsToShow]
+    [setNumDogsToShow, numDogsToShow, dogs]
   );
 
   if (dogs === null || loading) {
@@ -65,4 +64,4 @@ const mapStateToProps = (state) => ({
   dogState: state.dog,
 });
 
-export default connect(mapStateToProps, null)(HomeDogCards);
+export default connect(mapStateToProps, { setNumDogsToShow })(HomeDogCards);
