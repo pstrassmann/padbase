@@ -10,13 +10,15 @@ import {
   ADD_DOG_FILTER,
   REMOVE_DOG_FILTER,
   CLEAR_ALL_DOG_FILTERS,
-  APPLY_DOG_FILTERS,
+  APPLY_DOG_FILTERS, SET_NUM_DOGS_TO_SHOW
 } from '../actions/types';
 
 // Escapes special characters from search
 const escapeRegExp = (string) => {
   return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 };
+
+const defaultNumDogsToShow = 10;
 
 const initialState = {
   dogs: null,
@@ -25,6 +27,7 @@ const initialState = {
   loading: true,
   searchByType: 'dog name',
   cachedDogSearchText: '',
+  numDogsToShow: defaultNumDogsToShow,
   filters: [],
 };
 
@@ -56,6 +59,7 @@ export default (state = initialState, action) => {
     case SEARCH_DOGS:
       return {
         ...state,
+        numDogsToShow: defaultNumDogsToShow,
         dogMatches: state.filteredDogs.filter((dog) => {
           const regex = new RegExp(escapeRegExp(action.payload), 'gi');
           switch (state.searchByType) {
@@ -86,6 +90,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         dogMatches: state.filteredDogs,
+      }
+    case SET_NUM_DOGS_TO_SHOW:
+      return {
+        ...state,
+        numDogsToShow: action.payload,
       }
     case ADD_DOG_FILTER:
       if (state.filters.includes(action.payload)) {
@@ -130,17 +139,17 @@ export default (state = initialState, action) => {
             break;
           case 'Vetting Status: Incomplete':
             tempFilteredDogs = tempFilteredDogs.filter((dog) => {
-              return (dog.vettingStatus.length === 0 || dog.vettingStatus.includes('incomplete'));
+              return (dog.vettingStatus === undefined || dog.vettingStatus === 'incomplete');
             })
             break;
           case 'Vetting Status: Complete':
             tempFilteredDogs = tempFilteredDogs.filter((dog) => {
-              return (dog.vettingStatus.length > 0 && dog.vettingStatus.includes('complete'));
+              return (dog.vettingStatus !== undefined && dog.vettingStatus === 'complete');
             })
             break;
           case 'Vetting Status: Pending Records':
             tempFilteredDogs = tempFilteredDogs.filter((dog) => {
-              return (dog.vettingStatus.length > 0 && dog.vettingStatus.includes('pending records'));
+              return (dog.vettingStatus !== undefined && dog.vettingStatus === 'pendingrecords' );
             })
             break;
           case 'Needs Rabies Vaccine':
@@ -156,10 +165,10 @@ export default (state = initialState, action) => {
                 dog.vettingDates.rabies !== undefined &&
                 dog.birthday !== undefined &&
                 moment(Date.now()).diff(dog.birthday, 'months') >= 4 &&
-                (dog.status.length === 0 || !dog.status.includes('on hold - all')) &&
-                (dog.status.length === 0 || !dog.status.includes('adopted')) &&
-                (dog.status.length === 0 || !dog.status.includes('fta')) &&
-                (dog.status.length === 0 || (dog.status.includes('fostered')) || dog.status.includes('intake'))
+                (dog.status === undefined || dog.status !== 'hold') &&
+                (dog.status === undefined || dog.status !== 'adopted') &&
+                (dog.status === undefined || dog.status !== 'fta') &&
+                (dog.status === undefined || (dog.status === 'fostered') || dog.status==='intake')
               )
             })
             break;
@@ -170,10 +179,10 @@ export default (state = initialState, action) => {
                 dog.vettingDates.dhpp1 !== undefined &&
                 dog.birthday !== undefined &&
                 moment(Date.now()).diff(dog.birthday, 'months') < 4 &&
-                (dog.status.length === 0 || !dog.status.includes('on hold - all')) &&
-                (dog.status.length === 0 || !dog.status.includes('adopted')) &&
-                (dog.status.length === 0 || !dog.status.includes('fta')) &&
-                (dog.status.length === 0 || (dog.status.includes('fostered')) || dog.status.includes('intake'))
+                (dog.status === undefined || dog.status !== 'hold') &&
+                (dog.status === undefined || dog.status !== 'adopted') &&
+                (dog.status === undefined || dog.status !== 'fta') &&
+                (dog.status === undefined || (dog.status === 'fostered') || dog.status==='intake')
               )
             })
             break;
@@ -181,6 +190,7 @@ export default (state = initialState, action) => {
       })
         return {
         ...state,
+        numDogsToShow: defaultNumDogsToShow,
         filteredDogs: tempFilteredDogs,
         dogMatches: tempFilteredDogs,
       }

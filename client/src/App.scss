@@ -2,10 +2,10 @@
 @use "scss/dogItem";
 @use "scss/dogSearchBar";
 @use "scss/dogFilterMenu";
+@use "scss/dropdown";
+@use "scss/dropdown__statusPills";
 
-
-
-root {
+* {
   box-sizing: border-box;
 }
 
@@ -27,6 +27,7 @@ body {
 }
 
 .home-content {
+  width: 42rem;
   //display: flex;
   //flex-direction: column;
 }
@@ -34,4 +35,11 @@ body {
 .home-content__header {
   display: flex;
   column-gap: 0.5rem;
+}
+
+@media screen and (min-width: 700px) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
 }

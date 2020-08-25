@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSpring, animated } from "react-spring";
 import { useMeasure } from "react-use";
+import TextareaAutosize from 'react-textarea-autosize';
 import { capitalizeWords } from '../utils/text';
-
-const DogItemBodyTail = ({dog, bodyExpanded, bodyTailExpanded}) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+const DogItemBodyTail = ({dog, bodyExpanded, bodyTailExpanded, inEditMode, setInEditMode, handleHeaderReset, handleBodyReset}) => {
 
   const [ref, {height}] = useMeasure();
 
@@ -22,20 +24,47 @@ const DogItemBodyTail = ({dog, bodyExpanded, bodyTailExpanded}) => {
     return nonPrimaryVets.map(e => capitalizeWords(e)).join(', ');
   }
 
-  const history = dog.history || 'N/A';
+  const history_init = dog.history || 'N/A';
+  const [history, setHistory] = useState(history_init);
+
   const fleaMedBrand = dog.medical.fleaMedBrand ? capitalizeWords(dog.medical.fleaMedBrand) : 'N/A';
   const otherVetsUsed = getOtherVetsUsed(dog.medical);
   const medNotes = dog.medical.medNotes || 'N/A';
   const upcomingVetAppts = 'N/A';
   const notes = dog.notes || 'N/A';
 
+  const handleHistoryChange = (e) => {
+    setHistory(e.target.value)
+  }
+
+  const handleBodyTailReset = () => {
+    setHistory(history_init);
+  }
+
+  const handleCancelEdit = () => {
+    setInEditMode(false);
+    handleHeaderReset();
+    handleBodyReset();
+    handleBodyTailReset();
+  }
+  const handleSaveEdit = () => {
+    setInEditMode(false);
+  }
+
   return (
     <>
     <animated.div style={expand}>
-      <div ref={ref} className="dog-item-body-tail">
+      <div ref={ref}>
+      <div className="dog-item-body-tail">
       <div className="dog-item__history dog-item__body-tail-cell">
         <div className="dog-item__label">History Prior to TAP</div>
-        { history }
+        <TextareaAutosize
+               style={{resize: 'none'}}
+               value={ history }
+               className={inEditMode ? "dog-item-body__displayText--editable" : "dog-item-body__displayText"}
+               readOnly={ !inEditMode }
+               onChange={handleHistoryChange}
+        />
       </div>
       <div className="dog-item__otherVets dog-item__body-tail-cell">
         <div className="dog-item__label">Other Vets Used</div>
@@ -58,6 +87,19 @@ const DogItemBodyTail = ({dog, bodyExpanded, bodyTailExpanded}) => {
         { notes }
       </div>
       </div>
+      {inEditMode && (
+        <div className="dog-item__editModeUI">
+          <div className="dog-item__editModeUI__cancel" onClick={handleCancelEdit}>
+            <FontAwesomeIcon icon={faTimesCircle}/>
+            Cancel Edit
+          </div>
+          <div className="dog-item__editModeUI__save" onClick={handleSaveEdit}>
+            <FontAwesomeIcon icon={faSave}/>
+            Save Dog
+          </div>
+        </div>
+      )}
+    </div>
     </animated.div>
     </>
   )

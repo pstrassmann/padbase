@@ -3,7 +3,7 @@ $fta: #577590;
 $adopted: #43aa8b;
 $vetting-complete: #00a6a6;
 $intake: #8c89cb;
-$onhold: #db7241;
+$hold: #db7241;
 $vetting-incomplete: #c44346;
 $pending-records: #baa128;
 $deceased: #2a2929;
@@ -14,53 +14,50 @@ $missing-status: #848383;
   padding: 0.2rem 0.4rem;
   border-radius: 6px;
   font-size: 0.8rem;
+  background-color: $missing-status;
+  color: white;
 }
 
 .fostered {
-  background: $fostered;
+  background-color: $fostered;
   color: white;
 }
 
 .adopted {
-  background: $adopted;
+  background-color: $adopted;
   color: white;
 }
 
 .intake {
-  background: $intake;
+  background-color: $intake;
   color: white;
 }
 
-.onhold {
-  background: $onhold;
+.hold {
+  background-color: $hold;
   color: white;
 }
 
 .deceased {
-  background: $deceased;
-  color: white;
-}
-
-.vetting-complete {
-  background: $vetting-complete;
-  color: white;
-}
-.vetting-incomplete {
-  background: $vetting-incomplete;
+  background-color: $deceased;
   color: white;
 }
 
 .fta {
-  background: $fta;
+  background-color: $fta;
   color: white;
 }
 
-.pending-records {
-  background: $pending-records;
+.complete {
+  background-color: $vetting-complete;
+  color: white;
+}
+.incomplete {
+  background-color: $vetting-incomplete;
   color: white;
 }
 
-.missing-status {
-  background: $missing-status;
+.pendrecs {
+  background-color: $pending-records;
   color: white;
 }

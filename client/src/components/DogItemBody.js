@@ -14,9 +14,24 @@ import default_dog from '../images/default_dog.png';
 import { useSpring, animated } from 'react-spring';
 import { useMeasure } from 'react-use';
 
-const DogItemBody = ({ dog, bodyExpanded }) => {
+const DogItemBody = ({
+  dog,
+  bodyExpanded,
+  inEditMode,
+  setInEditMode,
+  handleHeaderReset,
+}) => {
   const [bodyTailInitialized, setBodyTailInitialized] = useState(false);
   const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
+
+  const handleClickEditIcon = () => {
+    if (!inEditMode) {
+      setInEditMode(true);
+    }
+    if (!bodyTailExpanded) {
+      handleExpandBodyTail();
+    }
+  };
 
   const [ref, { height }] = useMeasure();
 
@@ -26,7 +41,6 @@ const DogItemBody = ({ dog, bodyExpanded }) => {
   });
 
   const doubleDownIconAnimation = useSpring({
-    // opacity: bodyExpanded ? 1 : 0,
     transform: bodyTailExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
   });
 
@@ -34,7 +48,11 @@ const DogItemBody = ({ dog, bodyExpanded }) => {
     if (!bodyTailInitialized) {
       setBodyTailInitialized(true);
     }
-    setBodyTailExpanded(!bodyTailExpanded);
+    if (inEditMode) {
+      setBodyTailExpanded(true);
+    } else {
+      setBodyTailExpanded(!bodyTailExpanded);
+    }
   };
 
   const formatBreed = (breed) => {
@@ -103,11 +121,15 @@ const DogItemBody = ({ dog, bodyExpanded }) => {
   const tvtStatus = getPosNegStatus(dog.medical, 'tvt');
   const fourDXStatus = getPosNegStatus(dog.medical, 'fourDX');
 
+  const handleBodyReset = () => {
+
+  }
+
   return (
     <animated.div style={expand}>
-    <div ref={ref}  className="dog-item-body-wrapper">
-      <div className="dog-item-body-all">
-        <div className="dog-item-body">
+      <div ref={ref} className="dog-item-body-wrapper">
+        <div className="dog-item-body-all">
+          <div className="dog-item-body">
             <div className="dog-item__pic">
               <img src={default_dog} alt="Default dog pic" />
             </div>
@@ -237,25 +259,35 @@ const DogItemBody = ({ dog, bodyExpanded }) => {
               </div>
             </div>
           </div>
-        {bodyTailInitialized && (<DogItemBodyTail dog={dog} bodyExpanded={bodyExpanded} bodyTailExpanded={bodyTailExpanded}/>)}
-      </div>
-      <div className="dog-item-body__side-panel">
-        <div className="dog-item__edit">
-          <FontAwesomeIcon
-            icon={faEdit}
-            className="dog-item__edit__icon"
-          />
-        </div>
-        <div className="dog-item__angleDoubleDown" onClick={handleExpandBodyTail}>
-          <animated.div style={doubleDownIconAnimation}>
-            <FontAwesomeIcon
-              icon={faAngleDoubleDown}
-              className="dog-item__angleDoubleDown__icon"
+          {bodyTailInitialized && (
+            <DogItemBodyTail
+              dog={dog}
+              bodyExpanded={bodyExpanded}
+              bodyTailExpanded={bodyTailExpanded}
+              inEditMode={inEditMode}
+              setInEditMode={setInEditMode}
+              handleHeaderReset={handleHeaderReset}
+              handleBodyReset = {handleBodyReset}
             />
-          </animated.div>
+          )}
+        </div>
+        <div className="dog-item-body__side-panel">
+          <div
+            className="dog-item-body__side-panel__editIcon"
+            onClick={handleClickEditIcon}
+          >
+            <FontAwesomeIcon icon={faEdit} />
+          </div>
+          <div
+            className="dog-item-body__side-panel__angleDoubleDownIcon"
+            onClick={handleExpandBodyTail}
+          >
+            <animated.div style={doubleDownIconAnimation}>
+              <FontAwesomeIcon icon={faAngleDoubleDown} />
+            </animated.div>
+          </div>
         </div>
       </div>
-    </div>
     </animated.div>
   );
 };

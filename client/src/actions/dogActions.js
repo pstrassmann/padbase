@@ -7,7 +7,9 @@ import {
   ADD_DOG_FILTER,
   REMOVE_DOG_FILTER,
   CLEAR_ALL_DOG_FILTERS,
-  APPLY_DOG_FILTERS, CACHE_DOG_SEARCH_TEXT
+  APPLY_DOG_FILTERS,
+  CACHE_DOG_SEARCH_TEXT,
+  SET_NUM_DOGS_TO_SHOW,
 } from './types';
 
 export const getDogs = () => async (dispatch) => {
@@ -90,4 +92,11 @@ export const clearAllDogFilters = () => (dispatch) => {
   });
   applyDogFilters(dispatch);
 
+};
+
+export const setNumDogsToShow = (numDogsToShow) => (dispatch) => {
+  dispatch({
+    type: SET_NUM_DOGS_TO_SHOW,
+    payload: numDogsToShow,
+  });
 };
