@@ -5,7 +5,7 @@ const DogSchema = mongoose.Schema({
   sex: String,
   group: String,
   birthday: Date,
-  status: [String],
+  status: String,
   tags: [String],
   color: [String],
   breed: [String],
@@ -18,7 +18,7 @@ const DogSchema = mongoose.Schema({
   history: String,
   currentLocation: String,
   bio: String,
-  vettingStatus: [String],
+  vettingStatus: String,
   vettingDates: {
     flea: Date,
     dewormer: Date,
