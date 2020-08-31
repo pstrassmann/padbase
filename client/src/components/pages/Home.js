@@ -6,11 +6,14 @@ import ActiveFilters from '../ActiveFilters';
 import HomeDogCards from '../HomeDogCards';
 import Spinner from '../Spinner';
 import { getDogs } from '../../actions/dogActions';
+import { getAllPeopleNames, getFvaCoordinators } from '../../actions/peopleActions';
 
-const Home = ({ loading, getDogs }) => {
+const Home = ({ loading, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
   useEffect(() => {
     getDogs();
-  }, []);
+    getAllPeopleNames();
+    getFvaCoordinators();
+  }, [getDogs, getAllPeopleNames, getFvaCoordinators]);
 
   return (
     <div className="home-content-wrapper">
@@ -34,4 +37,4 @@ const mapStateToProps = (state) => ({
   loading: state.dog.loading,
 });
 
-export default connect(mapStateToProps, { getDogs })(Home);
+export default connect(mapStateToProps, { getDogs, getAllPeopleNames, getFvaCoordinators })(Home);
