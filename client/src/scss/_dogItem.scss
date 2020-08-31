@@ -24,7 +24,7 @@ $dog-item-border-radius: 5px;
 .dog-item-header {
   display: grid;
   width: 41rem;
-  grid-template-columns: 2.1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.4fr 1.6fr;
+  grid-template-columns: 2.1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.4fr 1.8fr;
   grid-template-areas: 'name sex dogweight dogfixed age intake status vstatus';
   font-size: 0.9rem;
 }
@@ -57,6 +57,7 @@ $dog-item-border-radius: 5px;
 .dog-item-body-wrapper {
   display: flex;
   //border: 1px solid red;
+  //margin-bottom: -1.2rem;
 }
 
 .dog-item-body-all {

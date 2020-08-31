@@ -7,9 +7,62 @@ import { formatDate } from '../utils/dates';
 import { capitalizeWords } from '../utils/text';
 import default_dog from '../images/default_dog.png';
 import { useSpring, animated } from 'react-spring';
-import { useMeasure } from 'react-use';
 import FosterSelect from './dropdowns/FosterSelect';
 
+
+// Data processing functions
+const formatBreed = (breed) => {
+  if (breed.length === 0) return 'N/A';
+  return capitalizeWords(breed.join(', '));
+};
+
+const getCoordinatorName = (coordinator) => {
+  if (coordinator === undefined) return 'N/A';
+  if (coordinator.firstName && coordinator.lastName) {
+    return `${coordinator.firstName} ${coordinator.lastName}`;
+  }
+  if (coordinator.firstName) return coordinator.firstName;
+  if (coordinator.lastName) return coordinator.lastName;
+};
+
+const getFosterInfo = (currentFoster) => {
+  if (currentFoster === undefined) {
+    return {
+      _id: null,
+      fullName: 'N/A',
+      phone: 'N/A',
+      email: 'N/A',
+      address: 'N/A',
+    };
+  }
+  const firstName = currentFoster.firstName || '';
+  const lastName = currentFoster.lastName || '';
+  const fosterObj = {};
+  fosterObj._id = currentFoster._id;
+  fosterObj.fullName = `${firstName} ${lastName}`.trim();
+  fosterObj.phone = currentFoster.phone || 'N/A';
+  fosterObj.email = currentFoster.email || 'N/A';
+  fosterObj.address = currentFoster.address || 'N/A';
+  return fosterObj;
+};
+
+const formatVettingDates = (vettingDates) => {
+  if (vettingDates === undefined) return {};
+  return Object.fromEntries(Object.entries(vettingDates).map(([key, value]) => [key, formatDate(value)]));
+};
+
+// Input is dog.medical object and property name
+const getPosNegStatus = (medical, keyName) => {
+  if (medical === undefined || medical[keyName] === undefined) return 'N/A';
+  if (medical[keyName] === true) {
+    return 'positive';
+  } else if (medical[keyName] === false) {
+    return 'negative';
+  }
+  return 'Err';
+};
+
+// Component definition
 const DogItemBody = ({ dog, bodyExpanded, inEditMode, setInEditMode, handleHeaderReset }) => {
   const [bodyTailInitialized, setBodyTailInitialized] = useState(false);
   const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
@@ -23,12 +76,10 @@ const DogItemBody = ({ dog, bodyExpanded, inEditMode, setInEditMode, handleHeade
     }
   };
 
-  const [ref, { height }] = useMeasure();
-
   const expand = useSpring({
-    config: { mass: 0.1, tension: 300, friction: 30 },
-    overflow: 'hidden',
-    height: bodyExpanded ? `${height}px` : '0px',
+    // config: { mass: 0.1, tension: 300, friction: 30 },
+    from: {opacity: 0},
+    opacity: bodyExpanded ? 1 : 0,
   });
 
   const doubleDownIconAnimation = useSpring({
@@ -44,57 +95,6 @@ const DogItemBody = ({ dog, bodyExpanded, inEditMode, setInEditMode, handleHeade
     } else {
       setBodyTailExpanded(!bodyTailExpanded);
     }
-  };
-
-  const formatBreed = (breed) => {
-    if (breed.length === 0) return 'N/A';
-    return capitalizeWords(breed.join(', '));
-  };
-
-  const getCoordinatorName = (coordinator) => {
-    if (coordinator === undefined) return 'N/A';
-    if (coordinator.firstName && coordinator.lastName) {
-      return `${coordinator.firstName} ${coordinator.lastName}`;
-    }
-    if (coordinator.firstName) return coordinator.firstName;
-    if (coordinator.lastName) return coordinator.lastName;
-  };
-
-  const getFosterInfo = (currentFoster) => {
-    if (currentFoster === undefined) {
-      return {
-        _id: null,
-        fullName: 'N/A',
-        phone: 'N/A',
-        email: 'N/A',
-        address: 'N/A',
-      };
-    }
-    const firstName = currentFoster.firstName || '';
-    const lastName = currentFoster.lastName || '';
-    const fosterObj = {};
-    fosterObj._id = currentFoster._id;
-    fosterObj.fullName = `${firstName} ${lastName}`.trim();
-    fosterObj.phone = currentFoster.phone || 'N/A';
-    fosterObj.email = currentFoster.email || 'N/A';
-    fosterObj.address = currentFoster.address || 'N/A';
-    return fosterObj;
-  };
-
-  const formatVettingDates = (vettingDates) => {
-    if (vettingDates === undefined) return {};
-    return Object.fromEntries(Object.entries(vettingDates).map(([key, value]) => [key, formatDate(value)]));
-  };
-
-  // Input is dog.medical object and property name
-  const getPosNegStatus = (medical, keyName) => {
-    if (medical === undefined || medical[keyName] === undefined) return 'N/A';
-    if (medical[keyName] === true) {
-      return 'positive';
-    } else if (medical[keyName] === false) {
-      return 'negative';
-    }
-    return 'Err';
   };
 
   const breed = formatBreed(dog.breed);
@@ -131,8 +131,7 @@ const DogItemBody = ({ dog, bodyExpanded, inEditMode, setInEditMode, handleHeade
   };
 
   return (
-    <animated.div style={expand}>
-      <div ref={ref} className="dog-item-body-wrapper">
+      <animated.div style={expand} className="dog-item-body-wrapper">
         <div className="dog-item-body-all">
           <div className="dog-item-body">
             <div className="dog-item__pic">
@@ -248,7 +247,7 @@ const DogItemBody = ({ dog, bodyExpanded, inEditMode, setInEditMode, handleHeade
               </div>
             </div>
           </div>
-          {bodyTailInitialized && (
+          {bodyTailExpanded && (
             <DogItemBodyTail
               dog={dog}
               bodyExpanded={bodyExpanded}
@@ -270,8 +269,7 @@ const DogItemBody = ({ dog, bodyExpanded, inEditMode, setInEditMode, handleHeade
             </animated.div>
           </div>
         </div>
-      </div>
-    </animated.div>
+      </animated.div>
   );
 };
 

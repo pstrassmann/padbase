@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import moment from 'moment';
 
 import Dropdown from './dropdowns/Dropdown';
 import StatusPillDropdown from './dropdowns/StatusPillDropdown';
@@ -10,6 +9,31 @@ import { capitalizeWords, numbersOnly } from '../utils/text';
 import DogItemBody from './DogItemBody';
 import { connect } from 'react-redux';
 
+// Data processing functions
+const formatWeight = (weight) => {
+  if (!weight) return 'N/A';
+  return `${weight.toFixed(0)} lbs`;
+};
+
+const formatIsFixed = (isFixed) => {
+  if (isFixed === undefined) return 'N/A';
+  return isFixed ? 'Yes' : 'No';
+};
+
+const getPrimaryStatus = (status) => {
+  if (status === undefined) return 'N/A';
+  if (status === 'fta') return 'FTA';
+  return capitalizeWords(status);
+};
+
+const getVettingStatus = (vettingStatus) => {
+  if (vettingStatus === undefined) return 'N/A';
+  if (vettingStatus === 'pendingrecords') {
+    return 'Pend. Recs.';
+  }
+  return capitalizeWords(vettingStatus);
+};
+
 const DogItem = React.forwardRef((props, ref) => {
   const dog = props.dog;
 
@@ -17,31 +41,6 @@ const DogItem = React.forwardRef((props, ref) => {
     const [inEditMode, setInEditMode] = useState(false);
     const [bodyExpanded, setBodyExpanded] = useState(false);
     const [bodyInitialized, setBodyInitialized] = useState(false);
-
-    // Data processing functions
-    const formatWeight = (weight) => {
-      if (!weight) return 'N/A';
-      return `${weight.toFixed(0)} lbs`;
-    };
-
-    const formatIsFixed = (isFixed) => {
-      if (isFixed === undefined) return 'N/A';
-      return isFixed ? 'Yes' : 'No';
-    };
-
-    const getPrimaryStatus = (status) => {
-      if (status === undefined) return 'N/A';
-      if (status === 'fta') return 'FTA';
-      return capitalizeWords(status);
-    };
-
-    const getVettingStatus = (vettingStatus) => {
-      if (vettingStatus === undefined) return 'N/A';
-      if (vettingStatus === 'pendingrecords') {
-        return 'Pend. Recs.';
-      }
-      return capitalizeWords(vettingStatus);
-    };
 
     // Status modifiers
     const expandBody = () => {
@@ -236,7 +235,7 @@ const DogItem = React.forwardRef((props, ref) => {
             </div>
           </div>
         </div>
-        {bodyInitialized && (
+        {bodyExpanded && (
           <DogItemBody
             dog={dog}
             bodyExpanded={bodyExpanded}
