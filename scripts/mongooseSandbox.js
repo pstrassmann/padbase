@@ -5,6 +5,23 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 connectDB();
 
+// // Debug regexp
+// const escapeRegExp = (string) => {
+//   return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+// };
+//
+// role='Vetting Coordinator';
+// searchStr = 'A';
+// const searchDB = async () => {
+//   const peopleWithRole = await Person.find({ role: role }).select('_id firstName lastName');
+//   const regex = new RegExp("\\b(" + escapeRegExp(searchStr) + ")", 'gi');
+//   const peopleMatches = peopleWithRole.filter((person) => {
+//     const fullName = `${ person.firstName ? person.firstName : '' } ${ person.lastName ? person.lastName : '' }`;
+//     return regex.test(fullName);
+//   })
+//   console.log(peopleMatches);
+// }
+// searchDB()
 
 // // Edit status and vetting status arrays
 // const editDB = async () => {
