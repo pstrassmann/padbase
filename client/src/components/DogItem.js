@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 
 import Dropdown from './dropdowns/Dropdown';
 import StatusPillDropdown from './dropdowns/StatusPillDropdown';
-import { formatDate, formatAge } from '../utils/dates';
-import { useSpring, animated } from 'react-spring';
-import { capitalizeWords, numbersOnly, removeSpacesAndPunctuation } from '../utils/text';
+import { dateMask, validatedDate, formatDate, formatAge } from '../utils/dates';
+import { capitalizeWords, numbersOnly } from '../utils/text';
 import DogItemBody from './DogItemBody';
 import { connect } from 'react-redux';
 
@@ -17,16 +17,6 @@ const DogItem = React.forwardRef((props, ref) => {
     const [inEditMode, setInEditMode] = useState(false);
     const [bodyExpanded, setBodyExpanded] = useState(false);
     const [bodyInitialized, setBodyInitialized] = useState(false);
-
-    // Springs
-    const iconFlip = useSpring({
-      transform: bodyExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
-    });
-
-    const iconDivBorderBottom = useSpring({
-      borderBottom: bodyExpanded ? '' : 'none',
-      borderBottomLeftRadius: bodyExpanded ? '5px' : '0px',
-    });
 
     // Data processing functions
     const formatWeight = (weight) => {
@@ -136,22 +126,24 @@ const DogItem = React.forwardRef((props, ref) => {
     };
 
     const handleValidateBirthday = () => {
-      const formattedBirthday = formatDate(birthday);
-      if (formattedBirthday === 'Invalid date') {
+      const ISODate = validatedDate(birthday);
+      if (ISODate === null) {
         setBirthday('');
         setAge('N/A');
       } else {
-        setBirthday(formattedBirthday);
-        setAge(formatAge(birthday));
+        setBirthday(formatDate(ISODate));
+        setAge(formatAge(ISODate));
       }
-    };
+    }
 
     const handleValidateDate = (date, dateSetter) => {
-      const formattedDate = formatDate(date);
-      if (formattedDate === 'Invalid date') {
-        dateSetter('N/A');
-      } else {
-        dateSetter(formattedDate);
+      if (inEditMode) {
+        const ISODate = validatedDate(date);
+        if (ISODate === null) {
+          return dateSetter('N/A');
+        } else {
+          dateSetter(formatDate(ISODate));
+        }
       }
     };
 
@@ -196,7 +188,7 @@ const DogItem = React.forwardRef((props, ref) => {
               value={birthday === 'N/A' ? '' : birthday}
               className="dog-item-header__displayText--editable"
               placeholder="MM-DD-YY"
-              onChange={(e) => setBirthday(e.target.value)}
+              onChange={(e) => setBirthday(dateMask(e.target.value))}
               onBlur={handleValidateBirthday}
             />
           )}
@@ -209,7 +201,7 @@ const DogItem = React.forwardRef((props, ref) => {
             className={inEditMode ? 'dog-item-header__displayText--editable' : 'dog-item-header__displayText'}
             readOnly={!inEditMode}
             placeholder="MM-DD-YY"
-            onChange={(e) => setIntakeDate(e.target.value)}
+            onChange={(e) => setIntakeDate(dateMask(e.target.value))}
             onBlur={() => handleValidateDate(intakeDate, setIntakeDate)}
           />
         </div>
@@ -238,11 +230,11 @@ const DogItem = React.forwardRef((props, ref) => {
       <div className={inEditMode ? 'dog-item dog-item--editMode' : 'dog-item'} ref={ref} key={dog._id + 'item'}>
         <div className="dog-item-header-wrapper" onClick={expandBody}>
           {dogItemHeader}
-          <animated.div style={iconDivBorderBottom} className="dog-item__headerIcon">
-            <animated.div style={iconFlip}>
-              <FontAwesomeIcon icon={faAngleDown} />
-            </animated.div>
-          </animated.div>
+          <div className="dog-item__headerButton">
+            <div className={ bodyExpanded ? "dog-item__headerButton__icon--expanded" : "dog-item__headerButton__icon"}>
+              <FontAwesomeIcon icon={ faAngleDown }/>
+            </div>
+          </div>
         </div>
         {bodyInitialized && (
           <DogItemBody

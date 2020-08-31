@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { escapeRegExp } from '../utils/text';
 
 import {
   GET_DOGS,
@@ -12,11 +13,6 @@ import {
   CLEAR_ALL_DOG_FILTERS,
   APPLY_DOG_FILTERS, SET_NUM_DOGS_TO_SHOW
 } from '../actions/types';
-
-// Escapes special characters from search
-const escapeRegExp = (string) => {
-  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-};
 
 const defaultNumDogsToShow = 10;
 
@@ -61,7 +57,7 @@ export default (state = initialState, action) => {
         ...state,
         numDogsToShow: defaultNumDogsToShow,
         dogMatches: state.filteredDogs.filter((dog) => {
-          const regex = new RegExp(escapeRegExp(action.payload), 'gi');
+          const regex = new RegExp('\\b'+escapeRegExp(action.payload), 'gi');
           switch (state.searchByType) {
             case 'dog name':
               return dog.name.match(regex)

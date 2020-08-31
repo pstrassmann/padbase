@@ -1,5 +1,5 @@
 const capitalizeWords = (s) => {
-  const re = /(\b[a-z](?!\s))/g;
+  const re = /(\b[a-z])/g;
   const capitalized = s.replace(re, (x) => x.toUpperCase());
   return capitalized;
 };
@@ -16,4 +16,9 @@ const removeSpacesAndPunctuation = (s) => {
   return formattedString;
 }
 
-export {capitalizeWords, numbersOnly, removeSpacesAndPunctuation};
+// Escapes special characters from search
+const escapeRegExp = (string) => {
+  return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+};
+
+export {capitalizeWords, numbersOnly, removeSpacesAndPunctuation, escapeRegExp};
