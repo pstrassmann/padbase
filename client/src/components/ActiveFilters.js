@@ -28,11 +28,11 @@ const ActiveFilters = ({ filters, removeDogFilter, clearAllDogFilters, cachedDog
       {filters.map((filter) => (
         <div key={filter} className="dog-active-filter">
           <FontAwesomeIcon icon={faTimesCircle} className="dog-active-filter__icon" onClick={ () => handleRemoveClick(filter)}/>
-          {filter}
+          <span className="dog-active-filter__text">{filter}</span>
         </div>
       ))}
       <div className="dog-filter-clear-button" onClick={handleClearAll}>
-        Clear all
+        <span className="dog-active-filter__text">Clear all</span>
       </div>
     </div>
   );
