@@ -10,6 +10,7 @@ import {
   APPLY_DOG_FILTERS,
   CACHE_DOG_SEARCH_TEXT,
   SET_NUM_DOGS_TO_SHOW,
+  UPDATE_DOG_IN_APP_STATE,
 } from './types';
 
 export const getDogs = () => async (dispatch) => {
@@ -31,18 +32,25 @@ export const getDogs = () => async (dispatch) => {
   }
 };
 
+export const updateDogInAppState = (updatedDog) => async (dispatch) => {
+  dispatch({
+    type: UPDATE_DOG_IN_APP_STATE,
+    payload: updatedDog,
+  });
+};
+
 export const setLoading = (loadingBool) => (dispatch) => {
   dispatch({
     type: SET_LOADING,
     payload: loadingBool,
-  })
-}
+  });
+};
 export const setSearchByType = (searchByType) => (dispatch) => {
   dispatch({
     type: SET_SEARCH_BY_TYPE,
     payload: searchByType,
-  })
-}
+  });
+};
 
 export const cacheDogSearchText = (text) => (dispatch) => {
   dispatch({
@@ -64,7 +72,7 @@ export const resetDogSearch = () => (dispatch) => {
   });
 };
 
-export const applyDogFilters = (dispatch) =>  {
+export const applyDogFilters = (dispatch) => {
   dispatch({
     type: APPLY_DOG_FILTERS,
   });
@@ -91,7 +99,6 @@ export const clearAllDogFilters = () => (dispatch) => {
     type: CLEAR_ALL_DOG_FILTERS,
   });
   applyDogFilters(dispatch);
-
 };
 
 export const setNumDogsToShow = (numDogsToShow) => (dispatch) => {

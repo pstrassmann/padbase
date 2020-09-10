@@ -17,7 +17,6 @@
   width: fit-content;
   padding: 0rem 0.4rem;
   border-radius: 5px;
-  cursor: pointer;
   color: colors.$true-white;
   font-size: 0.80rem;
   background-color: colors.$medium-blue-5;
@@ -99,7 +98,6 @@
 }
 
 .dog-active-filter__icon {
-  cursor: pointer;
   font-size: 0.6rem;
   margin-right: 0.3rem;
   transition: color 100ms ease;
@@ -112,7 +110,6 @@
   @extend .dog-active-filter;
   background-color: colors.$dark-grey-1;
   color: colors.$true-white;
-  cursor: pointer;
   &:hover {
     color: colors.$dark-grey-1;
     background-color: colors.$true-white;

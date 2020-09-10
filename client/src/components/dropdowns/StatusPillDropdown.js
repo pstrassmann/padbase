@@ -16,7 +16,7 @@ const StatusPillDropdown = ({ options, state, stateSetter, inEditMode }) => {
   };
 
   const handleClickOption = (option) => {
-    stateSetter(option);
+    stateSetter(option === 'N/A' ? null : option);
     setDropdownActive(false);
   };
 

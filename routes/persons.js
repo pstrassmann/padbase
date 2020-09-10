@@ -48,16 +48,15 @@ router.get('/email', async (req, res) => {
   const re = new RegExp(emailPattern,'g');
   const emailRegExpMatchArray = email.match(re);
   if (!emailRegExpMatchArray || (emailRegExpMatchArray[0] !== email)) {
-    res.json('invalid email');
+     return res.json('invalid email');
   }
   try {
     const person = await Person.findOne({ email: email.toLowerCase() })
     if (person) {
-      res.json(false);
+       res.json(false);
     } else {
-      res.json(true);
+       res.json(true);
     }
-
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }

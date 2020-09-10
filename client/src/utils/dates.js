@@ -1,12 +1,11 @@
 import moment from 'moment';
-import { numbersOnly } from './text';
 
 const dateMask = (input) => {
   return input.replace(/[^0-9-]/g, '').slice(0,8);
 }
 
 const formatDate = (date) => {
-  if (date === undefined || date === null) return 'N/A';
+  if (date === undefined || date === null) return null;
   return moment(date).format('MM-DD-YY');
 }
 
@@ -22,8 +21,8 @@ const validatedDate = (dateMMDDYY) => {
 
 // Expects date object or properly formatted ISO Date e.g 2020-08-18
 const formatAge = (birthday) => {
-  if (!birthday || birthday === 'Invalid date') return 'N/A';
-  if (moment(birthday).isAfter(Date.now())) return 'Err';
+  if (!birthday || birthday === 'Invalid date') return null;
+  if (moment(birthday).isAfter(Date.now())) return null;
   const nowMoment = moment(Date.now());
   const monthAge = nowMoment.diff(birthday, 'months');
   if (monthAge === 0) {

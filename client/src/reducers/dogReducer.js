@@ -11,7 +11,9 @@ import {
   ADD_DOG_FILTER,
   REMOVE_DOG_FILTER,
   CLEAR_ALL_DOG_FILTERS,
-  APPLY_DOG_FILTERS, SET_NUM_DOGS_TO_SHOW
+  APPLY_DOG_FILTERS,
+  SET_NUM_DOGS_TO_SHOW,
+  UPDATE_DOG_IN_APP_STATE,
 } from '../actions/types';
 
 const defaultNumDogsToShow = 10;
@@ -37,6 +39,18 @@ export default (state = initialState, action) => {
         dogMatches: action.payload,
         loading: false,
       };
+
+    case UPDATE_DOG_IN_APP_STATE:
+      return {
+        ...state,
+        dogs: state.dogs.map((dog) => {
+          return dog._id === action.payload._id ? action.payload : dog;
+        }),
+        filteredDogs: state.filteredDogs.map((dog) => {
+          return dog._id === action.payload._id ? action.payload : dog;
+        }),
+      }
+
     case SET_LOADING:
       return {
         ...state,
@@ -182,6 +196,9 @@ export default (state = initialState, action) => {
               )
             })
             break;
+
+          default:
+            return;
         }
       })
         return {

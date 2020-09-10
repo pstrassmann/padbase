@@ -38,8 +38,6 @@ $dog-item-border-radius: 5px;
   font-size: 0.9rem;
   box-shadow: 0 0 0 1px colors.$dark-blue-2;
   border-top-right-radius: $dog-item-border-radius;
-  //border-bottom-right-radius: $dog-item-border-radius;
-  cursor: pointer;
   &:hover {
     background-color: colors.$dark-blue-2;
   }
@@ -56,25 +54,22 @@ $dog-item-border-radius: 5px;
 
 .dog-item-body-wrapper {
   display: flex;
-  //border: 1px solid red;
-  //margin-bottom: -1.2rem;
 }
 
 .dog-item-body-all {
   display: flex;
   flex-direction: column;
-  //border: 1px solid yellow;
 }
 
 .dog-item-body {
   @extend .dog-item-header;
   font-size: 0.8rem;
   grid-template-areas:
-          'pic fc fc fc fosterName fosterName fosterDate fosterDate'
-          'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo'
-          'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo'
-          'breed mother mother vetName vetName vetd vetd vetd'
-          'origin groupName groupName fee fee vetd vetd vetd';
+    'pic fc fc fc fosterName fosterName fosterDate fosterDate'
+    'pic vc vc vc fosterInfo fosterInfo fosterInfo fosterInfo'
+    'pic ac ac ac fosterInfo fosterInfo fosterInfo fosterInfo'
+    'breed mother mother vetName vetName vetd vetd vetd'
+    'origin groupName groupName fee fee vetd vetd vetd';
   padding-top: 1px;
   padding-bottom: 0.4rem;
 }
@@ -104,23 +99,23 @@ $dog-item-border-radius: 5px;
   border-bottom: 1px solid colors.$dark-blue-2;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  cursor: pointer;
   &:hover {
-    background-color: colors.$dark-blue-4;
+    background-color: colors.$dark-blue-2;
   }
 }
 
 .dog-item-body-tail {
   @extend .dog-item-body;
   grid-template-areas:
-        'history history history . . otherVets otherVets fleaMedBrand'
-        'medNotes medNotes medNotes medNotes . vetAppts vetAppts vetAppts'
-        'notes notes notes notes notes notes notes notes';
+    'history history history history . otherVets otherVets fleaMedBrand'
+    'medNotes medNotes medNotes medNotes . vetAppts vetAppts vetAppts'
+    'notes notes notes notes notes notes notes notes';
 }
 
 .dog-item__editModeUI {
+  cursor: default;
   display: flex;
-  font-size: 0.80rem;
+  font-size: 0.8rem;
   justify-content: center;
   align-items: flex-end;
 }
@@ -137,7 +132,9 @@ $dog-item-border-radius: 5px;
   margin-right: 0.3rem;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  cursor: pointer;
+  &:hover {
+    background-color: colors.$dark-blue-2;
+  }
 }
 
 .dog-item__editModeUI__save {
@@ -178,16 +175,15 @@ $dog-item-border-radius: 5px;
 
 .dog-item-header__displayText {
   border: none;
-  background-color: colors.$dark-blue-4;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  background: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   border-radius: 3px;
   font-size: 0.9rem;
   color: white;
   width: 95%;
-  margin: 0 0 0 -.15rem;
-  padding: 0 0 0 .15rem;
+  margin: 0 0 0 -0.15rem;
+  padding: 0 0 0 0.15rem;
   &:focus {
     outline: 0;
   }
@@ -207,22 +203,52 @@ $dog-item-border-radius: 5px;
 
 .dog-item-body__displayText--editable {
   @extend .dog-item-body__displayText;
+  position: relative;
   &:focus {
-    box-shadow: 0 0 0 1px colors.$medium-purple-5;
+    box-shadow: 0 0 0 1px colors.$light-grey-2;
   }
 }
 
+.dog-item-body__displayText--editable--vettingDate {
+  @extend .dog-item-body__displayText--editable;
+  width: 4.7rem;
+}
+
 .dog-item__inputErrorMsg {
+  opacity: 0;
   position: absolute;
   top: 0%;
   right: 0.3rem;
   color: #ffffff;
-  background-color: rgb(131, 52, 74);
+  background: colors.$medium-red-1;
   padding: 0.1rem 0.2rem 0.1rem 0.2rem;
-  border-radius: 3px;;
+  border-radius: 3px;
   font-size: 0.65rem;
   width: fit-content;
-  z-index: 1
+}
+
+.dog-item__fieldRequiredError::placeholder {
+  color: colors.$medium-red-2;
+}
+
+.dog-item__alerts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.2rem 0rem 0.3rem 0.5rem;
+}
+
+.dog-item__alerts__alertError {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  color: colors.$bright-red-3;
+  font-size: 0.8rem;
+}
+
+.dog-item__alerts__alertSuccess {
+  @extend .dog-item__alerts__alertError;
+  color: colors.$bright-green-3;
 }
 
 .dog-item__name {
@@ -265,6 +291,7 @@ $dog-item-border-radius: 5px;
 
 .dog-item__fc {
   grid-area: fc;
+  margin-right: 0.6rem;
 }
 .dog-item__ac {
   grid-area: ac;
@@ -294,14 +321,19 @@ $dog-item-border-radius: 5px;
   padding-bottom: 0.2rem;
   display: flex;
   align-items: center;
-  input {
-    width: 92%;
-  }
 }
-
 
 .dog-item__foster-icon {
   margin-right: 0.3rem;
+}
+
+.dog-item__foster-add-or-cancel-icon {
+  position: relative;
+  margin-right: 0.4rem;
+  font-size: 0.7rem;
+  &:hover {
+    color: colors.$dark-grey-1;
+  }
 }
 
 .dog-item__breed {
@@ -325,19 +357,20 @@ $dog-item-border-radius: 5px;
 }
 
 .dog-item__groupName {
-  grid-area: groupName
+  grid-area: groupName;
 }
 .dog-item__fee {
-  grid-area: fee
+  grid-area: fee;
 }
 
 .dog-item__vetd {
   grid-area: vetd;
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(6, 1fr);
   font-size: 0.8rem;
+  column-gap: 0.2rem;
   padding-bottom: 0.3rem;
 }
 
@@ -357,7 +390,6 @@ $dog-item-border-radius: 5px;
 .dog-item__medNotes {
   grid-area: medNotes;
   margin: 0 0 0 0.5rem;
-
 }
 
 .dog-item__vetAppts {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { escapeRegExp, capitalizeWords } from '../../utils/text';
+import ConditionalTextInput from '../ConditionalTextInput';
 
 const CoordinatorSelect = ({
   role,
@@ -17,12 +18,6 @@ const CoordinatorSelect = ({
     return coordinator.role.length > 0 && coordinator.role.includes(role);
   });
 
-  const coordinatorsWithRole_fullNamesArray = coordinatorsWithRole.map((coordinator) => {
-    const fullName = `${coordinator.firstName ? coordinator.firstName : ''} ${
-      coordinator.lastName ? coordinator.lastName : ''
-    }`;
-    return fullName;
-  });
 
   const handleInputChange = (e) => {
     const userInput = e.target.value;
@@ -32,57 +27,72 @@ const CoordinatorSelect = ({
     const regexMatches = coordinatorsWithRole.filter((coordinator) => {
       const fullName = `${coordinator.firstName ? coordinator.firstName : ''} ${
         coordinator.lastName ? coordinator.lastName : ''
-      }`;
+      }`.trim();
       return fullName.match(regex) !== null && fullName.match(regex).length > 0;
     });
 
     setCoordinatorMatches(regexMatches);
-    setCoordinatorState(capitalizeWords(userInput));
+    setCoordinatorState({ fullName: capitalizeWords(userInput), _id: null });
     setDropdownActive(true);
   };
 
   const handleInputFocus = (e) => {
-    if (inEditMode) {
-      e.target.select();
-    }
+      if (e.target.value === '') {
+        handleInputChange(e);
+      } else {
+        e.target.select();
+      }
   };
 
+  // If coordinator state has an _id of null, check for an exact match between typed name
+  // and coordinator names. If there is only one exact match, set the _id of
+  // that match to the coordinator state along with the matching fullName.
   const handleInputBlur = () => {
-    if (inEditMode) {
-      setDropdownActive(false);
-      if (!coordinatorsWithRole_fullNamesArray.includes(coordinatorState)) {
-        setCoordinatorState(coordinatorState_init);
+    setDropdownActive(false);
+    if (coordinatorState._id === null) {
+      const exactMatches = coordinatorsWithRole.filter((coordinator) => {
+        const fullName = `${coordinator.firstName ? coordinator.firstName : ''} ${
+          coordinator.lastName ? coordinator.lastName : ''
+        }`.trim();
+        return coordinatorState.fullName === fullName;
+      });
+      if (exactMatches.length === 1) {
+        setCoordinatorState({
+          fullName: coordinatorState.fullName,
+          _id: exactMatches[0]._id,
+        });
+      } else {
+        setCoordinatorState({fullName: null, _id: null});
       }
     }
   };
 
   const handleClickOption = (coordinator) => {
-    setCoordinatorState(`${coordinator.firstName} ${coordinator.lastName}`);
+    setCoordinatorState({
+      fullName: `${coordinator.firstName} ${coordinator.lastName}`,
+      _id: coordinator._id,
+    });
     setDropdownActive(false);
   };
 
-  const handleKeyDown = (e) => {
-
-  }
-
   return (
     <div className="dog-item-body__personSelect">
-      <input
-        type="text"
-        value={coordinatorState}
-        className={inEditMode ? 'dog-item-body__displayText--editable' : 'dog-item-body__displayText'}
-        readOnly={!inEditMode}
-        onChange={handleInputChange}
-        onFocus={handleInputFocus}
-        onBlur={handleInputBlur}
-        onKeyDown={handleKeyDown}
+      <ConditionalTextInput
+        label={role}
+        labelClass="dog-item__label"
         placeholder="Search..."
+        data={coordinatorState.fullName || 'N/A'}
+        inEditMode={inEditMode}
+        editClass="dog-item-body__displayText--editable"
+        noEditClass="dog-item-body__displayText"
+        handleOnChange={handleInputChange}
+        handleOnFocus={handleInputFocus}
+        handleOnBlur={handleInputBlur}
       />
+
       <div
         className={
-          dropdownActive
-            ? 'dog-item-body__personSelect__dropdown--active'
-            : 'dog-item-body__personSelect__dropdown'
+          dropdownActive ? 'dog-item-body__personSelect__dropdown--active' : 'dog-item-body__personSelect__dropdown'
         }
       >
         {coordinatorMatches.length === 0 ? (

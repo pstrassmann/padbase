@@ -1,6 +1,7 @@
 @use 'colors';
 
 .status-dropdown-label {
+  cursor: default;
   position: relative;
   &:focus {
     outline: none;
@@ -8,7 +9,6 @@
 }
 
 .status-dropdown-label--active {
-    cursor: pointer;
     &:focus .status-dropdown-label--editable {
       box-shadow: 0 0 0 1px colors.$light-grey-1;
     }
@@ -16,7 +16,6 @@
 
 
 .status-dropdown-label--editable {
-  cursor: pointer;
 }
 
 .status-dropdown {

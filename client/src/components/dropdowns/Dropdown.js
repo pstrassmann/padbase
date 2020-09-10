@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { useSpring, animated } from 'react-spring';
 
-const Dropdown = ({options, state, stateSetter, inEditMode }) => {
+const Dropdown = ({ options, state, stateSetter, inEditMode }) => {
   const [dropdownActive, setDropdownActive] = useState(false);
+
+
+  let angleDownFlip = useSpring({
+    config: {tension: 250},
+    transform: dropdownActive ? 'rotate(180deg)' : 'rotate(0deg)',
+    opacity: dropdownActive ? 0.2 : 1,
+  });
+
 
   const handleOpenDropdown = () => {
     if (inEditMode) {
@@ -15,7 +26,7 @@ const Dropdown = ({options, state, stateSetter, inEditMode }) => {
   };
 
   const handleClickOption = (option) => {
-    stateSetter(option);
+    stateSetter(option === 'N/A' ? null : option);
     setDropdownActive(false);
   };
 
@@ -34,20 +45,17 @@ const Dropdown = ({options, state, stateSetter, inEditMode }) => {
         onFocus={handleOpenDropdown}
         onMouseDown={handleOpenDropdown}
         onBlur={handleBlurDropdown}
-        className={
-          dropdownActive
-            ? 'dropdown-label dropdown-label--active'
-            : 'dropdown-label'
-        }
+        className={dropdownActive ? 'dropdown-label--active' : 'dropdown-label'}
       >
-        {state}
+        <div className="dropdown-label__content">
+          <div>{state}</div>
+            <animated.div style={angleDownFlip}>
+              {inEditMode && <FontAwesomeIcon icon={faAngleDown} size="sm" fixedWidth/>}
+            </animated.div>
+        </div>
         <div className={`dropdown ${dropdownActive ? 'dropdown__unhide' : ''}`}>
           {options.map((option, index) => (
-            <div
-              key={option}
-              className="dropdown__option"
-              onClick={() => handleClickOption(option)}
-            >
+            <div key={option} className="dropdown__option" onClick={() => handleClickOption(option)}>
               {option}
             </div>
           ))}

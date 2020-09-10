@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faHome, faPhone } from '@fortawesome/free-solid-svg-icons';
-import {useTransition, animated} from 'react-spring';
+import { faEnvelope, faHome, faPhone, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { useSpring, animated } from 'react-spring';
 import { capitalizeWords, escapeRegExp } from '../../utils/text';
 import { getFosterContact, checkEmail } from '../../api/peopleAPI';
 import { dateMask, formatDate, validatedDate } from '../../utils/dates';
+import ConditionalTextInput from '../ConditionalTextInput';
 
 const FosterSelect = ({
   fosterInfo,
@@ -22,20 +23,24 @@ const FosterSelect = ({
   const [isAddingNewFoster, setIsAddingNewFoster] = useState(false);
   const [newEmailIsUnique, setNewEmailIsUnique] = useState(false);
   const [emailAlertMsg, setEmailAlertMsg] = useState('');
+  const [showEmailAlertMsg, setShowEmailAlertMsg] = useState(false);
 
-  useEffect(()=> {
+  useEffect(() => {
     if (!inEditMode) {
       setIsAddingNewFoster(false);
       setEmailAlertMsg('');
     }
-  }, [inEditMode, setIsAddingNewFoster, setEmailAlertMsg])
+  }, [inEditMode, setIsAddingNewFoster, setEmailAlertMsg]);
 
-
-  const errorSlide = useTransition((inEditMode && emailAlertMsg !== ''), null, {
+  const emailErrorSpring = useSpring({
     from: { transform: 'translateX(100%)', opacity: 0 },
-    enter: {transform: 'translateX(0%)', opacity: 1 },
-    leave: { transform: 'translateX(100%)', opacity: 0 },
-  })
+    transform: showEmailAlertMsg ? 'translateX(0%)' : 'translateX(100%)',
+    opacity: showEmailAlertMsg ? 1 : 0,
+  });
+
+  const fosterAddOrCancelSpring = useSpring({
+    transform: isAddingNewFoster ? 'rotateZ(45deg) translateX(2px)' : 'rotateZ(0deg) translateX(0px)',
+  });
 
   const handleNameInputFocus = (e) => {
     if (inEditMode) {
@@ -55,7 +60,6 @@ const FosterSelect = ({
       const fullName = `${person.firstName ? person.firstName : ''} ${person.lastName ? person.lastName : ''}`.trim();
       return fullName.match(regex) !== null && fullName.match(regex).length > 0;
     });
-
     setFosterMatches(regexMatches);
     setFosterInfo({ ...fosterInfo, fullName: capitalizeWords(userInput) });
     if (!isAddingNewFoster) {
@@ -73,7 +77,8 @@ const FosterSelect = ({
       if (matches.length === 1) {
         handleSelectFoster(matches[0]);
       } else {
-        setFosterInfo(fosterInfo_init);
+        const nullFoster = Object.fromEntries(Object.entries(fosterInfo).map(([key, value]) => [key, null]));
+        setFosterInfo(nullFoster);
       }
     }
     setDropdownActive(false);
@@ -83,12 +88,14 @@ const FosterSelect = ({
     const fosterContactInfo = await getFosterContact(foster._id);
     setFosterInfo({
       ...fosterInfo,
+      _id: fosterContactInfo._id,
       fullName: `${fosterContactInfo.firstName ? fosterContactInfo.firstName : ''} ${
         fosterContactInfo.lastName ? fosterContactInfo.lastName : ''
       }`.trim(),
-      phone: fosterContactInfo.phone || 'N/A',
-      email: fosterContactInfo.email || 'N/A',
-      address: fosterContactInfo.address || 'N/A',
+      phone: fosterContactInfo.phone || null,
+      email: fosterContactInfo.email || null,
+      address: fosterContactInfo.address || null,
+      newFoster: false,
     });
     setDropdownActive(false);
   };
@@ -102,7 +109,14 @@ const FosterSelect = ({
       phone: '',
       email: '',
       address: '',
+      newFoster: true,
     });
+  };
+
+  const handleCancelAddNewFosterClick = () => {
+    const nullFoster = Object.fromEntries(Object.entries(fosterInfo).map(([key, value]) => [key, null]));
+    setFosterInfo(nullFoster);
+    setIsAddingNewFoster(false);
   };
 
   const handlePhoneInputChange = (e) => {
@@ -110,10 +124,10 @@ const FosterSelect = ({
   };
 
   const handleEmailInputChange = (e) => {
+    setShowEmailAlertMsg(false);
     const email = e.target.value;
     setFosterInfo({ ...fosterInfo, email: email });
     setNewEmailIsUnique(false);
-    setEmailAlertMsg('');
   };
 
   const handleAddressInputChange = (e) => {
@@ -127,10 +141,12 @@ const FosterSelect = ({
         return setNewEmailIsUnique(true);
       }
       if (emailValidation === false) {
-        return setEmailAlertMsg('Email already registered');
+        setEmailAlertMsg('Email already registered');
+        return setShowEmailAlertMsg(true);
       }
       if (emailValidation === 'invalid email') {
-        return setEmailAlertMsg('Invalid email');
+        setEmailAlertMsg('Invalid email');
+        return setShowEmailAlertMsg(true);
       }
     }
   };
@@ -139,28 +155,47 @@ const FosterSelect = ({
     if (inEditMode) {
       const ISODate = validatedDate(date);
       if (ISODate === null) {
-        return dateSetter('N/A');
+        return dateSetter(null);
       } else {
         dateSetter(formatDate(ISODate));
       }
     }
   };
 
+  const handleFosterAddOrCancelIconClick = () => {
+    if (inEditMode) {
+      isAddingNewFoster ? handleCancelAddNewFosterClick() : handleAddNewFosterClick()
+    }
+  }
+
   return (
     <>
       <div className="dog-item__fosterName dog-item__body-cell">
-        <div className="dog-item__label">Foster Name</div>
         <div className="dog-item-body__personSelect">
-          <input
-            type="text"
-            value={fosterInfo.fullName}
-            className={inEditMode ? 'dog-item-body__displayText--editable' : 'dog-item-body__displayText'}
-            readOnly={!inEditMode}
-            onChange={handleNameInputChange}
-            onFocus={handleNameInputFocus}
-            onBlur={handleNameInputBlur}
-            placeholder="Foster name..."
-          />
+          <label className="dog-item__label">Foster Name</label>
+          <div className="dog-item-body__personSelect__fosterName">
+            {<animated.div style={fosterAddOrCancelSpring}>
+              <FontAwesomeIcon
+                icon={faPlus}
+                className={(inEditMode && !fosterInfo.fullName) ? 'dog-item__foster-add-or-cancel-icon' : 'dog-item__foster-add-or-cancel-icon noVis'}
+                onClick= {handleFosterAddOrCancelIconClick}
+              />
+            </animated.div> }
+            <ConditionalTextInput
+              placeholder={isAddingNewFoster ? 'Foster name (required)...' : 'Search or add foster...'}
+              data={fosterInfo.fullName || 'N/A'}
+              inEditMode={inEditMode}
+              editClass={
+                isAddingNewFoster && !fosterInfo.fullName
+                  ? 'dog-item__fieldRequiredError dog-item-body__displayText--editable'
+                  : 'dog-item-body__displayText--editable'
+              }
+              noEditClass="dog-item-body__displayText"
+              handleOnChange={handleNameInputChange}
+              handleOnFocus={handleNameInputFocus}
+              handleOnBlur={handleNameInputBlur}
+            />
+          </div>
           <div
             className={
               dropdownActive ? 'dog-item-body__personSelect__dropdown--active' : 'dog-item-body__personSelect__dropdown'
@@ -186,61 +221,70 @@ const FosterSelect = ({
         </div>
       </div>
       <div className="dog-item__fosterInfo">
-        <div className='dog-item__fosterInfo__fosterDetails' style={{marginTop:'0.1rem'}}>
-          <FontAwesomeIcon icon={faPhone} size="sm" className="dog-item__foster-icon" />
-          <input
-            type="text"
-            value={fosterInfo.phone}
-            className={isAddingNewFoster ? 'dog-item-body__displayText--editable' : 'dog-item-body__displayText'}
-            readOnly={!isAddingNewFoster}
-            onFocus={handleFosterInfoInputFocus}
-            onChange={handlePhoneInputChange}
-            placeholder="Foster phone #"
-            style={{width: '70%'}}
+        <div className="dog-item__fosterInfo__fosterDetails" style={{ marginTop: '0.1rem' }}>
+          <FontAwesomeIcon icon={faPhone} size="sm" className="dog-item__foster-icon" fixedWidth />
+          <ConditionalTextInput
+            placeholder="Foster phone..."
+            data={fosterInfo.phone || 'N/A'}
+            inEditMode={isAddingNewFoster}
+            editClass="dog-item-body__displayText--editable w70"
+            noEditClass="dog-item-body__displayText"
+            handleOnChange={handlePhoneInputChange}
+            handleOnFocus={handleFosterInfoInputFocus}
           />
         </div>
-        <div className='dog-item__fosterInfo__fosterDetails'>
-          <FontAwesomeIcon icon={faEnvelope} size="sm" className="dog-item__foster-icon" />
-          <input
-            type="text"
-            value={fosterInfo.email}
-            className={isAddingNewFoster ? 'dog-item-body__displayText--editable' : 'dog-item-body__displayText'}
-            readOnly={!isAddingNewFoster}
-            onFocus={handleFosterInfoInputFocus}
-            onChange={handleEmailInputChange}
-            onBlur={handleCheckEmail}
-            placeholder="Foster email"
-            style={{width: '70%'}}
+        <div className="dog-item__fosterInfo__fosterDetails">
+          <FontAwesomeIcon icon={faEnvelope} size="sm" className="dog-item__foster-icon" fixedWidth />
+          <ConditionalTextInput
+            placeholder="Foster email (required)..."
+            data={fosterInfo.email || 'N/A'}
+            inEditMode={isAddingNewFoster}
+            editClass={
+              !fosterInfo.email
+                ? 'dog-item__fieldRequiredError dog-item-body__displayText--editable w70'
+                : 'dog-item-body__displayText--editable w70'
+            }
+            noEditClass="dog-item-body__displayText"
+            handleOnChange={handleEmailInputChange}
+            handleOnFocus={handleFosterInfoInputFocus}
+            handleOnBlur={handleCheckEmail}
           />
-          {errorSlide.map(({ item, key, props }) =>
-            item && <animated.div key={key} style={props} className='dog-item__inputErrorMsg'><em>{emailAlertMsg}</em>️</animated.div>
+          {inEditMode && emailAlertMsg !== '' && (
+            <animated.div style={emailErrorSpring} className="dog-item__inputErrorMsg">
+              {emailAlertMsg}
+            </animated.div>
           )}
         </div>
-        {/*{inEditMode && (<animated.div style={errorSlide} className='dog-item__inputErrorMsg'><em>{emailAlertMsg}</em></animated.div>)}*/}
-        <div className='dog-item__fosterInfo__fosterDetails'>
-          <FontAwesomeIcon icon={faHome} size="sm" className="dog-item__foster-icon" />
-          <input
-            type="text"
-            value={fosterInfo.address}
-            className={isAddingNewFoster ? 'dog-item-body__displayText--editable' : 'dog-item-body__displayText'}
-            readOnly={!isAddingNewFoster}
-            onFocus={handleFosterInfoInputFocus}
-            onChange={handleAddressInputChange}
-            placeholder="Foster address"
+        <div className="dog-item__fosterInfo__fosterDetails">
+          <FontAwesomeIcon icon={faHome} size="sm" className="dog-item__foster-icon" fixedWidth />
+          <ConditionalTextInput
+            placeholder="Foster address..."
+            data={fosterInfo.address || 'N/A'}
+            inEditMode={isAddingNewFoster}
+            editClass="dog-item-body__displayText--editable"
+            noEditClass="dog-item-body__displayText"
+            handleOnChange={handleAddressInputChange}
+            handleOnFocus={handleFosterInfoInputFocus}
           />
         </div>
       </div>
       <div className="dog-item__fosterDate dog-item__body-cell">
-        <div className="dog-item__label">Initial Date w/ Foster</div>
-        <input
-          type="text"
-          value={initialDateWCurrentFoster}
-          className={inEditMode ? 'dog-item-body__displayText--editable' : 'dog-item-body__displayText'}
-          style={{width: '80%'}}
-          readOnly={!inEditMode}
+        <ConditionalTextInput
+          label="Initial Date w/ Foster"
+          labelClass="dog-item__label"
           placeholder="MM-DD-YY"
-          onChange={(e) => setInitialDateWCurrentFoster(dateMask(e.target.value))}
-          onBlur={() => handleValidateDate(initialDateWCurrentFoster, setInitialDateWCurrentFoster)}
+          data={
+            inEditMode
+              ? initialDateWCurrentFoster === null
+                ? ''
+                : initialDateWCurrentFoster
+              : initialDateWCurrentFoster || 'N/A'
+          }
+          inEditMode={inEditMode}
+          editClass="dog-item-body__displayText--editable w80"
+          noEditClass="dog-item-body__displayText"
+          handleOnChange={(e) => setInitialDateWCurrentFoster(dateMask(e.target.value))}
+          handleOnBlur={() => handleValidateDate(initialDateWCurrentFoster, setInitialDateWCurrentFoster)}
         />
       </div>
     </>
