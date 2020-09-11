@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import SearchBar from '../SearchBar';
 import FilterMenu from '../FilterMenu';
+import AddDogsMenu from '../AddDogsMenu';
 import ActiveFilters from '../ActiveFilters';
 import HomeDogCards from '../HomeDogCards';
 import Spinner from '../Spinner';
@@ -24,6 +25,7 @@ const Home = ({ loading, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
           <div className="home-content__header">
             <SearchBar />
             <FilterMenu />
+            <AddDogsMenu />
           </div>
           <ActiveFilters/>
           <HomeDogCards />

@@ -1,47 +1,65 @@
 /* autoprefixer grid: autoplace */
+
 @use 'scss/colors';
 @use "scss/dogItem";
 @use "scss/dogSearchBar";
-@use "scss/dogFilterMenu";
+@use "scss/dogActiveFilterPills";
+@use "scss/selectMenu";
+@use "scss/addDogsBtn";
 @use "scss/dropdown";
 @use "scss/dropdown__statusPills";
 @use "scss/helpers";
+
+@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  margin: 0 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: colors.$dark-blue-5;
+  background-color: colors.$dark-blue-6;
+  color: colors.$true-white;
+}
+
+.navbar {
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  height: 4rem;
+}
+
+.navbar__logo {
+  font-size: 2.5rem;
+  margin-left: 1rem;
+  font-family: 'Chela One', sans-serif;
   color: colors.$true-white;
 }
 
 .home-content-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 40vh;
+  margin-top: 20vh;
 }
 
 .home-content {
   width: 42rem;
-  //display: flex;
-  //flex-direction: column;
   margin-bottom: 2rem;
 }
 
 .home-content__header {
   display: flex;
   column-gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 700px) {
-  html {
+  .home-content-wrapper {
     margin-left: calc(100vw - 100%);
     margin-right: 0;
   }
