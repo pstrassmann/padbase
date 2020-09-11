@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { connect } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMars, faVenus, faCut, faTimes, faCheck, faFileMedical, faSyringe, faBone, faBabyCarriage,
-} from '@fortawesome/free-solid-svg-icons'
-import { addDogFilter, searchDogs, } from '../actions/dogActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPlus,
+  faMars,
+  faVenus,
+  faCut,
+  faTimes,
+  faCheck,
+  faFileMedical,
+  faSyringe,
+  faBone,
+  faBabyCarriage,
+} from '@fortawesome/free-solid-svg-icons';
+import { addDogFilter, searchDogs } from '../actions/dogActions';
 
 const FilterMenu = ({ addDogFilter, searchDogs, cachedDogSearchText }) => {
-
   const [filterByMenuActive, setFilterByMenuActive] = useState(false);
 
   const handleClickDropdown = () => {
@@ -20,7 +29,7 @@ const FilterMenu = ({ addDogFilter, searchDogs, cachedDogSearchText }) => {
     if (cachedDogSearchText !== '') {
       searchDogs(cachedDogSearchText);
     }
-  }
+  };
 
   return (
     <OutsideClickHandler
@@ -30,71 +39,79 @@ const FilterMenu = ({ addDogFilter, searchDogs, cachedDogSearchText }) => {
         }
       }}
     >
-      <div className="filter-by-menu">
-        <div className="filter-by-menu-button" onClick={handleClickDropdown}>
+      <div className="select-menu">
+        <div className="select-menu-button" onClick={handleClickDropdown}>
           Add Filter
-          <div className={`filter-by-menu-button__icon ${filterByMenuActive ? 'filter-by-menu-button__icon-active' : '' }`}>
-            <FontAwesomeIcon icon={ faPlus } />
+          <div
+            className={`select-menu-button__icon ${filterByMenuActive ? 'select-menu-button__icon-active' : ''}`}
+          >
+            <FontAwesomeIcon icon={faPlus} transform='shrink-3' fixedWidth/>
           </div>
         </div>
-        <div className={`filter-by-dropdown ${filterByMenuActive ? 'filter-by-dropdown__unhide' : ''}`}>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Sex: Male')}>
+        <div style={{width: '14rem', left: 0}} className={`select-dropdown ${filterByMenuActive ? 'select-dropdown__unhide' : ''}`}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Sex: Male')}>
             <div>
-              <FontAwesomeIcon icon={ faMars } size="sm" />
+              <FontAwesomeIcon icon={faMars} fixedWidth/>
             </div>
             Sex: Male
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Sex: Female')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Sex: Female')}>
             <div>
-              <FontAwesomeIcon icon={ faVenus } size="sm" />
+              <FontAwesomeIcon icon={faVenus} fixedWidth/>
             </div>
             Sex: Female
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Spay/Neuter: True')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Spay/Neuter: True')}>
             <div>
-              <FontAwesomeIcon icon={ faCut } size="sm" />
+              <FontAwesomeIcon icon={faCut} fixedWidth/>
             </div>
             Spay/Neuter: True
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Spay/Neuter: False')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Spay/Neuter: False')}>
             <div>
-              <FontAwesomeIcon icon={ faCut } size="sm" />
+              <FontAwesomeIcon icon={faCut} fixedWidth/>
             </div>
             Spay/Neuter: False
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Vetting Status: Incomplete')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Vetting Status: Incomplete')}>
             <div>
-              <FontAwesomeIcon icon={ faTimes } size="sm" />
+              <FontAwesomeIcon icon={faTimes} fixedWidth/>
             </div>
             Vetting Status: Incomplete
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Vetting Status: Complete')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Vetting Status: Complete')}>
             <div>
-              <FontAwesomeIcon icon={ faCheck } size="sm" />
+              <FontAwesomeIcon icon={faCheck} fixedWidth/>
             </div>
             Vetting Status: Complete
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Vetting Status: Pending Records')}>
+          <div
+            className="select-dropdown__option"
+            onClick={() => handleClickOption('Vetting Status: Pending Records')}
+          >
             <div>
-              <FontAwesomeIcon icon={ faFileMedical } size="sm" />
+              <FontAwesomeIcon icon={faFileMedical} fixedWidth/>
             </div>
             Vetting Status: Pending Records
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Needs Rabies Vaccine')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Needs Rabies Vaccine')}>
             <div>
-              <FontAwesomeIcon icon={ faSyringe } size="sm" />
+              <FontAwesomeIcon icon={faSyringe} fixedWidth/>
             </div>
             Needs Rabies Vaccine
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Adult Dog: Cleared for Adoption')}>
+          <div
+            className="select-dropdown__option"
+            onClick={() => handleClickOption('Adult Dog: Cleared for Adoption')}
+          >
             <div>
-              <FontAwesomeIcon icon={ faBone } size="sm" />
+              <FontAwesomeIcon icon={faBone} fixedWidth/>
             </div>
             Adult Dog: Cleared for Adoption
           </div>
-          <div className="filter-by-dropdown__option" onClick={() => handleClickOption('Puppy: Cleared for Adoption')}>
+          <div className="select-dropdown__option" onClick={() => handleClickOption('Puppy: Cleared for Adoption')}>
             <div>
-              <FontAwesomeIcon icon={ faBabyCarriage } size="sm" />
+              <FontAwesomeIcon icon={faBabyCarriage} fixedWidth/>
             </div>
             Puppy: Cleared for Adoption
           </div>
@@ -106,6 +123,6 @@ const FilterMenu = ({ addDogFilter, searchDogs, cachedDogSearchText }) => {
 
 const mapStateToProps = (state) => ({
   cachedDogSearchText: state.dog.cachedDogSearchText,
-})
+});
 
 export default connect(mapStateToProps, { addDogFilter, searchDogs })(FilterMenu);

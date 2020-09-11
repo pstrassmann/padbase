@@ -1,0 +1,49 @@
+@use 'colors';
+
+// Active filters -- status pills
+
+.dog-filters-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+  //border: 1px solid red;
+}
+
+.dog-filters-pre-text {
+  margin-right: 0.5rem;
+  padding: 0.2rem;
+  margin-bottom: 0.2rem;
+  //margin-top: 0.2rem;
+}
+
+.dog-active-filter {
+  @extend .dog-filters-pre-text;
+  display: flex;
+  align-items: center;
+  background-color: colors.$dark-purple-1;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  cursor: default;
+}
+
+.dog-active-filter__text {
+}
+
+.dog-active-filter__icon {
+  margin-right: 0.3rem;
+  transition: color 100ms ease;
+  &:hover {
+    color: lightgrey;
+  }
+}
+
+.dog-filter-clear-button {
+  @extend .dog-active-filter;
+  background-color: colors.$dark-grey-1;
+  color: colors.$true-white;
+  &:hover {
+    color: colors.$dark-grey-1;
+    background-color: colors.$true-white;
+  }
+}
