@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { escapeRegExp } from '../utils/text';
+import {v4 as uuidv4 } from 'uuid';
 
 import {
   GET_DOGS,
@@ -14,6 +15,7 @@ import {
   APPLY_DOG_FILTERS,
   SET_NUM_DOGS_TO_SHOW,
   UPDATE_DOG_IN_APP_STATE,
+  ADD_NEW_DOG, REMOVE_NEW_DOG
 } from '../actions/types';
 
 const defaultNumDogsToShow = 10;
@@ -38,6 +40,20 @@ export default (state = initialState, action) => {
         filteredDogs: action.payload,
         dogMatches: action.payload,
         loading: false,
+      };
+
+    case ADD_NEW_DOG:
+      return {
+        ...state,
+        dogMatches: [{newDog: true, tempID: uuidv4()}, ...state.dogMatches]
+      };
+
+    case REMOVE_NEW_DOG:
+      return {
+        ...state,
+        dogMatches: state.dogMatches.filter((dog)=> {
+          return !dog.tempID || dog.tempID !== action.payload;
+        })
       };
 
     case UPDATE_DOG_IN_APP_STATE:

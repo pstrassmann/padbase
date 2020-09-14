@@ -38,8 +38,8 @@ const getVettingStatus = (vettingStatus) => {
 const DogItem = React.forwardRef(({ dog }, ref) => {
 
   const DogItem = () => {
-    const [inEditMode, setInEditMode] = useState(false);
-    const [bodyExpanded, setBodyExpanded] = useState(false);
+    const [inEditMode, setInEditMode] = useState(dog.newDog === true );
+    const [bodyExpanded, setBodyExpanded] = useState(dog.newDog === true);
     const [dogState, setDogState] = useState(dog);
     const [dogItemAlerts, setDogItemAlerts] = useState([]);
 
@@ -52,7 +52,7 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
 
     // Dog data
 
-    const name_init = dogState.name;
+    const name_init = dogState.name || null;
     const [name, setName] = useState(name_init);
 
     const sex_init = dogState.sex || null;
@@ -138,9 +138,10 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
           <ConditionalTextInput
             label="Name"
             labelClass="dog-item__label"
+            placeholder="Name (required)"
             data={name}
             inEditMode={inEditMode}
-            editClass="dog-item-header__displayText--editable"
+            editClass="plc-hold-fnt-sz-8 dog-item__fieldRequiredError dog-item-header__displayText--editable"
             noEditClass="dog-item-header__displayText"
             handleOnChange={(e) => setName(e.target.value ? capitalizeWords(e.target.value) : null)}
             handleOnBlur={(e) => !e.target.value && setName(name_init)}
@@ -187,7 +188,7 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
             placeholder="MM-DD-YY"
             data={ intakeDate }
             inEditMode={ inEditMode }
-            editClass="dog-item-header__displayText--editable"
+            editClass="dog-item__fieldRequiredError dog-item-header__displayText--editable"
             noEditClass="dog-item-header__displayText"
             handleOnChange={ (e) => setIntakeDate(e.target.value ? dateMask(e.target.value) : null) }
             handleOnBlur={ () => handleValidateDate(intakeDate, setIntakeDate) }

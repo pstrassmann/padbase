@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addNewDog } from '../actions/dogActions';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDog, faPlus, faBaby, faMars, faBabyCarriage } from '@fortawesome/free-solid-svg-icons';
+import { faDog, faPlus, faBabyCarriage } from '@fortawesome/free-solid-svg-icons';
 
-const AddDogsMenu = () => {
+const AddDogsMenu = ({ addNewDog }) => {
   const [dropdownActive, setDropdownActive] = useState(false);
 
   const handleClickDropdown = () => {
     setDropdownActive(!dropdownActive);
   };
 
+  const handleAddSingleDog = () => {
+    addNewDog();
+    setDropdownActive(!dropdownActive);
+  };
+
   const handleClickOption = () => {
     setDropdownActive(false);
   }
-
 
   return (
     <div className="add-dogs-menu">
@@ -36,7 +42,7 @@ const AddDogsMenu = () => {
       </div>
     </div>
       <div style={{width: '9.5rem', right: 0}} className={`select-dropdown ${dropdownActive ? 'select-dropdown__unhide' : ''}`}>
-        <div className="select-dropdown__option" onClick={() => handleClickOption()}>
+        <div className="select-dropdown__option" onClick={handleAddSingleDog}>
           <div>
             <FontAwesomeIcon icon={faDog} fixedWidth />
           </div>
@@ -65,4 +71,4 @@ const AddDogsMenu = () => {
   );
 };
 
-export default AddDogsMenu;
+export default connect(null, { addNewDog })(AddDogsMenu);

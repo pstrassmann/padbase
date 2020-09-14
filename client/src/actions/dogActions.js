@@ -11,6 +11,7 @@ import {
   CACHE_DOG_SEARCH_TEXT,
   SET_NUM_DOGS_TO_SHOW,
   UPDATE_DOG_IN_APP_STATE,
+  ADD_NEW_DOG, REMOVE_NEW_DOG
 } from './types';
 
 export const getDogs = () => async (dispatch) => {
@@ -31,6 +32,19 @@ export const getDogs = () => async (dispatch) => {
     console.error(err);
   }
 };
+
+export const addNewDog = () => (dispatch) => {
+  dispatch({
+    type: ADD_NEW_DOG,
+  })
+}
+
+export const removeNewDog = (tempID) => (dispatch) => {
+  dispatch({
+    type: REMOVE_NEW_DOG,
+    payload: tempID,
+  })
+}
 
 export const updateDogInAppState = (updatedDog) => async (dispatch) => {
   dispatch({

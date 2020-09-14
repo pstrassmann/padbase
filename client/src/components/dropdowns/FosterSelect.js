@@ -61,7 +61,7 @@ const FosterSelect = ({
       return fullName.match(regex) !== null && fullName.match(regex).length > 0;
     });
     setFosterMatches(regexMatches);
-    setFosterInfo({ ...fosterInfo, fullName: capitalizeWords(userInput) });
+    setFosterInfo({ ...fosterInfo, fullName: capitalizeWords(userInput), firstName: null, lastName: null });
     if (!isAddingNewFoster) {
       setDropdownActive(true);
     }
@@ -92,6 +92,8 @@ const FosterSelect = ({
       fullName: `${fosterContactInfo.firstName ? fosterContactInfo.firstName : ''} ${
         fosterContactInfo.lastName ? fosterContactInfo.lastName : ''
       }`.trim(),
+      firstName:`${fosterContactInfo.firstName ? fosterContactInfo.firstName : null}`,
+      lastName:`${fosterContactInfo.lastName ? fosterContactInfo.lastName : null}`,
       phone: fosterContactInfo.phone || null,
       email: fosterContactInfo.email || null,
       address: fosterContactInfo.address || null,

@@ -34,6 +34,8 @@ const getFosterInfo = (currentFoster) => {
     return {
       _id: null,
       fullName: null,
+      firstName: null,
+      lastName: null,
       phone: null,
       email: null,
       address: null,
@@ -45,6 +47,8 @@ const getFosterInfo = (currentFoster) => {
   const fosterObj = {};
   fosterObj._id = currentFoster._id;
   fosterObj.fullName = `${firstName} ${lastName}`.trim();
+  fosterObj.firstName = firstName.trim();
+  fosterObj.lastName = lastName.trim();
   fosterObj.phone = currentFoster.phone || null;
   fosterObj.email = currentFoster.email || null;
   fosterObj.address = currentFoster.address || null;
@@ -79,7 +83,7 @@ const DogItemBody = ({
   dogItemAlerts,
   setDogItemAlerts,
 }) => {
-  const [bodyTailExpanded, setBodyTailExpanded] = useState(false);
+  const [bodyTailExpanded, setBodyTailExpanded] = useState(inEditMode);
 
   const handleClickEditIcon = () => {
     if (!inEditMode) {
@@ -144,7 +148,7 @@ const DogItemBody = ({
   const [groupName, setGroupName] = useState(groupName_init);
 
   const mother_init =
-    dogState.parents.length > 0
+    dogState.parents && dogState.parents.length > 0
       ? {
           _id: dogState.parents[0]._id || null,
           name: dogState.parents[0].name || null,
