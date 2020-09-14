@@ -18,6 +18,18 @@
   width: 100% !important;
 }
 
+.plc-hold-fnt-sz-6::placeholder {
+  font-size: 0.6rem;
+}
+
+.plc-hold-fnt-sz-7::placeholder {
+  font-size: 0.7rem;
+}
+
+.plc-hold-fnt-sz-8::placeholder {
+  font-size: 0.8rem;
+}
+
 .noVis {
   visibility: hidden;
 }

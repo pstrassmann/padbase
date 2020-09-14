@@ -27,4 +27,7 @@
   border-radius: 4px;
   height: 70%;
   background-color: colors.$medium-green-1;
+  &:hover {
+    background-color: colors.$medium-green-2;
+  }
 }
