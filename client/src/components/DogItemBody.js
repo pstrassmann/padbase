@@ -19,7 +19,7 @@ const formatBreed = (breed) => {
 };
 
 const getCoordinator = (coordinator) => {
-  if (coordinator === undefined) return { fullName: null, _id: null };
+  if (!coordinator) return { fullName: null, _id: null };
   const fullName = `${coordinator.firstName ? coordinator.firstName : ''} ${
     coordinator.lastName ? coordinator.lastName : ''
   }`.trim();
@@ -80,8 +80,6 @@ const DogItemBody = ({
   inEditMode,
   setInEditMode,
   handleHeaderReset,
-  dogItemAlerts,
-  setDogItemAlerts,
 }) => {
   const [bodyTailExpanded, setBodyTailExpanded] = useState(inEditMode);
 
@@ -123,7 +121,8 @@ const DogItemBody = ({
   const breed_init = formatBreed(dogState.breed);
   const [breed, setBreed] = useState(breed_init);
 
-  const primaryVet_init = dogState.medical && dogState.medical.primaryVet ? capitalizeWords(dogState.medical.primaryVet) : null;
+  const primaryVet_init =
+    dogState.medical && dogState.medical.primaryVet ? capitalizeWords(dogState.medical.primaryVet) : null;
   const [primaryVet, setPrimaryVet] = useState(primaryVet_init);
 
   const fosterCoordinator_init = getCoordinator(dogState.fosterCoordinator);
@@ -186,7 +185,7 @@ const DogItemBody = ({
     vettingDates,
     tvtStatus,
     fourDXStatus,
-  }
+  };
 
   const handleBodyReset = () => {
     setFosterCoordinator(fosterCoordinator_init);
@@ -259,8 +258,17 @@ const DogItemBody = ({
               handleOnChange={(e) => setBreed(e.target.value ? capitalizeWords(e.target.value) : null)}
             />
           </div>
-          <div className="dog-item__mother dog-item__body-cell">
-            <DogMomSelect state_init={mother_init} state={mother} setState={setMother} inEditMode={inEditMode} />
+          <div className="dog-item__mother">
+          <div className="dog-item__body-cell">
+            <DogMomSelect
+              state={mother}
+              setState={setMother}
+              inEditMode={inEditMode}
+              label="Mama name"
+              labelClass="dog-item__label"
+              editClass="dog-item-body__displayText--editable"
+            />
+          </div>
           </div>
           <div className="dog-item__vetName dog-item__body-cell">
             <ConditionalTextInput
@@ -311,6 +319,23 @@ const DogItemBody = ({
             />
           </div>
           <div className="dog-item__vetd">
+            <div>
+              <ConditionalTextInput
+                label="Wellness"
+                labelClass="dog-item__inline-label"
+                placeholder="MM-DD-YY"
+                data={inEditMode ? vettingDates.wellness || '' : vettingDates.wellness || 'N/A'}
+                inEditMode={inEditMode}
+                editClass="dog-item-body__displayText--editable--vettingDate"
+                noEditClass="dog-item-body__displayText"
+                handleOnChange={(e) =>
+                  setVettingDates({ ...vettingDates, wellness: e.target.value ? dateMask(e.target.value) : null })
+                }
+                handleOnBlur={(e) => {
+                  setVettingDates({ ...vettingDates, wellness: validateVettingDate(e.target.value) });
+                }}
+              />
+            </div>
             <div>
               <ConditionalTextInput
                 label="Rabies"
@@ -496,8 +521,6 @@ const DogItemBody = ({
             setInEditMode={setInEditMode}
             handleHeaderReset={handleHeaderReset}
             handleBodyReset={handleBodyReset}
-            dogItemAlerts={dogItemAlerts}
-            setDogItemAlerts={setDogItemAlerts}
           />
         )}
       </div>

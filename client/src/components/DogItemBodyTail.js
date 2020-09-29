@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useSpring, useTransition, animated } from 'react-spring';
-import { v4 as uuidv4 } from 'uuid';
+import { useSpring, animated } from 'react-spring';
 import { capitalizeWords } from '../utils/text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave, faTimesCircle, faExclamationCircle, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faTimesCircle, faExclamationCircle, faCheck, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import ConditionalTextArea from './ConditionalTextArea';
 import ConditionalTextInput from './ConditionalTextInput';
-import { updateDog, saveNewDog } from '../api/dogAPI';
-import { updateDogInAppState, removeNewDog } from '../actions/dogActions';
+import { updateDog, saveNewDog, deleteDog } from '../api/dogAPI';
+import { updateDogInAppState, addDogsToAppState, setIsAddingNewDog, deleteDogInAppState } from '../actions/dogActions';
+import useAlerts from '../utils/useAlerts';
 
 const DogItemBodyTail = ({
   dogState,
@@ -22,24 +22,12 @@ const DogItemBodyTail = ({
   handleHeaderReset,
   handleBodyReset,
   updateDogInAppState,
-  dogItemAlerts,
-  setDogItemAlerts,
-  removeNewDog,
+  setIsAddingNewDog,
+  addDogsToAppState,
+  deleteDogInAppState,
 }) => {
-  const alertsRef = useRef(dogItemAlerts);
-
-  useEffect(() => {
-    alertsRef.current = dogItemAlerts;
-  });
-
-  useEffect(() => {
-    // Clear any unfinished timeouts on component unmount
-    return () => {
-      alertsRef.current.forEach((alertObj) => {
-        clearTimeout(alertObj.timer);
-      });
-    };
-  }, []);
+  const [addAlerts, animatedAlerts] = useAlerts();
+  const [inDeleteMode, setInDeleteMode] = useState(false);
 
   const expand = useSpring({
     overflow: 'hidden',
@@ -60,16 +48,17 @@ const DogItemBodyTail = ({
   const history_init = dogState.history || null;
   const [history, setHistory] = useState(history_init);
 
-  const fleaMedBrand_init = (dogState.medical && dogState.medical.fleaMedBrand) ? capitalizeWords(dogState.medical.fleaMedBrand) : null;
+  const fleaMedBrand_init =
+    dogState.medical && dogState.medical.fleaMedBrand ? capitalizeWords(dogState.medical.fleaMedBrand) : null;
   const [fleaMedBrand, setFleaMedBrand] = useState(fleaMedBrand_init);
 
   const otherVetsUsed_init = getOtherVetsUsed(dogState.medical);
   const [otherVetsUsed, setOtherVetsUsed] = useState(otherVetsUsed_init);
 
-  const medNotes_init = dogState.medical ? (dogState.medical.medNotes || null) : null;
+  const medNotes_init = dogState.medical ? dogState.medical.medNotes || null : null;
   const [medNotes, setMedNotes] = useState(medNotes_init);
 
-  const upcomingVetAppts_init = dogState.medical ? (dogState.medical.upcomingVetAppts || null) : null
+  const upcomingVetAppts_init = dogState.medical ? dogState.medical.upcomingVetAppts || null : null;
   const [upcomingVetAppts, setUpcomingVetAppts] = useState(upcomingVetAppts_init);
 
   const notes_init = dogState.notes || null;
@@ -91,7 +80,7 @@ const DogItemBodyTail = ({
       handleBodyReset();
       handleBodyTailReset();
     } else {
-      removeNewDog(dogState.tempID);
+      setIsAddingNewDog(false);
     }
   };
 
@@ -104,97 +93,74 @@ const DogItemBodyTail = ({
     notes,
   };
 
-  const addAlerts = (alertsArray) => {
-    /* Takes an array of alerts of form {alertMsg: "", alertClass: "", alertIcon: faIcon}.
-     * Maps a unique id to each alert and stores list of alert ids. These ids are checked against
-     * in a timer closure for removing after the specified duration.
-     * Alert class options:
-     *    dog-item__alerts__alertSuccess
-     *    dog-item__alerts__alertError */
-    const timeoutDur = 4000;
-    const uids = [];
-    const alertsArrayWithId = alertsArray.map((alert) => {
-      const uid = uuidv4();
-      alert.uid = uid;
-      uids.push(uid);
-      return alert;
-    });
-    const newAlerts = alertsArrayWithId.map(({ alertMsg, alertClass, alertIcon, uid }) => {
-      const timer = setTimeout(
-        () => setDogItemAlerts(alertsRef.current.filter((alertObj) => !uids.includes(alertObj.uid))),
-        timeoutDur
-      );
-      return { uid: uid, timer: timer, msg: alertMsg, class: alertClass, icon: alertIcon };
-    });
-    
-    setDogItemAlerts([...newAlerts, ...alertsRef.current, ]);
-  };
-
   const validateRequiredFields = () => {
     let formIsValidated = true;
     const newAlerts = [];
     if (!dogHeaderData.name || !dogHeaderData.name.trim()) {
       formIsValidated = false;
-      newAlerts.push({alertMsg: "Dog name is required", alertClass: 'dog-item__alerts__alertError', alertIcon: faExclamationCircle});
+      newAlerts.push({ alertMsg: 'Dog name is required', alertClass: 'alertError', alertIcon: faExclamationCircle });
     }
     if (!dogHeaderData.intakeDate) {
       formIsValidated = false;
-      newAlerts.push({alertMsg: "Intake date is required", alertClass: 'dog-item__alerts__alertError', alertIcon: faExclamationCircle});
+      newAlerts.push({ alertMsg: 'Intake date is required', alertClass: 'alertError', alertIcon: faExclamationCircle });
     }
-    if ((dogBodyData.fosterInfo.newFoster === true) && (!dogBodyData.fosterInfo.email || !dogBodyData.fosterInfo.fullName)) {
+    if (
+      dogBodyData.fosterInfo.newFoster === true &&
+      (!dogBodyData.fosterInfo.email || !dogBodyData.fosterInfo.fullName)
+    ) {
       formIsValidated = false;
-      newAlerts.push({alertMsg: "Name and email required for adding new foster", alertClass: 'dog-item__alerts__alertError', alertIcon: faExclamationCircle});
+      newAlerts.push({
+        alertMsg: 'Name and email required for adding new foster',
+        alertClass: 'alertError',
+        alertIcon: faExclamationCircle,
+      });
     }
     if (newAlerts.length > 0) addAlerts(newAlerts);
     return formIsValidated;
-  }
+  };
 
-  const handleSaveClick = async () => {
-    if (dogState.newDog !== true && validateRequiredFields() ) {
-      const dogObj = { dogID: dogState._id, ...dogHeaderData, ...dogBodyData, ...dogBodyTailData };
-      const updatedDog = await updateDog(dogObj);
-      if (!updatedDog.error) {
-        console.log(dogObj);
-        console.log(updatedDog);
-        setDogState(updatedDog);
-        updateDogInAppState(updatedDog);
-        setInEditMode(false);
-        addAlerts([{alertMsg: `Successfully updated ${ dogHeaderData.name }`, alertClass: "dog-item__alerts__alertSuccess", alertIcon: faCheck}]);
-      } else {
-        const errorMsg = updatedDog.error;
-        addAlerts([{alertMsg: errorMsg, alertClass: "dog-item__alerts__alertError", alertIcon:faExclamationCircle}]);
-      }
-    } else if (validateRequiredFields()) {
-      const dogObj = {...dogHeaderData, ...dogBodyData, ...dogBodyTailData };
-      const newDog = await saveNewDog(dogObj);
-      if (!newDog.error) {
-        setDogState(newDog);
-        updateDogInAppState(newDog); // will this work? Do i have dog._id?
-        setInEditMode(false);
-        addAlerts([{alertMsg: `Successfully added ${ dogHeaderData.name }`, alertClass: "dog-item__alerts__alertSuccess", alertIcon: faCheck}]);
-      } else {
-        const errorMsg = newDog.error;
-        addAlerts([{alertMsg: errorMsg, alertClass: "dog-item__alerts__alertError", alertIcon:faExclamationCircle}]);
-      }
+  const handleCancelDelete = () => {
+    setInDeleteMode(false);
+  };
+
+  const handleConfirmDelete = async () => {
+    const response = await deleteDog({ _id: dogState._id });
+    if (!response.error) {
+      deleteDogInAppState(dogState._id);
     }
   };
 
-  const alertTransitions = useTransition(dogItemAlerts, {
-    trail: 50,
-    from: {transform: 'translateX(-15%)', opacity: 0},
-    enter: {transform: 'translateX(0px)', opacity: 1},
-    leave: {transform: 'translateX(50%)', opacity: 0},
-    keys: alertObj => alertObj.uid,
-  })
-
-  const animatedAlerts = alertTransitions((style, alertObj) => {
-    return (
-    <animated.div style={style} className={alertObj.class}>
-      <FontAwesomeIcon icon={alertObj.icon}/>
-      {alertObj.msg}
-    </animated.div>
-    )
-  })
+  const handleSaveClick = async () => {
+    if (dogState.newDog !== true && validateRequiredFields()) {
+      // Updating existing dog
+      const dogObj = { dogID: dogState._id, ...dogHeaderData, ...dogBodyData, ...dogBodyTailData };
+      const updatedDog = await updateDog(dogObj);
+      if (!updatedDog.error) {
+        setDogState(updatedDog);
+        updateDogInAppState(updatedDog);
+        setInEditMode(false);
+        addAlerts([
+          { alertMsg: `Successfully updated ${dogHeaderData.name}`, alertClass: 'alertSuccess', alertIcon: faCheck },
+        ]);
+      } else {
+        const errorMsg = updatedDog.error;
+        addAlerts([{ alertMsg: errorMsg, alertClass: 'alertError', alertIcon: faExclamationCircle }]);
+      }
+    } else if (validateRequiredFields()) {
+      // Adding new dog
+      const dogObj = { ...dogHeaderData, ...dogBodyData, ...dogBodyTailData };
+      const newDog = await saveNewDog(dogObj);
+      if (!newDog.error) {
+        addDogsToAppState([newDog]);
+        setInEditMode(false);
+        setIsAddingNewDog(false);
+        // addAlerts([{alertMsg: `Successfully added ${ dogHeaderData.name }`, alertClass: "alertSuccess", alertIcon: faCheck}]);
+      } else {
+        const errorMsg = newDog.error;
+        addAlerts([{ alertMsg: errorMsg, alertClass: 'alertError', alertIcon: faExclamationCircle }]);
+      }
+    }
+  };
 
   return (
     <>
@@ -275,24 +241,50 @@ const DogItemBodyTail = ({
             />
           </div>
         </div>
-          <div className="dog-item__alerts">
-            { animatedAlerts }
-          </div>
-        {inEditMode && (
-          <div className="dog-item__editModeUI">
-            <div className="dog-item__editModeUI__cancel" onClick={handleCancelClick}>
-              <FontAwesomeIcon icon={faTimesCircle} />
-              {dogState.newDog ? 'Cancel' : 'Cancel edit'}
+        <div className="dog-item__alerts">
+          {animatedAlerts}
+          {inDeleteMode && (
+            <div className="alertError">
+              <FontAwesomeIcon icon={faExclamationCircle} />
+              {`Are you sure you want to delete ${dogState.name}?`}
             </div>
-            <div className="dog-item__editModeUI__save" onClick={handleSaveClick}>
-              <FontAwesomeIcon icon={faSave} />
-              {dogState.newDog ? 'Add new dog' : 'Save dog'}
+          )}
+        </div>
+        {inEditMode ? (
+          inDeleteMode ? (
+            <div className="dog-item__editModeUI">
+              <button className="dog-item__editModeUI__cancel" onClick={handleCancelDelete}>
+                <FontAwesomeIcon icon={faTimesCircle} />
+                Cancel
+              </button>
+              <button className="dog-item__editModeUI__confirmDelete" onClick={handleConfirmDelete}>
+                <FontAwesomeIcon icon={faTrashAlt} />
+                Delete forever
+              </button>
             </div>
-          </div>
+          ) : (
+            <div className="dog-item__editModeUI">
+              <button className="dog-item__editModeUI__cancel" onClick={handleCancelClick}>
+                <FontAwesomeIcon icon={faTimesCircle} />
+                {dogState.newDog ? 'Cancel' : 'Cancel edit'}
+              </button>
+              <button className="dog-item__editModeUI__save" onClick={handleSaveClick}>
+                <FontAwesomeIcon icon={faSave} />
+                {dogState.newDog ? 'Add new dog' : 'Save dog'}
+              </button>
+              <button className="dog-item__editModeUI__trashButton" onClick={() => setInDeleteMode(true)}>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </button>
+            </div>
+          )
+        ) : (
+          <></>
         )}
       </animated.div>
     </>
   );
 };
 
-export default connect(null, { updateDogInAppState, removeNewDog, })(DogItemBodyTail);
+export default connect(null, { updateDogInAppState, setIsAddingNewDog, addDogsToAppState, deleteDogInAppState })(
+  DogItemBodyTail
+);

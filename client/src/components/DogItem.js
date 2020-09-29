@@ -41,7 +41,6 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
     const [inEditMode, setInEditMode] = useState(dog.newDog === true );
     const [bodyExpanded, setBodyExpanded] = useState(dog.newDog === true);
     const [dogState, setDogState] = useState(dog);
-    const [dogItemAlerts, setDogItemAlerts] = useState([]);
 
     // Status modifiers
     const expandBody = () => {
@@ -141,7 +140,7 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
             placeholder="Name (required)"
             data={name}
             inEditMode={inEditMode}
-            editClass="plc-hold-fnt-sz-8 dog-item__fieldRequiredError dog-item-header__displayText--editable"
+            editClass="plc-hold-fnt-sz-8 plc-hold-red dog-item-header__displayText--editable"
             noEditClass="dog-item-header__displayText"
             handleOnChange={(e) => setName(e.target.value ? capitalizeWords(e.target.value) : null)}
             handleOnBlur={(e) => !e.target.value && setName(name_init)}
@@ -188,7 +187,7 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
             placeholder="MM-DD-YY"
             data={ intakeDate }
             inEditMode={ inEditMode }
-            editClass="dog-item__fieldRequiredError dog-item-header__displayText--editable"
+            editClass="plc-hold-red dog-item-header__displayText--editable"
             noEditClass="dog-item-header__displayText"
             handleOnChange={ (e) => setIntakeDate(e.target.value ? dateMask(e.target.value) : null) }
             handleOnBlur={ () => handleValidateDate(intakeDate, setIntakeDate) }
@@ -219,11 +218,11 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
       <div className={inEditMode ? 'dog-item dog-item--editMode' : 'dog-item'} ref={ref} key={dogState._id + 'item'}>
         <div className="dog-item-header-wrapper" onClick={expandBody}>
           {dogItemHeader}
-          <div className={`dog-item__headerButton  ${(inEditMode && 'noVis')}`}>
+          <button className={`dog-item__headerButton ${(inEditMode ? 'noVis' : undefined)}`} onClick={expandBody}>
             <div className={bodyExpanded ? 'dog-item__headerButton__icon--expanded' : 'dog-item__headerButton__icon'}>
               <FontAwesomeIcon icon={faAngleDown} />
             </div>
-          </div>
+          </button>
         </div>
         {bodyExpanded && (
           <DogItemBody
@@ -234,8 +233,6 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
             inEditMode={inEditMode}
             setInEditMode={setInEditMode}
             handleHeaderReset={handleHeaderReset}
-            dogItemAlerts={dogItemAlerts}
-            setDogItemAlerts={setDogItemAlerts}
           />
         )}
       </div>
