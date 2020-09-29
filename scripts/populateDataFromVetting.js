@@ -1,5 +1,5 @@
 const moment = require('moment');
-const tapVetting = require('./tapVetting');
+const tapVetting = require('./data/vettingJSON.js');
 const Dog = require('../models/Dog');
 const Person = require('../models/Person');
 const connectDB = require('../config/db');
@@ -110,7 +110,6 @@ tapVetting.forEach(async (entry) => {
         currentDog.vettingDates.dewormer = dewormer_date;
       }
     }
-
     // Apply current vet
     if (mainVet_raw && mainVet_raw !==  "Blank" && !currentDog.medical.primaryVet) {
       currentDog.medical.primaryVet = mainVet_raw.toLowerCase();
