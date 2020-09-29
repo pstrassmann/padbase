@@ -26,44 +26,45 @@ router.get('/', async (req, res) => {
   }
 });
 
-const fillDogFields = (dog, {
-  name,
-  sex,
-  weight,
-  isFixed,
-  birthday,
-  intakeDate,
-  primaryStatus,
-  vettingStatus,
-  fosterCoordinator,
-  vettingCoordinator,
-  adoptionCoordinator,
-  currentFoster,
-  initialDateWCurrentFoster,
-  breed,
-  mother,
-  primaryVet,
-  origin,
-  groupName,
-  fee,
-  vettingDates,
-  tvtStatus,
-  fourDXStatus,
-  history,
-  otherVetsUsed,
-  fleaMedBrand,
-  medNotes,
-  upcomingVetAppts,
-  notes}) => {
-
+const fillDogFields = (
+  dog,
+  {
+    name,
+    sex,
+    weight,
+    isFixed,
+    birthday,
+    intakeDate,
+    primaryStatus,
+    vettingStatus,
+    fosterCoordinator,
+    vettingCoordinator,
+    adoptionCoordinator,
+    currentFoster,
+    initialDateWCurrentFoster,
+    breed,
+    mother,
+    primaryVet,
+    origin,
+    groupName,
+    fee,
+    vettingDates,
+    tvtStatus,
+    fourDXStatus,
+    history,
+    otherVetsUsed,
+    fleaMedBrand,
+    medNotes,
+    upcomingVetAppts,
+    notes,
+  }
+) => {
   dog.name = name;
   dog.sex = sex === 'M' || sex === 'F' ? sex : undefined;
   dog.weight = weight === null ? undefined : parseInt(weight);
   dog.isFixed = isFixed === 'Yes' ? true : isFixed === 'No' ? false : null;
   dog.birthday = moment(birthday, 'MM-DD-YY').isValid() ? moment(birthday, 'MM-DD-YY').toDate() : undefined;
-  dog.intakeDate = moment(intakeDate, 'MM-DD-YY').isValid()
-    ? moment(intakeDate, 'MM-DD-YY').toDate()
-    : undefined;
+  dog.intakeDate = moment(intakeDate, 'MM-DD-YY').isValid() ? moment(intakeDate, 'MM-DD-YY').toDate() : undefined;
   dog.status = primaryStatus === null ? undefined : primaryStatus.toLowerCase();
   dog.vettingStatus = vettingStatus === null ? undefined : vettingStatus.toLowerCase();
   dog.fosterCoordinator = fosterCoordinator._id === null ? undefined : fosterCoordinator._id;
@@ -78,13 +79,16 @@ const fillDogFields = (dog, {
   // parents[0] is always the mother
   if (mother._id !== null && dog.parents[0] !== mother._id) {
     dog.parents = [mother._id, ...dog.parents.slice(1)];
-  } else if ( mother._id === null ) {
+  } else if (mother._id === null) {
     dog.parents = [];
   }
 
   dog.medical.primaryVet = primaryVet === null ? undefined : primaryVet.toLowerCase();
   dog.medical.allVetsUsed = [
-    ...new Set([primaryVet && primaryVet.toLowerCase(), ...(otherVetsUsed === null ? '' : otherVetsUsed).toLowerCase().split(',')]),
+    ...new Set([
+      primaryVet && primaryVet.toLowerCase(),
+      ...(otherVetsUsed === null ? '' : otherVetsUsed).toLowerCase().split(','),
+    ]),
   ].filter((entry) => {
     return entry !== null && entry !== '';
   });
@@ -98,12 +102,15 @@ const fillDogFields = (dog, {
   dog.group = groupName === null ? undefined : groupName.toLowerCase();
   dog.fee = fee === null ? undefined : parseInt(fee);
   dog.vettingDates = Object.fromEntries(
-    Object.entries(vettingDates).map(([key, value]) => [key, moment(value, 'MM-DD-YY').isValid() ? moment(value, 'MM-DD-YY').toDate() : null])
+    Object.entries(vettingDates).map(([key, value]) => [
+      key,
+      moment(value, 'MM-DD-YY').isValid() ? moment(value, 'MM-DD-YY').toDate() : null,
+    ])
   );
   dog.history = history === null ? undefined : history;
   dog.notes = notes === null ? undefined : notes;
   return dog;
-}
+};
 
 router.put('/', async (req, res) => {
   try {
@@ -167,12 +174,12 @@ router.put('/', async (req, res) => {
       fleaMedBrand,
       medNotes,
       upcomingVetAppts,
-      notes
-    }
+      notes,
+    };
 
     // Validate only required field for dog (name)
     if (name === '') {
-      return res.json({ error: "Dog name is required" });
+      return res.json({ error: 'Dog name is required' });
     }
 
     let currentFoster;
@@ -290,12 +297,12 @@ router.post('/', async (req, res) => {
       fleaMedBrand,
       medNotes,
       upcomingVetAppts,
-      notes
-    }
+      notes,
+    };
 
     // Validate only required field for dog (name)
     if (name === '') {
-      return res.json({ error: "Dog name is required" });
+      return res.json({ error: 'Dog name is required' });
     }
 
     let currentFoster;
@@ -334,7 +341,7 @@ router.post('/', async (req, res) => {
       dogFields.currentFoster = newlyAddedFoster;
     }
 
-    const newDog = new Dog;
+    const newDog = new Dog();
     const dog = fillDogFields(newDog, dogFields);
     await dog.save();
     const populatedDog = await Dog.findById(dog._id)
@@ -349,4 +356,53 @@ router.post('/', async (req, res) => {
   }
 });
 
+// @desc      Add new dog group or litter
+// @route     POST api/dogs/group
+router.post('/group', async (req, res) => {
+  try {
+    const { newDogsArray } = req.body;
+    const anyMissingName = newDogsArray.map((dog) => Boolean(dog.name)).includes(false);
+    if (anyMissingName) return res.json({error: "All dogs must have a name"});
+
+    const newDogsArray_validated = newDogsArray.map((dog) => {
+      const parents = [];
+      if (dog.mother && dog.mother._id ) {
+        parents.push(dog.mother._id);
+      }
+      return {
+        name: dog.name,
+        sex: dog.sex === 'M' || dog.sex === 'F' ? dog.sex : undefined,
+        weight: dog.weight ? parseInt(dog.weight) : undefined,
+        isFixed: dog.isFixed === 'Yes' ? true : dog.isFixed === 'No' ? false : undefined,
+        birthday:
+          dog.birthday && moment(dog.birthday, 'MM-DD-YY').isValid()
+            ? moment(dog.birthday, 'MM-DD-YY').toDate()
+            : undefined,
+        intakeDate:
+          moment(dog.intakeDate, 'MM-DD-YY').isValid()
+            ? moment(dog.intakeDate, 'MM-DD-YY').toDate()
+            : undefined,
+        origin: dog.origin ? dog.origin.toLowerCase() : undefined,
+        group: dog['group'] ? dog['group'].toLowerCase() : undefined,
+        status: dog.status ? dog.status.toLowerCase() : undefined,
+        vettingStatus: dog.vettingStatus ? dog.vettingStatus.toLowerCase() : undefined,
+        parents: parents.length > 0 ? parents : undefined,
+      };
+    });
+    const insertedDogs =  await Dog.insertMany(newDogsArray_validated);
+    return res.json(insertedDogs);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
+router.delete('/', async (req, res) => {
+  try {
+  const {_id} = req.body;
+  await Dog.findByIdAndDelete(_id);
+  return res.json({ "success": "true" });
+  } catch (err) {
+    res.status(500).json({error: err});
+  }
+})
 module.exports = router;
