@@ -1,7 +1,13 @@
 const capitalizeWords = (s) => {
-  const re = /(\b[a-z])/g;
-  const capitalized = s.replace(re, (x) => x.toUpperCase());
-  return capitalized;
+  const lowers = ['a', 'the', 'and', 'but', 'or', 'for', 'nor', 'as', 'at',
+    'by', 'for', 'from', 'in', 'into', 'near', 'of', 'on', 'onto', 'to', 'with'];
+  return s
+    .split(' ')
+    .map(w => {
+      if (lowers.includes(w)) return w;
+      return w ? w[0].toUpperCase() + w.substr(1) : w;
+    })
+    .join(' ')
 };
 
 const numbersOnly = (s) => {
