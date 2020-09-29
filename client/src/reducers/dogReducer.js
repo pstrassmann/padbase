@@ -1,6 +1,5 @@
 import moment from 'moment';
 import { escapeRegExp } from '../utils/text';
-import {v4 as uuidv4 } from 'uuid';
 
 import {
   GET_DOGS,
@@ -15,10 +14,14 @@ import {
   APPLY_DOG_FILTERS,
   SET_NUM_DOGS_TO_SHOW,
   UPDATE_DOG_IN_APP_STATE,
-  ADD_NEW_DOG, REMOVE_NEW_DOG
+  SET_IS_ADDING_NEW_DOG,
+  SET_IS_ADDING_NEW_DOG_GROUP,
+  SET_IS_ADDING_NEW_DOG_LITTER,
+  ADD_DOGS_TO_APP_STATE,
+  DELETE_DOG_IN_APP_STATE,
 } from '../actions/types';
 
-const defaultNumDogsToShow = 10;
+const defaultNumDogsToShow = 15;
 
 const initialState = {
   dogs: null,
@@ -29,6 +32,9 @@ const initialState = {
   cachedDogSearchText: '',
   numDogsToShow: defaultNumDogsToShow,
   filters: [],
+  isAddingNewDog: false,
+  isAddingNewDogGroup: false,
+  isAddingNewDogLitter: false,
 };
 
 export default (state = initialState, action) => {
@@ -42,21 +48,26 @@ export default (state = initialState, action) => {
         loading: false,
       };
 
-    case ADD_NEW_DOG:
+    case SET_IS_ADDING_NEW_DOG:
       return {
         ...state,
-        dogMatches: [{newDog: true, tempID: uuidv4()}, ...state.dogMatches]
-      };
+        isAddingNewDog: action.payload
+      }
 
-    case REMOVE_NEW_DOG:
+    case SET_IS_ADDING_NEW_DOG_GROUP:
       return {
         ...state,
-        dogMatches: state.dogMatches.filter((dog)=> {
-          return !dog.tempID || dog.tempID !== action.payload;
-        })
-      };
+        isAddingNewDogGroup: action.payload
+      }
+    case SET_IS_ADDING_NEW_DOG_LITTER:
+      return {
+        ...state,
+        isAddingNewDogLitter: action.payload
+      }
 
     case UPDATE_DOG_IN_APP_STATE:
+        // Note: because dogState is updated via setDogState in DogItemBodyTail,
+        //       dogMatches doesn't need to be updated here.
       return {
         ...state,
         dogs: state.dogs.map((dog) => {
@@ -65,6 +76,27 @@ export default (state = initialState, action) => {
         filteredDogs: state.filteredDogs.map((dog) => {
           return dog._id === action.payload._id ? action.payload : dog;
         }),
+      }
+    case DELETE_DOG_IN_APP_STATE:
+      return {
+        ...state,
+        dogs: state.dogs.filter((dog) => {
+          return dog._id !== action.payload;
+        }),
+        filteredDogs: state.filteredDogs.filter((dog) => {
+          return dog._id !== action.payload;
+        }),
+        dogMatches: state.dogMatches.filter((dog) => {
+          return dog._id !== action.payload;
+        }),
+      }
+
+    case ADD_DOGS_TO_APP_STATE:
+      return {
+        ...state,
+        dogs: [...action.payload, ...state.dogs],
+        filteredDogs: [...action.payload, ...state.filteredDogs],
+        dogMatches: [...action.payload, ...state.dogMatches]
       }
 
     case SET_LOADING:
@@ -91,22 +123,22 @@ export default (state = initialState, action) => {
           switch (state.searchByType) {
             case 'dog name':
               return dog.name.match(regex)
-            case 'parent name':
+            case 'mom name':
               return (
                 dog.parents.length > 0 && dog.parents.some(e => e.name.match(regex))
               )
             case 'group name':
-              return (dog.group !== undefined && dog.group.match(regex));
+              return (dog.group && dog.group.match(regex));
             case 'breed':
               return (dog.breed.length > 0 && dog.breed.some((e) => e.match(regex)))
             case 'foster':
-              return (dog.currentFoster !== undefined && `${dog.currentFoster.firstName} ${dog.currentFoster.lastName}`.match(regex))
+              return (dog.currentFoster && `${dog.currentFoster.firstName} ${dog.currentFoster.lastName}`.match(regex))
             case 'foster coordinator':
-              return (dog.fosterCoordinator !== undefined && `${dog.fosterCoordinator.firstName} ${dog.fosterCoordinator.lastName}`.match(regex))
+              return (dog.fosterCoordinator && `${dog.fosterCoordinator.firstName} ${dog.fosterCoordinator.lastName}`.match(regex))
             case 'adoption coordinator':
-              return (dog.adoptionCoordinator !== undefined && `${dog.adoptionCoordinator.firstName} ${dog.adoptionCoordinator.lastName}`.match(regex))
+              return (dog.adoptionCoordinator && `${dog.adoptionCoordinator.firstName} ${dog.adoptionCoordinator.lastName}`.match(regex))
             case 'vetting coordinator':
-              return (dog.vettingCoordinator !== undefined && `${dog.vettingCoordinator.firstName} ${dog.vettingCoordinator.lastName}`.match(regex))
+              return (dog.vettingCoordinator && `${dog.vettingCoordinator.firstName} ${dog.vettingCoordinator.lastName}`.match(regex))
             default:
               return true;
           }
