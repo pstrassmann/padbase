@@ -20,6 +20,7 @@ const DogSchema = mongoose.Schema({
   bio: String,
   vettingStatus: String,
   vettingDates: {
+    wellness: Date,
     flea: Date,
     dewormer: Date,
     dhpp1: Date,
