@@ -48,10 +48,10 @@ const HomeDogCards = (props) => {
             {dogsToRender.map((dog, index) => {
               if (index === numDogsToShow - 1) {
                 return (
-                  <DogItem ref={lastDogElementRef} dog={dog} key={dog._id || dog.tempID} />
+                  <DogItem ref={lastDogElementRef} dog={dog} key={dog._id} />
                 );
               }
-              return <DogItem dog={dog} key={dog._id || dog.tempID} />;
+              return <DogItem dog={dog} key={dog._id} />;
             })}
           </>
         )}
