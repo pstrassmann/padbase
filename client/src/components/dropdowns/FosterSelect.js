@@ -34,8 +34,8 @@ const FosterSelect = ({
 
   const emailErrorSpring = useSpring({
     from: { transform: 'translateX(100%)', opacity: 0 },
-    transform: showEmailAlertMsg ? 'translateX(0%)' : 'translateX(100%)',
-    opacity: showEmailAlertMsg ? 1 : 0,
+    transform: isAddingNewFoster && showEmailAlertMsg ? 'translateX(0%)' : 'translateX(100%)',
+    opacity: isAddingNewFoster && showEmailAlertMsg ? 1 : 0,
   });
 
   const fosterAddOrCancelSpring = useSpring({
@@ -189,7 +189,7 @@ const FosterSelect = ({
               inEditMode={inEditMode}
               editClass={
                 isAddingNewFoster && !fosterInfo.fullName
-                  ? 'dog-item__fieldRequiredError dog-item-body__displayText--editable'
+                  ? 'plc-hold-red dog-item-body__displayText--editable'
                   : 'dog-item-body__displayText--editable'
               }
               noEditClass="dog-item-body__displayText"
@@ -243,7 +243,7 @@ const FosterSelect = ({
             inEditMode={isAddingNewFoster}
             editClass={
               !fosterInfo.email
-                ? 'dog-item__fieldRequiredError dog-item-body__displayText--editable w70'
+                ? 'plc-hold-red dog-item-body__displayText--editable w70'
                 : 'dog-item-body__displayText--editable w70'
             }
             noEditClass="dog-item-body__displayText"

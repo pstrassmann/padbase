@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { escapeRegExp, capitalizeWords } from '../../utils/text';
 import ConditionalTextInput from '../ConditionalTextInput';
 
-const DogMomSelect = ({ state, setState, state_init, inEditMode, dogs }) => {
+const DogMomSelect = ({ state, setState, inEditMode, label, labelClass, editClass, dogs }) => {
   const [dogMatches, setDogMatches] = useState([]);
   const [dropdownActive, setDropdownActive] = useState(false);
 
@@ -62,23 +62,19 @@ const DogMomSelect = ({ state, setState, state_init, inEditMode, dogs }) => {
   return (
     <div className="dog-item-body__personSelect">
       <ConditionalTextInput
-        label="Mama name"
-        labelClass="dog-item__label"
+        label={ label }
+        labelClass={ labelClass }
         placeholder="Search..."
         data={state.name || 'N/A'}
         inEditMode={inEditMode}
-        editClass="dog-item-body__displayText--editable"
+        editClass={ editClass }
         noEditClass="dog-item-body__displayText"
         handleOnChange={handleInputChange}
         handleOnFocus={handleInputFocus}
         handleOnBlur={handleInputBlur}
       />
 
-      <div
-        className={
-          dropdownActive ? 'dog-item-body__personSelect__dropdown--active' : 'dog-item-body__personSelect__dropdown'
-        }
-      >
+      <div className={ dropdownActive ? 'dog-item-body__personSelect__dropdown--active' : 'dog-item-body__personSelect__dropdown' }>
         {dogMatches.length === 0 ? (
           <div className="dog-item-body__personSelect__dropdown__noMatches">No Matches</div>
         ) : (
