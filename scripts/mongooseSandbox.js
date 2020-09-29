@@ -5,6 +5,16 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config/config.env' });
 connectDB();
 
+// const printDog = async () => {
+//   try {
+//     const existingDog = await Dog.findOne({ name: "Bronte", intakeDate: '06-23-2020'})
+//     console.log(existingDog);
+//   } catch (err) {
+//
+//   }
+// }
+// printDog();
+
 // // Debug regexp
 // const escapeRegExp = (string) => {
 //   return string.replace(/[.*+\-?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
