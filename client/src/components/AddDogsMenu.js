@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { addNewDog } from '../actions/dogActions';
+import { setIsAddingNewDog, setIsAddingNewDogGroup, setIsAddingNewDogLitter } from '../actions/dogActions';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDog, faPlus, faBabyCarriage } from '@fortawesome/free-solid-svg-icons';
 
-const AddDogsMenu = ({ addNewDog }) => {
+const AddDogsMenu = ({ setIsAddingNewDog, setIsAddingNewDogGroup, setIsAddingNewDogLitter }) => {
   const [dropdownActive, setDropdownActive] = useState(false);
 
   const handleClickDropdown = () => {
@@ -13,13 +13,19 @@ const AddDogsMenu = ({ addNewDog }) => {
   };
 
   const handleAddSingleDog = () => {
-    addNewDog();
+    setIsAddingNewDog(true);
     setDropdownActive(!dropdownActive);
   };
 
-  const handleClickOption = () => {
-    setDropdownActive(false);
-  }
+  const handleAddDogGroup = () => {
+    setIsAddingNewDogGroup(true);
+    setDropdownActive(!dropdownActive);
+  };
+
+  const handleAddDogLitter = () => {
+    setIsAddingNewDogLitter(true);
+    setDropdownActive(!dropdownActive);
+  };
 
   return (
     <div className="add-dogs-menu">
@@ -48,7 +54,7 @@ const AddDogsMenu = ({ addNewDog }) => {
           </div>
           Add Single Dog
         </div>
-        <div className="select-dropdown__option" onClick={() => handleClickOption()}>
+        <div className="select-dropdown__option" onClick={handleAddDogGroup}>
           <div>
             <span className="fa-layers fa-fw">
               <FontAwesomeIcon icon={faDog} transform="shrink-6 up-5 left-6" />
@@ -59,7 +65,7 @@ const AddDogsMenu = ({ addNewDog }) => {
           </div>
           Add Group of Dogs
         </div>
-        <div className="select-dropdown__option" onClick={() => handleClickOption()}>
+        <div className="select-dropdown__option" onClick={handleAddDogLitter}>
           <div>
               <FontAwesomeIcon icon={faBabyCarriage} fixedWidth />
           </div>
@@ -71,4 +77,4 @@ const AddDogsMenu = ({ addNewDog }) => {
   );
 };
 
-export default connect(null, { addNewDog })(AddDogsMenu);
+export default connect(null, { setIsAddingNewDog, setIsAddingNewDogGroup, setIsAddingNewDogLitter })(AddDogsMenu);

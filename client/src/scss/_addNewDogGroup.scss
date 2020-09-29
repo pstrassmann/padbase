@@ -1,0 +1,103 @@
+@use 'colors';
+
+.add-new-dog-group-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 0 1px colors.$light-grey-2;
+  background-color: colors.$dark-blue-6;
+  margin-bottom: 0.3rem;
+}
+
+.add-new-dog-group__generalInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+.add-new-dog-group__generalInfo__input {
+  border: none;
+  background: none;
+  box-shadow: 0 0 0 1px colors.$light-grey-2;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+  border-radius: 3px;
+  font-size: 0.9rem;
+  color: colors.$true-white;
+  width: 3rem;
+  padding: 0.2rem 0.2rem;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px colors.$medium-blue-4;
+  }
+}
+
+.add-new-dog-group__newDogs__dog__input {
+  @extend .add-new-dog-group__generalInfo__input;
+}
+
+.add-new-dog-group__label-wrapper {
+  position: relative;
+}
+
+.add-new-dog-group__label {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: colors.$light-grey-1;
+    font-size: 0.6rem;
+    z-index: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+.add-new-dog-group__newDogs {
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  align-items: center;
+  margin: 1.2rem 0 0.7rem 0;
+  //box-shadow: 0 0 0 1px red;
+}
+
+.add-new-dog-group__newDogs__dog {
+  display: flex;
+  margin-bottom: 0.5rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.add-new-dog-group__newDogs__dog__dogNum {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 1.2rem;
+  font-size: 0.9rem;
+  margin-right: 0.3rem;
+}
+
+.add-new-dog-group__newDogs__dog__nameInput {
+  @extend .add-new-dog-group__generalInfo__input;
+  margin-right: 0.5rem;
+  width: 7rem;
+}
+
+.add-new-dog-group__newDogs__dog__sexInput {
+  @extend .add-new-dog-group__generalInfo__input;
+  width: 2.5rem;
+  &::placeholder {
+    text-align: center;
+  }
+}
+
+.add-new-dog-group__addOneMore {
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem;
+  &:hover {
+    color: colors.$light-grey-3;
+  }
+}
