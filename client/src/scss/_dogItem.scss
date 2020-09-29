@@ -2,12 +2,13 @@
 @use 'dogItemBody';
 @use 'dogItem_statusPills';
 $dog-item-border-radius: 5px;
+$button-box-shadow-color: colors.$dark-blue-1;
+$label-color: colors.$light-grey-2;
 
 .dog-item {
   position: relative;
-  margin: 0.3rem 0;
-  background: colors.$dark-blue-4;
-  box-shadow: 0 0 0px 1px colors.$dark-blue-2;
+  margin: 0.25rem 0;
+  background-color: colors.$dark-blue-3;
   border-radius: $dog-item-border-radius;
   overflow: hidden;
 }
@@ -30,16 +31,20 @@ $dog-item-border-radius: 5px;
 }
 
 .dog-item__headerButton {
+  background: none;
+  border: none;
+  color: colors.$true-white;
+  outline: none;
   display: flex;
   overflow: hidden;
   justify-content: center;
   align-items: center;
   width: 1rem;
   font-size: 0.9rem;
-  box-shadow: 0 0 0 1px colors.$dark-blue-2;
+  box-shadow: 0 0 0 1px $button-box-shadow-color;
   border-top-right-radius: $dog-item-border-radius;
   &:hover {
-    background-color: colors.$dark-blue-2;
+    background-color: $button-box-shadow-color;
   }
 }
 .dog-item__headerButton__icon {
@@ -94,13 +99,13 @@ $dog-item-border-radius: 5px;
   top: 1rem;
   padding: 0.3rem 1rem 0.3rem 0.5rem;
   font-size: 0.8rem;
-  border-left: 1px solid colors.$dark-blue-2;
-  border-top: 1px solid colors.$dark-blue-2;
-  border-bottom: 1px solid colors.$dark-blue-2;
+  border-left: 1px solid $button-box-shadow-color;
+  border-top: 1px solid $button-box-shadow-color;
+  border-bottom: 1px solid $button-box-shadow-color;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   &:hover {
-    background-color: colors.$dark-blue-2;
+    background-color: $button-box-shadow-color;
   }
 }
 
@@ -113,14 +118,18 @@ $dog-item-border-radius: 5px;
 }
 
 .dog-item__editModeUI {
+  position: relative;
   cursor: default;
   display: flex;
   font-size: 0.8rem;
   justify-content: center;
   align-items: flex-end;
+  gap: 0.6rem;
 }
 
 .dog-item__editModeUI__cancel {
+  background: none;
+  color: white;
   display: flex;
   height: 1.5rem;
   justify-content: center;
@@ -129,19 +138,42 @@ $dog-item-border-radius: 5px;
   border: 1px solid colors.$light-grey-2;
   border-bottom: none;
   padding: 0rem 0.3rem;
-  margin-right: 0.3rem;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   &:hover {
-    background-color: colors.$dark-blue-2;
+    background-color: $button-box-shadow-color;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px colors.$medium-blue-4;
   }
 }
 
 .dog-item__editModeUI__save {
   @extend .dog-item__editModeUI__cancel;
-  margin-right: 0;
-  margin-left: 0.3rem;
 }
+
+.dog-item__editModeUI__trashButton {
+  @extend .dog-item__editModeUI__cancel;
+  position: absolute;
+  right: 2px;
+  &:hover {
+    background-color: colors.$medium-red-2;
+  }
+}
+
+.dog-item__editModeUI__confirmDelete {
+  @extend .dog-item__editModeUI__cancel;
+  background-color: colors.$medium-red-2;
+  &:hover {
+    background-color: colors.$bright-red-2;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px colors.$medium-blue-4;
+  }
+}
+
 
 .dog-item__header-cell {
   position: relative;
@@ -150,7 +182,7 @@ $dog-item-border-radius: 5px;
 
 .dog-item__body-cell {
   @extend .dog-item__header-cell;
-  padding: 1rem 0 0 0;
+  padding: 1rem 0 0.2rem 0;
 }
 .dog-item__body-tail-cell {
   @extend .dog-item__header-cell;
@@ -161,13 +193,13 @@ $dog-item-border-radius: 5px;
   position: absolute;
   top: 2px;
   left: auto;
-  color: colors.$light-grey-3;
+  color: $label-color;
   font-size: 0.6rem;
   z-index: 0;
 }
 
 .dog-item__inline-label {
-  color: colors.$light-grey-3;
+  color: $label-color;
   font-size: 0.75rem;
   margin-right: 0.4rem;
   z-index: 0;
@@ -227,28 +259,11 @@ $dog-item-border-radius: 5px;
   width: fit-content;
 }
 
-.dog-item__fieldRequiredError::placeholder {
-  color: colors.$medium-red-2;
-}
-
 .dog-item__alerts {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0.2rem 0rem 0.3rem 0.5rem;
-}
-
-.dog-item__alerts__alertError {
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
-  color: colors.$bright-red-3;
-  font-size: 0.8rem;
-}
-
-.dog-item__alerts__alertSuccess {
-  @extend .dog-item__alerts__alertError;
-  color: colors.$bright-green-3;
 }
 
 .dog-item__name {
