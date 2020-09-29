@@ -51,11 +51,11 @@ const SearchByMenu = ({searchByType, setSearchByType, searchDogs, cachedDogSearc
             </div>
             Dog Name
           </div>
-          <div className="search-by-dropdown__option" onClick={() => handleClickOption('parent name')}>
+          <div className="search-by-dropdown__option" onClick={() => handleClickOption('mom name')}>
             <div>
               <FontAwesomeIcon icon={ faBaby } size="sm" />
             </div>
-            Parent Name
+            Mom's Name
           </div>
           <div className="search-by-dropdown__option" onClick={() => handleClickOption('group name')}>
             <div>
