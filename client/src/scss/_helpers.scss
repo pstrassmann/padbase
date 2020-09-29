@@ -1,3 +1,22 @@
+@use 'colors';
+
+.alertError {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  color: colors.$bright-red-3;
+  font-size: 0.8rem;
+}
+
+.alertSuccess {
+  @extend .alertError;
+  color: colors.$bright-green-3;
+}
+
+.w6rem {
+  width: 6rem;
+}
+
 .w60 {
   width: 60%;
 }
@@ -18,6 +37,10 @@
   width: 100% !important;
 }
 
+.plc-hold-center::placeholder {
+  text-align: center;
+}
+
 .plc-hold-fnt-sz-6::placeholder {
   font-size: 0.6rem;
 }
@@ -28,6 +51,10 @@
 
 .plc-hold-fnt-sz-8::placeholder {
   font-size: 0.8rem;
+}
+
+.plc-hold-red::placeholder {
+  color: colors.$bright-red-3;
 }
 
 .noVis {
