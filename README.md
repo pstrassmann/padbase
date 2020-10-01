@@ -8,11 +8,14 @@ PadBase is a record management web application for The Animal Pad, an all-breed 
 
 The frontend is built with React, using entirely functional components. Redux is used for managing app-level state. App styling uses custom CSS, with react-spring v9 for many of the UI animations. The backend was built with Node.js and Express. MongoDB is used for the database, with mongoose.js as the ODM library.
 
+![Home screenshot](demo/home.png) 
 ## Usage
 
 ### Expanding dog cards
 
 PadBase displays dog records as expandable cards that can be viewed in three degrees of detail. Expand dog cards by clicking the angle down icon on the right of the card. To view additional supplementary details, expand further with the angle down icon on the bottom right. 
+
+![Expanded card gif](demo/screenshots/expand_card_gif.gif)
 
 ### Searching and filtering records
 
