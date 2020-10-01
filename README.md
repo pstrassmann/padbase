@@ -31,7 +31,9 @@ Clicking the edit icon in the expanded dog card transforms the record into a for
 
 New dogs can be added by clicking the Add New Dogs button to the right of the search bar. Dogs can be added individually (‘Add Single Dog’) with their full record editable, or in bulk as a group (‘Add New Dog Group’) or a litter (‘Add New Litter’).
 ![Add new dog component](demo/screenshots/add_new_dog.png) 
+
 When dogs are added in bulk as a group or litter, shared details are entered only once at the top (e.g group name, origin, mom’s name, DOB, etc.), and unique details for individual dogs are entered on their respective line. The number of dogs in the group can be set in the '# of dogs' field or by adding a new dog line with the ‘+’ button.
+
 ![Add new litter component](demo/screenshots/add_new_litter.png) 
 ### Deleting records
 
