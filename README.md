@@ -21,6 +21,8 @@ PadBase displays dog records as expandable cards that can be viewed in three deg
 
 Expanding the dropdown within the search bar allows dog cards to be searched by a number of fields, like name, group, origin, etc., or by the dogs’ associated foster or Animal Pad coordinators. Dog records can additionally be filtered by one or more tags, like sex, vaccine status, cleared-for-adoption, etc. Active filters are displayed under the search bar; they can be removed in bulk by clicking ‘clear all’, or individually by clicking the ‘x’ button next to the filter.
 
+![Search and filter gif](demo/screenshots/search_and_filter_gif.gif)
+
 ### Editing records
 
 Clicking the edit icon in the expanded dog card transforms the record into a form; fields can then be updated, and coordinators and fosters can be searched in a dropdown for easy selection and auto-population of details. Adding a new foster in this edit mode adds the foster to the database when the dog record is updated. This foster can subsequently be searched for and associated with other dogs, and their contact details auto-populated on selection.
