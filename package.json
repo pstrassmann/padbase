@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "cross-env NODE-ENV=production node server.js",
+    "server": "cross-env NODE_ENV=development nodemon server.js",
     "msandbox": "node scripts/mongooseSandbox.js",
     "populate": "node scripts/masterPopulate.js",
     "client": "npm run start --prefix client",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5"
   },
