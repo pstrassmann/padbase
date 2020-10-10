@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import {Redirect } from 'react-router-dom';
 import SearchBar from '../SearchBar';
 import FilterMenu from '../FilterMenu';
 import AddDogsMenu from '../AddDogsMenu';
@@ -12,16 +13,17 @@ import { getDogs } from '../../actions/dogActions';
 import { getAllPeopleNames, getFvaCoordinators } from '../../actions/peopleActions';
 import DogItem from '../DogItem';
 
-const Home = ({ loading, isAddingNewDog, isAddingNewDogGroup, isAddingNewDogLitter, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
+const Home = ({ dogsStillLoading, isAddingNewDog, isAddingNewDogGroup, isAddingNewDogLitter, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
+
   useEffect(() => {
-    getDogs();
-    getAllPeopleNames();
-    getFvaCoordinators();
+      getDogs();
+      getAllPeopleNames();
+      getFvaCoordinators();
   }, [getDogs, getAllPeopleNames, getFvaCoordinators]);
 
   return (
-    <div className="home-content-wrapper">
-      {loading ? (
+    <div>
+      {dogsStillLoading ? (
         <Spinner />
       ) : (
         <div className="home-content">
@@ -42,7 +44,7 @@ const Home = ({ loading, isAddingNewDog, isAddingNewDogGroup, isAddingNewDogLitt
 };
 
 const mapStateToProps = (state) => ({
-  loading: state.dog.loading,
+  dogsStillLoading: state.dog.loading,
   isAddingNewDog: state.dog.isAddingNewDog,
   isAddingNewDogGroup: state.dog.isAddingNewDogGroup,
   isAddingNewDogLitter: state.dog.isAddingNewDogLitter,
