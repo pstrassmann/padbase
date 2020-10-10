@@ -3,6 +3,7 @@ const Dog = require('../models/Dog');
 const Person = require('../models/Person');
 const checkValidEmailFormat = require('../utils/checkValidEmailFormat');
 const moment = require('moment');
+const ensureAuth = require('../middleware/ensureAuth');
 
 const router = express.Router();
 
