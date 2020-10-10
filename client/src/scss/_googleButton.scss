@@ -1,0 +1,44 @@
+@use 'colors';
+@import url('https://fonts.googleapis.com/css?family=Roboto:500');
+
+.google-btn {
+  text-decoration: none;
+  width: 12rem;
+  height: 2.6rem;
+  background-color: colors.$google-blue;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+  display: flex;
+  align-items: center;
+}
+
+.google-btn__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.2rem;
+  width: 2.6rem;
+  height: 2.2rem;
+  border-radius: 2px;
+  background-color: colors.$true-white;
+}
+.google-btn__icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.google-btn__text {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: colors.$true-white;
+  font-size: 0.9rem;
+  font-family: "Roboto", sans-serif;
+}
+
+  //&:hover {
+  //  box-shadow: 0 0 6px $google-blue;
+  //}
+  //&:active {
+  //  background: $button-active-blue;
+  //}
