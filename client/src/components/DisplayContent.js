@@ -1,29 +1,39 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setIsAuthenticated } from '../actions/authActions';
-import {Redirect } from 'react-router-dom';
+import { setIsAuthenticated, setUnauthorizedEmail } from '../actions/authActions';
+import { Redirect } from 'react-router-dom';
 import Home from './pages/Home';
-import { getAuthStatus } from '../api/authAPI';
+import { getUser } from '../api/authAPI';
 import Spinner from './Spinner';
+import { getDogs } from '../actions/dogActions';
+import { getAllPeopleNames, getFvaCoordinators } from '../actions/peopleActions';
 
-const DisplayContent = ({ auth, setIsAuthenticated }) => {
+const DisplayContent = ({ auth, dogsStillLoading, setIsAuthenticated, setUnauthorizedEmail, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
 
   useEffect(() => {
-    getAuthStatus().then(
-      (authStatus) => {
-        if (authStatus !== undefined) {
-          setIsAuthenticated(authStatus.isAuthenticated)
+    getUser().then(
+      (user) => {
+        if (user !== undefined) {
+          setIsAuthenticated(user.isAuthenticated)
+          setUnauthorizedEmail(user.unauthorizedEmail)
+          if (user.isAuthenticated === true) {
+            getDogs();
+            getAllPeopleNames();
+            getFvaCoordinators();
+          }
         }
       },
       (error) => setIsAuthenticated(false)
     );
-  }, []);
+  }, [getDogs, getAllPeopleNames, getFvaCoordinators, setIsAuthenticated, setUnauthorizedEmail]);
 
   return (
     <div>
-      { auth.loading
+      { auth.loading || ( auth.isAuthenticated === true && dogsStillLoading)
         ? <Spinner />
-        : auth.isAuthenticated === true ? <Home /> : <Redirect to="/login" />
+        : (auth.isAuthenticated === true && !dogsStillLoading)
+          ? <Home />
+          : <Redirect to="/login" />
       }
     </div>
     )
@@ -31,6 +41,7 @@ const DisplayContent = ({ auth, setIsAuthenticated }) => {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  dogsStillLoading: state.dog.loading,
 });
 
-export default connect(mapStateToProps, { setIsAuthenticated })(DisplayContent);
+export default connect(mapStateToProps, { setIsAuthenticated, setUnauthorizedEmail, getDogs, getAllPeopleNames, getFvaCoordinators })(DisplayContent);
