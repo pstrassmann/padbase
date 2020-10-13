@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const dotenv = require('dotenv');
 const session = require('express-session');
+const connectFlash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
 
 // Load config
@@ -39,6 +40,7 @@ if (app.get('env') === 'production') {
 
 // Sessions
 app.use(session(sess));
+app.use(connectFlash());
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
