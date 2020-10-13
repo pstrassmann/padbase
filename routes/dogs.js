@@ -9,7 +9,9 @@ const router = express.Router();
 
 // @desc      Get all dogs
 // @route     GET api/dogs
-router.get('/', async (req, res) => {
+// @access    Private
+
+router.get('/', ensureAuth, async (req, res) => {
   try {
     const dogs = await Dog.find()
       .populate({ path: 'parents', select: '_id name' })
@@ -113,7 +115,10 @@ const fillDogFields = (
   return dog;
 };
 
-router.put('/', async (req, res) => {
+// @desc      Update dog
+// @route     PUT api/dogs
+// @access    Private
+router.put('/', ensureAuth, async (req, res) => {
   try {
     const {
       dogID,
@@ -238,7 +243,8 @@ router.put('/', async (req, res) => {
 
 // @desc      Add new dog
 // @route     POST api/dogs
-router.post('/', async (req, res) => {
+// @access    Private
+router.post('/', ensureAuth, async (req, res) => {
   try {
     const {
       name,
@@ -359,7 +365,8 @@ router.post('/', async (req, res) => {
 
 // @desc      Add new dog group or litter
 // @route     POST api/dogs/group
-router.post('/group', async (req, res) => {
+// @access    Private
+router.post('/group', ensureAuth, async (req, res) => {
   try {
     const { newDogsArray } = req.body;
     const anyMissingName = newDogsArray.map((dog) => Boolean(dog.name)).includes(false);
@@ -397,7 +404,10 @@ router.post('/group', async (req, res) => {
   }
 });
 
-router.delete('/', async (req, res) => {
+// @desc      Delete dog
+// @route     DELETE api/dogs/
+// @access    Private
+router.delete('/', ensureAuth, async (req, res) => {
   try {
   const {_id} = req.body;
   await Dog.findByIdAndDelete(_id);
