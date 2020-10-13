@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import {Redirect } from 'react-router-dom';
 import SearchBar from '../SearchBar';
 import FilterMenu from '../FilterMenu';
 import AddDogsMenu from '../AddDogsMenu';
@@ -8,24 +7,11 @@ import ActiveFilters from '../ActiveFilters';
 import HomeDogCards from '../HomeDogCards';
 import AddNewDogGroup from '../add-new/AddNewDogGroup';
 import AddNewDogLitter from '../add-new/AddNewDogLitter';
-import Spinner from '../Spinner';
-import { getDogs } from '../../actions/dogActions';
-import { getAllPeopleNames, getFvaCoordinators } from '../../actions/peopleActions';
 import DogItem from '../DogItem';
 
-const Home = ({ dogsStillLoading, isAddingNewDog, isAddingNewDogGroup, isAddingNewDogLitter, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
-
-  useEffect(() => {
-      getDogs();
-      getAllPeopleNames();
-      getFvaCoordinators();
-  }, [getDogs, getAllPeopleNames, getFvaCoordinators]);
+const Home = ({isAddingNewDog, isAddingNewDogGroup, isAddingNewDogLitter, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
 
   return (
-    <div>
-      {dogsStillLoading ? (
-        <Spinner />
-      ) : (
         <div className="home-content">
           <div className="home-content__header">
             <SearchBar />
@@ -38,16 +24,13 @@ const Home = ({ dogsStillLoading, isAddingNewDog, isAddingNewDogGroup, isAddingN
           { isAddingNewDog && <DogItem dog={ {newDog: true} } /> }
           <HomeDogCards />
         </div>
-      )}
-    </div>
   );
 };
 
 const mapStateToProps = (state) => ({
-  dogsStillLoading: state.dog.loading,
   isAddingNewDog: state.dog.isAddingNewDog,
   isAddingNewDogGroup: state.dog.isAddingNewDogGroup,
   isAddingNewDogLitter: state.dog.isAddingNewDogLitter,
 });
 
-export default connect(mapStateToProps, { getDogs, getAllPeopleNames, getFvaCoordinators })(Home);
+export default connect(mapStateToProps, null)(Home);
