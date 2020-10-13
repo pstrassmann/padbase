@@ -1,11 +1,10 @@
-export const getAuthStatus = async () => {
+export const getUser = async () => {
   try {
-    const response = await fetch('/auth/isAuthenticated', {
+    const response = await fetch('/auth/user', {
       method: 'GET',
     });
-    const authStatus = await response.json();
-    console.log('AUTH STATUS: ', authStatus);
-    return authStatus;
+    const user = await response.json();
+    return user;
   } catch (err) {
     console.error(err);
   }
