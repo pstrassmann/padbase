@@ -16,9 +16,10 @@ router.get(
     failureRedirect: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/',
     successRedirect: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/',
     failureFlash: true,
-  })
-  // // (req, res) => {
-  //   res.redirect(process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000');
+  }),
+  // (req, res) => {
+  //
+  //   res.redirect(process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/');
   // }
 );
 // @desc      Check if authenticated
