@@ -19,11 +19,7 @@ client/node_modules
 /client/.env.production.local
 /client/.idea
 /client/config/
-/config/
-/config/passport.js
 /config/config.env
-/config/default.json
-/config/production.json
 /local_only
 local_only
 # misc
