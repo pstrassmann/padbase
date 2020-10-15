@@ -1,11 +1,14 @@
 import {
+  SET_CURRENT_USER,
   SET_IS_AUTHENTICATED, SET_UNAUTHORIZED_EMAIL
 } from '../actions/types';
 
 const initialState = {
   loading: true,
-  isAuthenticated: false,
-  unauthorizedEmail: null,
+  user: {
+    isAuthenticated: false,
+    unauthorizedEmail: null
+  }
 }
 
 export default (state = initialState, action) => {
@@ -13,13 +16,28 @@ export default (state = initialState, action) => {
     case SET_IS_AUTHENTICATED:
       return {
         ...state,
-        isAuthenticated: action.payload,
-        loading: false,
+        user: {
+          ...state.user,
+          isAuthenticated: action.payload,
+          loading: false,
+        }
       };
     case SET_UNAUTHORIZED_EMAIL:
       return {
         ...state,
-        unauthorizedEmail: action.payload,
+        user: {
+          ...state.user,
+          unauthorizedEmail: action.payload,
+        }
+      };
+    case SET_CURRENT_USER:
+      return {
+        ...state,
+        loading: false,
+        user: {
+          ...state.user,
+          ...action.payload
+        }
       };
     default:
       return state;

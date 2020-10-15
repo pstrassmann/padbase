@@ -29,7 +29,7 @@ const Login = ({ unauthorizedEmail }) => {
 };
 
 const mapStateToProps = (state) => ({
-  unauthorizedEmail: state.auth.unauthorizedEmail,
+  unauthorizedEmail: state.auth.user.unauthorizedEmail,
 });
 
 export default connect(mapStateToProps, null)(Login);

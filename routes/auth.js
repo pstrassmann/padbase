@@ -16,7 +16,7 @@ router.get(
     failureRedirect: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/',
     successRedirect: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/',
     failureFlash: true,
-  }),
+  })
   // // (req, res) => {
   //   res.redirect(process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000');
   // }
@@ -25,22 +25,18 @@ router.get(
 // @route     GET /auth/user
 // @access    Public
 router.get('/user', (req, res) => {
-
-  const user = {
-    isAuthenticated: req.isAuthenticated(),
-    unauthorizedEmail: null,
-    firstName: req.user && req.user.firstName ? req.user.firstName : null,
-    email: req.user && req.user.email ? req.user.email : null,
-  }
-  // Get flash message added by Passport authentication if
-  // it exists. Message will just contain the email unauthorized email address
   const flashObj = req.flash();
-  let unauthorizedEmail = null;
-  if (flashObj.error && flashObj.error.length > 0) {
-    unauthorizedEmail = flashObj.error[0];
+  const user = {
+    firstName: req.user && req.user.firstName ? req.user.firstName : null,
+    lastName: req.user && req.user.lastName ? req.user.lastName : null,
+    email: req.user && req.user.email ? req.user.email : null,
+    isAuthenticated: req.isAuthenticated(),
+    // Get flash message added by Passport authentication if
+    // it exists. Message will just contain the email unauthorized email address
+    unauthorizedEmail: flashObj.error && flashObj.error.length > 0 ? flashObj.error[0] : null,
   }
   res.json(user);
-})
+});
 
 // @desc      Logout user
 // @route     GET /auth/logout
