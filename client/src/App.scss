@@ -1,6 +1,7 @@
 /* autoprefixer grid: autoplace */
 
-@use 'scss/colors';
+@use "scss/colors";
+@use "scss/navbar";
 @use "scss/dogItem";
 @use "scss/dogSearchBar";
 @use "scss/dogActiveFilterPills";
@@ -27,20 +28,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: colors.$dark-blue-6;
-  color: colors.$true-white;
-}
-
-.navbar {
-  display: flex;
-  //justify-content: center;
-  align-items: center;
-  height: 4rem;
-}
-
-.navbar__logo {
-  font-size: 2.5rem;
-  margin-left: 1rem;
-  font-family: 'Chela One', sans-serif;
   color: colors.$true-white;
 }
 

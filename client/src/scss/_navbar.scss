@@ -1,0 +1,32 @@
+@use "colors";
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 2rem;
+  height: 4rem;
+}
+
+.navbar__logo {
+  font-size: 2.5rem;
+  margin-left: 2rem;
+  font-family: 'Chela One', sans-serif;
+  color: colors.$true-white;
+}
+
+.navbar__logout {
+  display: flex;
+  font-size: 0.9rem;
+  align-items: center;
+  column-gap: 0.5rem;
+  color: colors.$light-grey-1;
+  text-decoration: none;
+  &:hover {
+    color: colors.$medium-blue-4;
+  }
+}
+
+.navbar__logout__text {
+  margin-bottom: 1px;
+}
