@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const dotenv = require('dotenv');
+const path = require('path');
 const session = require('express-session');
 const connectFlash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
