@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setIsAuthenticated, setUnauthorizedEmail, setCurrentUser } from '../actions/authActions';
+import { setIsAuthenticated, setCurrentUser } from '../actions/authActions';
 import { Redirect } from 'react-router-dom';
 import Home from './pages/Home';
 import { getUser } from '../api/authAPI';
@@ -8,7 +8,7 @@ import Spinner from './Spinner';
 import { getDogs } from '../actions/dogActions';
 import { getAllPeopleNames, getFvaCoordinators } from '../actions/peopleActions';
 
-const DisplayContent = ({ auth, dogsStillLoading, setCurrentUser, setIsAuthenticated, setUnauthorizedEmail, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
+const DisplayContent = ({ auth, dogsStillLoading, setCurrentUser, setIsAuthenticated, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
 
   useEffect(() => {
     getUser().then(
@@ -24,7 +24,7 @@ const DisplayContent = ({ auth, dogsStillLoading, setCurrentUser, setIsAuthentic
       },
       (error) => setIsAuthenticated(false)
     );
-  }, [getDogs, getAllPeopleNames, getFvaCoordinators, setIsAuthenticated, setUnauthorizedEmail]);
+  }, [getDogs, getAllPeopleNames, getFvaCoordinators, setCurrentUser, setIsAuthenticated]);
 
   return (
     <div>
@@ -43,4 +43,4 @@ const mapStateToProps = (state) => ({
   dogsStillLoading: state.dog.loading,
 });
 
-export default connect(mapStateToProps, { setCurrentUser, setIsAuthenticated, setUnauthorizedEmail, getDogs, getAllPeopleNames, getFvaCoordinators })(DisplayContent);
+export default connect(mapStateToProps, { setCurrentUser, setIsAuthenticated, getDogs, getAllPeopleNames, getFvaCoordinators })(DisplayContent);

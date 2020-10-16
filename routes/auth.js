@@ -13,8 +13,8 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', 'emai
 router.get(
   '/google/callback',
   passport.authenticate('google', {
-    failureRedirect: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/',
-    successRedirect: process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3000/',
+    failureRedirect: process.env.NODE_ENV === 'production' ? '/login' : 'http://localhost:3000/login',
+    successRedirect: process.env.NODE_ENV === 'production' ? '/login' : 'http://localhost:3000/login',
     failureFlash: true,
   }),
   // (req, res) => {
