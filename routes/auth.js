@@ -14,6 +14,9 @@ router.get(
   '/google/callback',
   passport.authenticate('google', {
     failureRedirect: process.env.NODE_ENV === 'production' ? '/login' : 'http://localhost:3000/login',
+
+    // Google appends '#' to oauth urls. To remove this, we first redirect to login, which in turn, client-side,
+    // redirects to '/', removing the pesky '#'.
     successRedirect: process.env.NODE_ENV === 'production' ? '/login' : 'http://localhost:3000/login',
     failureFlash: true,
   }),
