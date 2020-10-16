@@ -15,7 +15,7 @@ import {
   SET_IS_ADDING_NEW_DOG_GROUP,
   SET_IS_ADDING_NEW_DOG_LITTER,
   ADD_DOGS_TO_APP_STATE,
-  DELETE_DOG, DELETE_DOG_IN_APP_STATE
+  DELETE_DOG_IN_APP_STATE
 } from './types';
 
 export const getDogs = () => async (dispatch) => {
