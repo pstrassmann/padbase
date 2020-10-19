@@ -9,10 +9,9 @@
 }
 
 .navbar__logo {
-  font-size: 2.5rem;
+  width: 132px;
   margin-left: 2rem;
-  font-family: 'Chela One', sans-serif;
-  color: colors.$true-white;
+  fill: colors.$true-white;
 }
 
 .navbar__logout {

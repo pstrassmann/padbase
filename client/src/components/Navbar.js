@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {ReactComponent as PadBaseLogo} from '../images/padbase_svg.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = ({ auth }) => {
   return (
     <nav className="navbar">
-      <span className="navbar__logo">PadBase</span>
+      <PadBaseLogo className="navbar__logo"/>
       {auth.user.isAuthenticated && (
         <a href="/auth/logout" className="navbar__logout">
           <div className="navbar__logout__text">Sign out</div>
