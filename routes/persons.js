@@ -9,7 +9,7 @@ const escapeRegExp = (string) => {
 
 const router = express.Router();
 
-// @desc      Get all people
+// @desc      Get all people names
 // @route     GET api/people
 router.get('/', ensureAuth, async (req, res) => {
   try {
