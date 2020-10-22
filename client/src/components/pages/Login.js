@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import {ReactComponent as GoogleGLogo} from '../../images/google_g_logo.svg';
+import {ReactComponent as PadBaseIcon} from '../../images/padbase_p_logo.svg';
 import { getUser } from '../../api/authAPI';
 import { setCurrentUser } from '../../actions/authActions';
 
@@ -21,24 +23,39 @@ const Login = ({ auth, setCurrentUser }) => {
   } else {
     return (
       <div className="login-content">
-        {auth.user.unauthorizedEmail && (
-          <div className="unauthorized-msg">
+          <div className="login-msg">
+        {auth.user.unauthorizedEmail ? (
             <p>
-              Sorry, <span className="unauthorized-msg__email">{auth.user.unauthorizedEmail}</span> has not been
+              Sorry, <span className="login-msg__unauthorizedEmail">{auth.user.unauthorizedEmail}</span> has not been
               authorized to use PadBase. If you think this is an error, please contact Patrick at The Animal Pad.
             </p>
-          </div>
+        ) : (
+          <p>
+            Sign in with your The Animal Pad gmail address to access PadBase.
+          </p>
         )}
+          </div>
         <a className="google-btn" href="/auth/google">
           <div className="google-btn__icon-wrapper">
-            <img
+            <GoogleGLogo
               className="google-btn__icon"
-              src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="Google 'G' Logo"
             />
           </div>
           <div className="google-btn__text">
             <span>Sign in with Google</span>
+          </div>
+        </a>
+        <p>or</p>
+        <a className="demo-btn" href="/demo">
+          <div className="demo-btn__icon-wrapper">
+            <PadBaseIcon
+              className="demo-btn__icon"
+              alt="PadBase Logo"
+            />
+          </div>
+          <div className="demo-btn__text">
+            <span>View in Demo Mode</span>
           </div>
         </a>
       </div>

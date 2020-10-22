@@ -5,17 +5,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid colors.$light-grey-3;
+  border-radius: 1rem;
+  padding-bottom: 1rem;
 }
 
-.unauthorized-msg {
+.login-msg {
   display: flex;
   text-align: center;
   max-width: 35rem;
   width: 80vw;
   justify-content: center;
+  color: colors.$light-grey-1;
+  padding: 0 0.5rem;
 }
 
-.unauthorized-msg__email {
+.login-msg__unauthorizedEmail {
   font-style: italic;
   color: #7ae0e0;
 }
@@ -30,6 +35,9 @@
   box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
   display: flex;
   align-items: center;
+  &:hover {
+    background-color: colors.$google-blue-dark;
+  }
 }
 
 .google-btn__icon-wrapper {
@@ -42,6 +50,7 @@
   border-radius: 2px;
   background-color: colors.$true-white;
 }
+
 .google-btn__icon {
   width: 1.2rem;
   height: 1.2rem;
@@ -56,9 +65,25 @@
   font-family: "Roboto", sans-serif;
 }
 
-  //&:hover {
-  //  box-shadow: 0 0 6px $google-blue;
-  //}
-  //&:active {
-  //  background: $button-active-blue;
-  //}
+
+.demo-btn {
+  @extend .google-btn;
+  background-color: colors.$dark-purple-1;
+  &:hover {
+    background-color: colors.$dark-purple-3;
+  }
+}
+
+.demo-btn__icon-wrapper {
+  @extend .google-btn__icon-wrapper;
+}
+
+.demo-btn__icon {
+  @extend .google-btn__icon;
+  //width: 2rem;
+  //height: 2rem;
+}
+.demo-btn__text {
+  @extend .google-btn__text;
+
+}
