@@ -4,7 +4,7 @@ import SearchBar from '../SearchBar';
 import FilterMenu from '../FilterMenu';
 import AddDogsMenu from '../AddDogsMenu';
 import ActiveFilters from '../ActiveFilters';
-import HomeDogCards from '../HomeDogCards';
+import HomeDogCards from '../DogCards';
 import AddNewDogGroup from '../add-new/AddNewDogGroup';
 import AddNewDogLitter from '../add-new/AddNewDogLitter';
 import DogItem from '../DogItem';

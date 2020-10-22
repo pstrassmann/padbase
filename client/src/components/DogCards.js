@@ -4,7 +4,7 @@ import DogItem from './DogItem';
 import Spinner from './Spinner';
 import { setNumDogsToShow } from '../actions/dogActions';
 
-const HomeDogCards = (props) => {
+const DogCards = (props) => {
   const numDogsToAddWhenScrolling = 10;
 
   const {
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => ({
   dogState: state.dog,
 });
 
-export default connect(mapStateToProps, { setNumDogsToShow })(HomeDogCards);
+export default connect(mapStateToProps, { setNumDogsToShow })(DogCards);
