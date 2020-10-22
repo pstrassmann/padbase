@@ -41,7 +41,9 @@ export const getDogs = () => async (dispatch) => {
 
 export const getDemoDogs = () => (dispatch) => {
   try {
-      const dogsJSON = demoDogsData;
+      const dogsJSON = demoDogsData.sort((a,b) => {
+        return (new Date(b.intakeDate) - new Date (a.intakeDate));
+      });
       dispatch({
         type: GET_DOGS,
         payload: dogsJSON,
