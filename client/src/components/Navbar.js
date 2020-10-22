@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {ReactComponent as PadBaseLogo} from '../images/padbase_svg.svg';
+import {ReactComponent as PadBaseLogo} from '../images/padbase_full_logo_svg.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
