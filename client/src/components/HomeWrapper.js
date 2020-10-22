@@ -8,7 +8,7 @@ import Spinner from './Spinner';
 import { getDogs } from '../actions/dogActions';
 import { getAllPeopleNames, getFvaCoordinators } from '../actions/peopleActions';
 
-const DisplayContent = ({ auth, dogsStillLoading, setCurrentUser, setIsAuthenticated, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
+const HomeWrapper = ({ auth, dogsStillLoading, setCurrentUser, setIsAuthenticated, getDogs, getAllPeopleNames, getFvaCoordinators }) => {
 
   useEffect(() => {
     getUser().then(
@@ -43,4 +43,4 @@ const mapStateToProps = (state) => ({
   dogsStillLoading: state.dog.loading,
 });
 
-export default connect(mapStateToProps, { setCurrentUser, setIsAuthenticated, getDogs, getAllPeopleNames, getFvaCoordinators })(DisplayContent);
+export default connect(mapStateToProps, { setCurrentUser, setIsAuthenticated, getDogs, getAllPeopleNames, getFvaCoordinators })(HomeWrapper);

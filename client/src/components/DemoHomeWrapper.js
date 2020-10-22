@@ -5,7 +5,7 @@ import Spinner from './Spinner';
 import { getDemoDogs } from '../actions/dogActions';
 import { getDemoAllPeopleNames, getDemoFvaCoordinators } from '../actions/peopleActions';
 
-const DemoDisplayContent = ({ dogsStillLoading, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators }) => {
+const DemoHomeWrapper = ({ dogsStillLoading, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators }) => {
   useEffect(() => {
     getDemoDogs();
     getDemoAllPeopleNames();
@@ -23,4 +23,4 @@ export default connect(mapStateToProps, {
   getDemoDogs,
   getDemoAllPeopleNames,
   getDemoFvaCoordinators,
-})(DemoDisplayContent);
+})(DemoHomeWrapper);
