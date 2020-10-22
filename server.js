@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const helmet = require("helmet");
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const passport = require('passport');
@@ -16,6 +17,7 @@ dotenv.config({ path: './config/config.env' });
 require('./config/passport')(passport);
 
 const app = express();
+app.use(helmet());
 connectDB();
 
 // Allow express to parse json
