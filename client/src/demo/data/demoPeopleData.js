@@ -451,4 +451,4 @@ const demoPeopleData = [
   },
 ];
 
-module.exports = demoPeopleData;
+export default demoPeopleData;

@@ -18,6 +18,8 @@ import {
   DELETE_DOG_IN_APP_STATE
 } from './types';
 
+import demoDogsData from '../demo/data/demoDogsData';
+
 export const getDogs = () => async (dispatch) => {
   try {
     const response = await fetch('/api/dogs', {
@@ -32,6 +34,18 @@ export const getDogs = () => async (dispatch) => {
         payload: dogsJSON,
       });
     }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getDemoDogs = () => (dispatch) => {
+  try {
+      const dogsJSON = demoDogsData;
+      dispatch({
+        type: GET_DOGS,
+        payload: dogsJSON,
+      });
   } catch (err) {
     console.error(err);
   }

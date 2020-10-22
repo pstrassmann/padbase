@@ -1,4 +1,4 @@
-const demoDataDogs = [
+const demoDogsData = [
   {
     _id: '9c5a063e-5722-4ba4-93e7-55cfd2c1e279',
     name: 'Peanut',
@@ -9450,3 +9450,5 @@ const demoDataDogs = [
     },
   },
 ];
+
+export default demoDogsData;
