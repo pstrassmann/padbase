@@ -93,7 +93,7 @@ const demoPeopleData = [
     _id: 'ba1aac0d-d3a8-41e8-a7d8-35067641f38d',
     firstName: 'Michaela',
     lastName: 'Meyers',
-    address: '676 Country Road Los Angeles, CA 90026',
+    address: '676 Country Road Los Angeles, CA 90026',
     phone: '490-482-3942',
     email: 'mmeyers@gmail.com',
     role: ['Adoptions Coordinator'],
@@ -174,7 +174,7 @@ const demoPeopleData = [
     _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
     firstName: 'Leila',
     lastName: 'Daugherty',
-    address: '676 Country Road Los Angeles, CA 90026',
+    address: '676 Country Road Los Angeles, CA 90026',
     phone: '230-539-8698',
     email: 'ldaugherty@hotmail.com',
     role: ['Adoptions Coordinator'],
