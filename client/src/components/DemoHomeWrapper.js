@@ -1,18 +1,37 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Home from './pages/Home';
+import InDemoModeMsg from './InDemoModeMsg';
 import Spinner from './Spinner';
 import { getDemoDogs } from '../actions/dogActions';
 import { getDemoAllPeopleNames, getDemoFvaCoordinators } from '../actions/peopleActions';
+import { getUser } from '../api/authAPI';
+import { setCurrentUser } from '../actions/authActions';
 
-const DemoHomeWrapper = ({ dogsStillLoading, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators }) => {
+const DemoHomeWrapper = ({ setCurrentUser, dogsStillLoading, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators }) => {
   useEffect(() => {
-    getDemoDogs();
-    getDemoAllPeopleNames();
-    getDemoFvaCoordinators();
-  }, [getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators]);
+    getUser().then((user) => {
+      if (user !== undefined) {
+        setCurrentUser(user);
+      }
+      getDemoDogs();
+      getDemoAllPeopleNames();
+      getDemoFvaCoordinators();
+    });
+  }, [setCurrentUser, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators]);
 
-  return <div>{dogsStillLoading ? <Spinner /> : <Home />}</div>;
+  return (
+    <div>
+      {dogsStillLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <InDemoModeMsg />
+          <Home />
+        </>
+      )}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
@@ -20,6 +39,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  setCurrentUser,
   getDemoDogs,
   getDemoAllPeopleNames,
   getDemoFvaCoordinators,
