@@ -2,7 +2,6 @@ import React from 'react';
 import './App.scss';
 import { Provider } from 'react-redux';
 import store from './store';
-// import Home from './components/pages/Home';
 import HomeWrapper from './components/HomeWrapper';
 import DemoHomeWrapper from './components/DemoHomeWrapper';
 import Login from './components/pages/Login';
@@ -12,17 +11,17 @@ function App() {
   return (
     <Provider store={store}>
       <>
+        <Router>
         <Navbar/>
         <div className="home-content-wrapper">
-        <Router>
           <Switch>
              <Route exact path="/login" component={Login}/>
              <Route exact path="/demo" component={DemoHomeWrapper}/>
              <Route exact path="/" component={HomeWrapper}/>
              <Redirect to="/" />
           </Switch>
-        </Router>
         </div>
+        </Router>
       </>
     </Provider>
   );
