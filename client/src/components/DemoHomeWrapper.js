@@ -7,8 +7,15 @@ import { getDemoDogs } from '../actions/dogActions';
 import { getDemoAllPeopleNames, getDemoFvaCoordinators } from '../actions/peopleActions';
 import { getUser } from '../api/authAPI';
 import { setCurrentUser } from '../actions/authActions';
+import { setInDemoMode } from '../actions/demoActions';
 
-const DemoHomeWrapper = ({ setCurrentUser, dogsStillLoading, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators }) => {
+const DemoHomeWrapper = ({ setInDemoMode, setCurrentUser, dogsStillLoading, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators }) => {
+
+  useEffect(() => {
+    setInDemoMode(true);
+    return () => setInDemoMode(false);
+  }, [setInDemoMode])
+
   useEffect(() => {
     getUser().then((user) => {
       if (user !== undefined) {
@@ -39,6 +46,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+  setInDemoMode,
   setCurrentUser,
   getDemoDogs,
   getDemoAllPeopleNames,
