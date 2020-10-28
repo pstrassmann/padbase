@@ -12,6 +12,9 @@
   width: 132px;
   margin-left: 2rem;
   fill: colors.$true-white;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .navbar__logout {

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {ReactComponent as GoogleGLogo} from '../../images/google_g_logo.svg';
 import {ReactComponent as PadBaseIcon} from '../../images/padbase_p_logo.svg';
 import { getUser } from '../../api/authAPI';
@@ -47,7 +47,7 @@ const Login = ({ auth, setCurrentUser }) => {
           </div>
         </a>
         <p>or</p>
-        <a className="demo-btn" href="/demo">
+        <Link to="/demo" className="demo-btn">
           <div className="demo-btn__icon-wrapper">
             <PadBaseIcon
               className="demo-btn__icon"
@@ -57,7 +57,7 @@ const Login = ({ auth, setCurrentUser }) => {
           <div className="demo-btn__text">
             <span>View in Demo Mode</span>
           </div>
-        </a>
+        </Link>
       </div>
     );
   }
