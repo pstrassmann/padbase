@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faHome, faPhone, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useSpring, animated } from 'react-spring';
 import { capitalizeWords, escapeRegExp } from '../../utils/text';
-import { getFosterContact, checkEmail } from '../../api/peopleAPI';
+import { getFosterContact, checkEmail, getDemoFosterContact, checkDemoEmail } from '../../api/peopleAPI';
 import { dateMask, formatDate, validatedDate } from '../../utils/dates';
 import ConditionalTextInput from '../ConditionalTextInput';
 
@@ -17,6 +17,7 @@ const FosterSelect = ({
   initialDateWCurrentFoster_init,
   inEditMode,
   allPeople,
+  inDemoMode,
 }) => {
   const [fosterMatches, setFosterMatches] = useState([]);
   const [dropdownActive, setDropdownActive] = useState(false);
@@ -85,15 +86,17 @@ const FosterSelect = ({
   };
 
   const handleSelectFoster = async (foster) => {
-    const fosterContactInfo = await getFosterContact(foster._id);
+    const fosterContactInfo = inDemoMode
+      ? getDemoFosterContact(foster._id)
+      : await getFosterContact(foster._id);
     setFosterInfo({
       ...fosterInfo,
       _id: fosterContactInfo._id,
       fullName: `${fosterContactInfo.firstName ? fosterContactInfo.firstName : ''} ${
         fosterContactInfo.lastName ? fosterContactInfo.lastName : ''
       }`.trim(),
-      firstName:`${fosterContactInfo.firstName ? fosterContactInfo.firstName : null}`,
-      lastName:`${fosterContactInfo.lastName ? fosterContactInfo.lastName : null}`,
+      firstName: `${fosterContactInfo.firstName ? fosterContactInfo.firstName : null}`,
+      lastName: `${fosterContactInfo.lastName ? fosterContactInfo.lastName : null}`,
       phone: fosterContactInfo.phone || null,
       email: fosterContactInfo.email || null,
       address: fosterContactInfo.address || null,
@@ -138,7 +141,9 @@ const FosterSelect = ({
 
   const handleCheckEmail = async (e) => {
     if (isAddingNewFoster && !newEmailIsUnique) {
-      const emailValidation = await checkEmail(e.target.value);
+      const emailValidation = inDemoMode
+        ? checkDemoEmail(e.target.value)
+        : await checkEmail(e.target.value);
       if (emailValidation === true) {
         return setNewEmailIsUnique(true);
       }
@@ -166,9 +171,9 @@ const FosterSelect = ({
 
   const handleFosterAddOrCancelIconClick = () => {
     if (inEditMode) {
-      isAddingNewFoster ? handleCancelAddNewFosterClick() : handleAddNewFosterClick()
+      isAddingNewFoster ? handleCancelAddNewFosterClick() : handleAddNewFosterClick();
     }
-  }
+  };
 
   return (
     <>
@@ -176,13 +181,19 @@ const FosterSelect = ({
         <div className="dog-item-body__personSelect">
           <label className="dog-item__label">Foster Name</label>
           <div className="dog-item-body__personSelect__fosterName">
-            {<animated.div style={fosterAddOrCancelSpring}>
-              <FontAwesomeIcon
-                icon={faPlus}
-                className={(inEditMode && !fosterInfo.fullName) ? 'dog-item__foster-add-or-cancel-icon' : 'dog-item__foster-add-or-cancel-icon noVis'}
-                onClick= {handleFosterAddOrCancelIconClick}
-              />
-            </animated.div> }
+            {
+              <animated.div style={fosterAddOrCancelSpring}>
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  className={
+                    inEditMode && !fosterInfo.fullName
+                      ? 'dog-item__foster-add-or-cancel-icon'
+                      : 'dog-item__foster-add-or-cancel-icon noVis'
+                  }
+                  onClick={handleFosterAddOrCancelIconClick}
+                />
+              </animated.div>
+            }
             <ConditionalTextInput
               placeholder={isAddingNewFoster ? 'Foster name (required)...' : 'Search or add foster...'}
               data={fosterInfo.fullName || 'N/A'}
@@ -295,6 +306,7 @@ const FosterSelect = ({
 
 const mapStateToProps = (state) => ({
   allPeople: state.people.allPeople,
+  inDemoMode: state.demo.inDemoMode,
 });
 
 export default connect(mapStateToProps, null)(FosterSelect);

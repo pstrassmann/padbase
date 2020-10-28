@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { dateMask, formatDate, validatedDate } from '../../utils/dates';
 import { capitalizeWords, numbersOnly } from '../../utils/text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,8 +10,9 @@ import { addDogsToAppState, setIsAddingNewDogLitter } from '../../actions/dogAct
 import useAlerts from '../../utils/useAlerts';
 import { animated, useTransition } from 'react-spring';
 import DogMomSelect from '../dropdowns/DogMomSelect';
+import { v4 as uuidv4 } from 'uuid';
 
-const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter }) => {
+const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMode }) => {
   const numDogs_init = 5;
   const maxNumDogs = 20;
   const emptyDogInfoTemplate = { name: null, sex: null };
@@ -132,16 +134,28 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter }) => {
     const newDogs_commonFieldsAdded = dogsWithName.map((dog) => {
       return {
         ...dog,
-        intakeDate: litterIntakeDate,
-        birthday: litterBirthday,
-        mother: mother,
-        group: groupName,
-        origin: groupOrigin,
+        sex: dog.sex === 'M' || dog.sex === 'F' ? dog.sex : undefined,
+        intakeDate: moment(litterIntakeDate, 'MM-DD-YY').isValid()
+          ? moment(litterIntakeDate, 'MM-DD-YY').toDate()
+          : undefined,
+        group: groupName ? groupName.toLowerCase() : undefined,
+        origin: groupOrigin ? groupOrigin.toLowerCase() : undefined,
         status: 'hold',
         vettingStatus: 'incomplete',
+        parents: mother._id !== null ? [mother._id] : [],
+        birthday: moment(litterBirthday, 'MM-DD-YY').isValid()
+          ? moment(litterBirthday, 'MM-DD-YY').toDate()
+          : undefined,
       };
     });
-    const insertedDogs = await saveDogGroup({ newDogsArray: newDogs_commonFieldsAdded });
+
+    const insertedDogs = inDemoMode
+      ? newDogs_commonFieldsAdded.map((dog) => {
+        dog._id = uuidv4();
+        return dog;
+      })
+      : await saveDogGroup({ newDogsArray: newDogs_commonFieldsAdded });
+
     if (!insertedDogs.error) {
       // Dog documents returned from the server only contain Dog ObjectId refs for parents.
       // To prevent the need for an additional DB hit server-side, the mom's name is
@@ -286,4 +300,8 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter }) => {
   );
 };
 
-export default connect(null, { addDogsToAppState, setIsAddingNewDogLitter })(AddNewDogLitter);
+const mapStateToProps = (state) => ({
+  inDemoMode: state.demo.inDemoMode,
+});
+
+export default connect(mapStateToProps, { addDogsToAppState, setIsAddingNewDogLitter })(AddNewDogLitter);

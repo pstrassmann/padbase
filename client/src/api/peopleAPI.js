@@ -1,3 +1,6 @@
+import demoPeopleData from '../demo/data/demoPeopleData';
+import { checkValidEmailFormat } from '../utils/email';
+
 export const searchCoordinators = async (role, searchStr) => {
   try {
     const response = await fetch('/api/people/search', {
@@ -37,8 +40,12 @@ export const getFosterContact = async (_id) => {
   }
 };
 
+export const getDemoFosterContact = (_id) => {
+  return demoPeopleData.find((person) => person._id === _id);
+}
+
 // Check if email is invalid, unique, or not unique
-// returning 'invalid', true, false respectively
+// returning 'invalid email', true, false respectively
 export const checkEmail = async (email) => {
   try {
     const response = await fetch('/api/people/email', {
@@ -57,3 +64,12 @@ export const checkEmail = async (email) => {
     console.error(err);
   }
 };
+
+export const checkDemoEmail = (email) => {
+  if (!checkValidEmailFormat(email)) return 'invalid email'
+  const demoPersonWithEmail = demoPeopleData.find( (person) => {
+    return person.email === email.toLowerCase();
+  });
+  return demoPersonWithEmail === undefined;
+};
+

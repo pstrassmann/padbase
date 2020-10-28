@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 import { dateMask, formatDate, validatedDate } from '../../utils/dates';
 import { capitalizeWords, numbersOnly } from '../../utils/text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +11,7 @@ import { addDogsToAppState, setIsAddingNewDogGroup } from '../../actions/dogActi
 import useAlerts from '../../utils/useAlerts';
 import { animated, useTransition } from 'react-spring';
 
-const AddNewDogGroup = ( {addDogsToAppState, setIsAddingNewDogGroup} ) => {
+const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode }) => {
   const numDogs_init = 5;
   const maxNumDogs = 50;
   const emptyDogInfoTemplate = { name: null, sex: null };
@@ -123,26 +125,36 @@ const AddNewDogGroup = ( {addDogsToAppState, setIsAddingNewDogGroup} ) => {
     const newDogs_commonFieldsAdded = dogsWithName.map((dog) => {
       return {
         ...dog,
-        intakeDate: groupIntakeDate,
-        group: groupName,
-        origin: groupOrigin,
-        status: "intake",
-        vettingStatus: "incomplete",
+        sex: dog.sex === 'M' || dog.sex === 'F' ? dog.sex : undefined,
+        intakeDate: moment(groupIntakeDate, 'MM-DD-YY').isValid()
+          ? moment(groupIntakeDate, 'MM-DD-YY').toDate()
+          : undefined,
+        group: groupName ? groupName.toLowerCase() : undefined,
+        origin: groupOrigin ? groupOrigin.toLowerCase() : undefined,
+        status: 'intake',
+        vettingStatus: 'incomplete',
       };
     });
-    const insertedDogs = await saveDogGroup({ newDogsArray: newDogs_commonFieldsAdded });
+
+    const insertedDogs = inDemoMode
+      ? newDogs_commonFieldsAdded.map((dog) => {
+        dog._id = uuidv4();
+        return dog;
+      })
+      : await saveDogGroup({ newDogsArray: newDogs_commonFieldsAdded });
+
     if (!insertedDogs.error) {
       addDogsToAppState(insertedDogs);
       setIsAddingNewDogGroup(false);
     } else {
       const errorMsg = insertedDogs.error;
-      addAlerts([{alertMsg: errorMsg, alertClass: "alertError", alertIcon:faExclamationCircle}]);
+      addAlerts([{ alertMsg: errorMsg, alertClass: 'alertError', alertIcon: faExclamationCircle }]);
     }
   };
 
   const dogFieldTransitions = useTransition(dogInfoArray, {
     trail: 35,
-    config: {precision: 0.1},
+    config: { precision: 0.1 },
     from: { transform: 'translateY(-15%)', opacity: 0 },
     enter: { transform: 'translateX(0%)', opacity: 1 },
     leave: { transform: 'translateX(15%)', opacity: 0 },
@@ -243,4 +255,8 @@ const AddNewDogGroup = ( {addDogsToAppState, setIsAddingNewDogGroup} ) => {
   );
 };
 
-export default connect(null, {addDogsToAppState, setIsAddingNewDogGroup})(AddNewDogGroup);
+const mapStateToProps = (state) => ({
+  inDemoMode: state.demo.inDemoMode,
+});
+
+export default connect(mapStateToProps, { addDogsToAppState, setIsAddingNewDogGroup })(AddNewDogGroup);
