@@ -38,7 +38,7 @@ const fillDogFields = (
     isFixed,
     birthday,
     intakeDate,
-    primaryStatus,
+    status,
     vettingStatus,
     fosterCoordinator,
     vettingCoordinator,
@@ -46,140 +46,108 @@ const fillDogFields = (
     currentFoster,
     initialDateWCurrentFoster,
     breed,
-    mother,
-    primaryVet,
+    parents,
     origin,
-    groupName,
+    group,
     fee,
     vettingDates,
-    tvtStatus,
-    fourDXStatus,
+    medical,
     history,
-    otherVetsUsed,
-    fleaMedBrand,
-    medNotes,
-    upcomingVetAppts,
     notes,
   }
 ) => {
   dog.name = name;
   dog.sex = sex === 'M' || sex === 'F' ? sex : undefined;
-  dog.weight = weight === null ? undefined : parseInt(weight);
-  dog.isFixed = isFixed === 'Yes' ? true : isFixed === 'No' ? false : null;
-  dog.birthday = moment(birthday, 'MM-DD-YY').isValid() ? moment(birthday, 'MM-DD-YY').toDate() : undefined;
-  dog.intakeDate = moment(intakeDate, 'MM-DD-YY').isValid() ? moment(intakeDate, 'MM-DD-YY').toDate() : undefined;
-  dog.status = primaryStatus === null ? undefined : primaryStatus.toLowerCase();
-  dog.vettingStatus = vettingStatus === null ? undefined : vettingStatus.toLowerCase();
+  dog.weight = weight || undefined;
+  dog.isFixed = isFixed === true || isFixed === false ? isFixed : null;
+  dog.birthday = moment(birthday).isValid() ? birthday : undefined;
+  dog.intakeDate = moment(intakeDate).isValid() ? intakeDate : undefined;
+  dog.status = status ? status.toLowerCase() : undefined;
+  dog.vettingStatus = vettingStatus ? vettingStatus.toLowerCase() : undefined;
   dog.fosterCoordinator = fosterCoordinator._id === null ? undefined : fosterCoordinator._id;
   dog.vettingCoordinator = vettingCoordinator._id === null ? undefined : vettingCoordinator._id;
   dog.adoptionCoordinator = adoptionCoordinator._id === null ? undefined : adoptionCoordinator._id;
   dog.currentFoster = currentFoster;
-  dog.initialDateWCurrentFoster = moment(initialDateWCurrentFoster, 'MM-DD-YY').isValid()
-    ? moment(initialDateWCurrentFoster, 'MM-DD-YY').toDate()
-    : undefined;
-  dog.breed = breed === null ? undefined : breed.toLowerCase().split(',');
+  dog.initialDateWCurrentFoster = moment(initialDateWCurrentFoster).isValid() ? initialDateWCurrentFoster : undefined;
+  dog.breed = breed || [];
 
+  dog.parents = parents ? parents : [];
   // parents[0] is always the mother
-  if (mother._id !== null && dog.parents[0] !== mother._id) {
-    dog.parents = [mother._id, ...dog.parents.slice(1)];
-  } else if (mother._id === null) {
-    dog.parents = [];
-  }
+  // if (mother._id !== null && dog.parents[0] !== mother._id) {
+  //   dog.parents = [mother._id, ...dog.parents.slice(1)];
+  // } else if (mother._id === null) {
+  // }
 
-  dog.medical.primaryVet = primaryVet === null ? undefined : primaryVet.toLowerCase();
-  dog.medical.allVetsUsed = [
-    ...new Set([
-      primaryVet && primaryVet.toLowerCase(),
-      ...(otherVetsUsed === null ? '' : otherVetsUsed).toLowerCase().split(','),
-    ]),
-  ].filter((entry) => {
-    return entry !== null && entry !== '';
-  });
-
-  dog.medical.tvt = tvtStatus === 'positive' ? true : tvtStatus === 'negative' ? false : null;
-  dog.medical.fourDX = fourDXStatus === 'positive' ? true : fourDXStatus === 'negative' ? false : null;
-  dog.medical.fleaMedBrand = fleaMedBrand === null ? undefined : fleaMedBrand.toLowerCase();
-  dog.medical.upcomingVetAppts = upcomingVetAppts === null ? undefined : upcomingVetAppts;
-  dog.medical.medNotes = medNotes === null ? undefined : medNotes;
-  dog.origin = origin === null ? undefined : origin.toLowerCase();
-  dog.group = groupName === null ? undefined : groupName.toLowerCase();
-  dog.fee = fee === null ? undefined : parseInt(fee);
+  dog.medical.primaryVet = medical.primaryVet ? medical.primaryVet.toLowerCase() : undefined;
+  dog.medical.allVetsUsed = medical.allVetsUsed;
+  dog.medical.tvt = medical.tvt === true || medical.tvt === false ? medical.tvt : null;
+  dog.medical.fourDX = medical.fourDX === true || medical.fourDX === false ? medical.fourDX : null;
+  dog.medical.fleaMedBrand = medical.fleaMedBrand ? medical.fleaMedBrand.toLowerCase() : undefined;
+  dog.medical.upcomingVetAppts = medical.upcomingVetAppts;
+  dog.medical.medNotes = medical.medNotes;
+  dog.origin = origin ? origin.toLowerCase() : undefined;
+  dog.group = group ? group.toLowerCase() : undefined;
+  dog.fee = fee ? parseInt(fee) : undefined;
   dog.vettingDates = Object.fromEntries(
-    Object.entries(vettingDates).map(([key, value]) => [
-      key,
-      moment(value, 'MM-DD-YY').isValid() ? moment(value, 'MM-DD-YY').toDate() : null,
-    ])
+    Object.entries(vettingDates).map(([key, value]) => [key, moment(value).isValid() ? value : null])
   );
-  dog.history = history === null ? undefined : history;
-  dog.notes = notes === null ? undefined : notes;
+  dog.history = history;
+  dog.notes = notes;
   return dog;
 };
-
 // @desc      Update dog
 // @route     PUT api/dogs
 // @access    Private
 router.put('/', ensureAuth, async (req, res) => {
   try {
     const {
-      dogID,
+      _id,
       name,
       sex,
       weight,
       isFixed,
       birthday,
       intakeDate,
-      primaryStatus,
+      status,
       vettingStatus,
       fosterCoordinator,
       vettingCoordinator,
       adoptionCoordinator,
-      fosterInfo,
+      currentFoster,
       initialDateWCurrentFoster,
       breed,
-      mother,
-      primaryVet,
+      parents,
       origin,
-      groupName,
+      group,
       fee,
       vettingDates,
-      tvtStatus,
-      fourDXStatus,
+      medical,
       history,
-      otherVetsUsed,
-      fleaMedBrand,
-      medNotes,
-      upcomingVetAppts,
       notes,
     } = req.body;
 
     const dogFields = {
-      dogID,
+      _id,
       name,
       sex,
       weight,
       isFixed,
       birthday,
       intakeDate,
-      primaryStatus,
+      status,
       vettingStatus,
       fosterCoordinator,
       vettingCoordinator,
       adoptionCoordinator,
       initialDateWCurrentFoster,
       breed,
-      mother,
-      primaryVet,
+      parents,
       origin,
-      groupName,
+      group,
       fee,
       vettingDates,
-      tvtStatus,
-      fourDXStatus,
+      medical,
       history,
-      otherVetsUsed,
-      fleaMedBrand,
-      medNotes,
-      upcomingVetAppts,
       notes,
     };
 
@@ -188,16 +156,15 @@ router.put('/', ensureAuth, async (req, res) => {
       return res.json({ error: 'Dog name is required' });
     }
 
-    let currentFoster;
-    if (fosterInfo && !fosterInfo.newFoster && fosterInfo._id) {
-      dogFields.currentFoster = fosterInfo;
+    if (currentFoster && !currentFoster.newFoster && currentFoster._id) {
+      dogFields.currentFoster = currentFoster._id;
     }
 
-    if (fosterInfo && fosterInfo.newFoster === true) {
-      if (!fosterInfo.email.trim() || !fosterInfo.fullName.trim()) {
+    if (currentFoster.newFoster === true) {
+      if (!currentFoster.email.trim() || !currentFoster.fullName.trim()) {
         return res.json({ error: 'Name and email required for adding new foster' });
       }
-      const newFosterEmail = fosterInfo.email.trim().toLowerCase();
+      const newFosterEmail = currentFoster.email.trim().toLowerCase();
       if (!checkValidEmailFormat(newFosterEmail)) {
         return res.json({ error: "New foster's email is invalid" });
       }
@@ -205,7 +172,7 @@ router.put('/', ensureAuth, async (req, res) => {
       if (existingUserWithEmail) {
         return res.json({ error: "New foster's email already exists in database" });
       }
-      const nameArray = fosterInfo.fullName.trim().split(' ');
+      const nameArray = currentFoster.fullName.trim().split(' ');
       let firstName;
       let lastName;
       firstName = nameArray[0];
@@ -215,15 +182,16 @@ router.put('/', ensureAuth, async (req, res) => {
       const newFoster = new Person({
         firstName,
         lastName,
-        phone: fosterInfo.phone || undefined,
+        phone: currentFoster.phone || undefined,
         email: newFosterEmail,
-        address: fosterInfo.address || undefined,
+        address: currentFoster.address || undefined,
       });
 
       const newlyAddedFoster = await newFoster.save();
       dogFields.currentFoster = newlyAddedFoster;
     }
-    const existingDog = await Dog.findById(dogID);
+
+    const existingDog = await Dog.findById(_id);
 
     if (!existingDog) res.status(500).json({ error: 'Error saving dog' });
 
@@ -253,27 +221,21 @@ router.post('/', ensureAuth, async (req, res) => {
       isFixed,
       birthday,
       intakeDate,
-      primaryStatus,
+      status,
       vettingStatus,
       fosterCoordinator,
       vettingCoordinator,
       adoptionCoordinator,
-      fosterInfo,
+      currentFoster,
       initialDateWCurrentFoster,
       breed,
-      mother,
-      primaryVet,
+      parents,
       origin,
-      groupName,
+      group,
       fee,
       vettingDates,
-      tvtStatus,
-      fourDXStatus,
+      medical,
       history,
-      otherVetsUsed,
-      fleaMedBrand,
-      medNotes,
-      upcomingVetAppts,
       notes,
     } = req.body;
 
@@ -284,26 +246,20 @@ router.post('/', ensureAuth, async (req, res) => {
       isFixed,
       birthday,
       intakeDate,
-      primaryStatus,
+      status,
       vettingStatus,
       fosterCoordinator,
       vettingCoordinator,
       adoptionCoordinator,
       initialDateWCurrentFoster,
       breed,
-      mother,
-      primaryVet,
+      parents,
       origin,
-      groupName,
+      group,
       fee,
       vettingDates,
-      tvtStatus,
-      fourDXStatus,
+      medical,
       history,
-      otherVetsUsed,
-      fleaMedBrand,
-      medNotes,
-      upcomingVetAppts,
       notes,
     };
 
@@ -312,16 +268,15 @@ router.post('/', ensureAuth, async (req, res) => {
       return res.json({ error: 'Dog name is required' });
     }
 
-    let currentFoster;
-    if (fosterInfo && !fosterInfo.newFoster && fosterInfo._id) {
-      dogFields.currentFoster = fosterInfo._id;
+    if (currentFoster && !currentFoster.newFoster && currentFoster._id) {
+      dogFields.currentFoster = currentFoster._id;
     }
 
-    if (fosterInfo && fosterInfo.newFoster === true) {
-      if (!fosterInfo.email.trim() || !fosterInfo.fullName.trim()) {
+    if (currentFoster && currentFoster.newFoster === true) {
+      if (!currentFoster.email.trim() || !currentFoster.fullName.trim()) {
         return res.json({ error: 'Name and email required for adding new foster' });
       }
-      const newFosterEmail = fosterInfo.email.trim().toLowerCase();
+      const newFosterEmail = currentFoster.email.trim().toLowerCase();
       if (!checkValidEmailFormat(newFosterEmail)) {
         return res.json({ error: "New foster's email is invalid" });
       }
@@ -329,7 +284,7 @@ router.post('/', ensureAuth, async (req, res) => {
       if (existingUserWithEmail) {
         return res.json({ error: "New foster's email already exists in database" });
       }
-      const nameArray = fosterInfo.fullName.trim().split(' ');
+      const nameArray = currentFoster.fullName.trim().split(' ');
       let firstName;
       let lastName;
       firstName = nameArray[0];
@@ -339,9 +294,9 @@ router.post('/', ensureAuth, async (req, res) => {
       const newFoster = new Person({
         firstName,
         lastName,
-        phone: fosterInfo.phone || undefined,
+        phone: currentFoster.phone || undefined,
         email: newFosterEmail,
-        address: fosterInfo.address || undefined,
+        address: currentFoster.address || undefined,
       });
 
       const newlyAddedFoster = await newFoster.save();
@@ -370,34 +325,28 @@ router.post('/group', ensureAuth, async (req, res) => {
   try {
     const { newDogsArray } = req.body;
     const anyMissingName = newDogsArray.map((dog) => Boolean(dog.name)).includes(false);
-    if (anyMissingName) return res.json({error: "All dogs must have a name"});
+    if (anyMissingName) return res.json({ error: 'All dogs must have a name' });
 
     const newDogsArray_validated = newDogsArray.map((dog) => {
-      const parents = [];
-      if (dog.mother && dog.mother._id ) {
-        parents.push(dog.mother._id);
-      }
       return {
         name: dog.name,
         sex: dog.sex === 'M' || dog.sex === 'F' ? dog.sex : undefined,
         weight: dog.weight ? parseInt(dog.weight) : undefined,
-        isFixed: dog.isFixed === 'Yes' ? true : dog.isFixed === 'No' ? false : undefined,
         birthday:
-          dog.birthday && moment(dog.birthday, 'MM-DD-YY').isValid()
-            ? moment(dog.birthday, 'MM-DD-YY').toDate()
+          dog.birthday && moment(dog.birthday).isValid()
+            ? dog.birthday
             : undefined,
-        intakeDate:
-          moment(dog.intakeDate, 'MM-DD-YY').isValid()
-            ? moment(dog.intakeDate, 'MM-DD-YY').toDate()
-            : undefined,
+        intakeDate: moment(dog.intakeDate).isValid()
+          ? dog.intakeDate
+          : undefined,
         origin: dog.origin ? dog.origin.toLowerCase() : undefined,
-        group: dog['group'] ? dog['group'].toLowerCase() : undefined,
+        group: dog.group ? dog.group.toLowerCase() : undefined,
         status: dog.status ? dog.status.toLowerCase() : undefined,
         vettingStatus: dog.vettingStatus ? dog.vettingStatus.toLowerCase() : undefined,
-        parents: parents.length > 0 ? parents : undefined,
+        parents: dog.parents ? dog.parents : [],
       };
     });
-    const insertedDogs =  await Dog.insertMany(newDogsArray_validated);
+    const insertedDogs = await Dog.insertMany(newDogsArray_validated);
     return res.json(insertedDogs);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -409,11 +358,11 @@ router.post('/group', ensureAuth, async (req, res) => {
 // @access    Private
 router.delete('/', ensureAuth, async (req, res) => {
   try {
-  const {_id} = req.body;
-  await Dog.findByIdAndDelete(_id);
-  return res.json({ "success": "true" });
+    const { _id } = req.body;
+    await Dog.findByIdAndDelete(_id);
+    return res.json({ success: 'true' });
   } catch (err) {
-    res.status(500).json({error: err});
+    res.status(500).json({ error: err });
   }
-})
+});
 module.exports = router;

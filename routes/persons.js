@@ -1,6 +1,7 @@
 const express = require('express');
 const ensureAuth = require('../middleware/ensureAuth');
 const Person = require('../models/Person');
+const checkValidEmailFormat = require('../utils/checkValidEmailFormat');
 
 // Escapes special characters from search
 const escapeRegExp = (string) => {
@@ -45,10 +46,7 @@ router.get('/contact', ensureAuth, async (req, res) => {
 // @route     GET api/people/email
 router.get('/email', ensureAuth, async (req, res) => {
   const { email } = req.headers;
-  const emailPattern = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-  const re = new RegExp(emailPattern,'g');
-  const emailRegExpMatchArray = email.match(re);
-  if (!emailRegExpMatchArray || (emailRegExpMatchArray[0] !== email)) {
+  if (!checkValidEmailFormat(email)) {
      return res.json('invalid email');
   }
   try {
