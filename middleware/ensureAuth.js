@@ -2,7 +2,7 @@ const ensureAuth = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
   } else {
-    res.redirect('/login');
+    res.json({error: 'Unauthorized. Please sign in.'});
   }
 };
 
