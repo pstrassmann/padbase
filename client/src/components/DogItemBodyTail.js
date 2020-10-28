@@ -306,22 +306,22 @@ const DogItemBodyTail = ({
           inDeleteMode ? (
             <div className="dog-item__editModeUI">
               <button className="dog-item__editModeUI__cancel" onClick={handleCancelDelete}>
-                <FontAwesomeIcon icon={faTimesCircle} />
+                <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faTimesCircle} />
                 Cancel
               </button>
               <button className="dog-item__editModeUI__confirmDelete" onClick={handleConfirmDelete}>
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faTrashAlt} />
                 Delete forever
               </button>
             </div>
           ) : (
             <div className="dog-item__editModeUI">
               <button className="dog-item__editModeUI__cancel" onClick={handleCancelClick}>
-                <FontAwesomeIcon icon={faTimesCircle} />
+                <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faTimesCircle} />
                 {dogState.newDog ? 'Cancel' : 'Cancel edit'}
               </button>
               <button className="dog-item__editModeUI__save" onClick={handleSaveClick}>
-                <FontAwesomeIcon icon={faSave} />
+                <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faSave} />
                 {dogState.newDog ? 'Add new dog' : 'Save dog'}
               </button>
               {!dogState.newDog &&

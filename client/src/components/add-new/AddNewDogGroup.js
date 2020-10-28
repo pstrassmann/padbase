@@ -194,7 +194,7 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
               placeholder="#"
               value={numDogs === null ? '' : numDogs}
               className="plc-hold-fnt-sz-8 plc-hold-center add-new-dog-group__generalInfo__input"
-              style={{ width: '2.5rem' }}
+              // style={{ width: '2.5rem' }}
               onChange={(e) => handleNumDogsChange(e)}
               onBlur={(e) => handleNumDogsBlur(e)}
             />
@@ -206,7 +206,7 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
               value={groupName === null ? '' : groupName}
               placeholder="Group name..."
               className="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
-              style={{ width: '7rem' }}
+              // style={{ width: '7rem' }}
               onChange={(e) => setGroupName(e.target.value ? e.target.value : null)}
               onBlur={(e) => setGroupName(e.target.value ? capitalizeWords(e.target.value) : null)}
             />
@@ -218,7 +218,7 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
               value={groupIntakeDate === null ? '' : groupIntakeDate}
               placeholder="MM-DD-YY"
               className="plc-hold-red plc-hold-center add-new-dog-group__generalInfo__input"
-              style={{ width: '6rem' }}
+              // style={{ width: '6rem' }}
               onChange={(e) => setGroupIntakeDate(e.target.value ? dateMask(e.target.value) : null)}
               onBlur={() => handleValidateDate(groupIntakeDate, setGroupIntakeDate)}
             />
@@ -230,7 +230,7 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
               value={groupOrigin === null ? '' : groupOrigin}
               placeholder="Group origin..."
               className="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
-              style={{ width: '7rem' }}
+              // style={{ width: '7rem' }}
               onChange={(e) => setGroupOrigin(e.target.value ? capitalizeWords(e.target.value) : null)}
             />
           </label>
@@ -242,11 +242,11 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
         </div>
         <div className="dog-item__editModeUI">
           <button className="dog-item__editModeUI__cancel" onClick={() => setIsAddingNewDogGroup(false)}>
-            <FontAwesomeIcon icon={faTimesCircle} />
+            <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faTimesCircle} />
             {'Cancel'}
           </button>
           <button className="dog-item__editModeUI__save" onClick={handleAddDogsClick}>
-            <FontAwesomeIcon icon={faSave} />
+            <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faSave} />
             {'Add Dogs'}
           </button>
         </div>

@@ -7,8 +7,8 @@ $search-bar-height: 2.5rem;
 .home-dog-search-bar-wrapper {
   position: relative;
   width: 55%;
-  //border: 1px solid red;
-  //margin-bottom: 0.3rem;
+  //box-shadow: 0 0 0 1px red;
+  ////margin-bottom: 0.3rem;
 }
 
 .home-dog-search-bar {
@@ -31,6 +31,8 @@ $search-bar-height: 2.5rem;
   color: white;
   &::placeholder {
     color: white;
+    font-size: 0.80rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
   &:focus {
     outline: none;

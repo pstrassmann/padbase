@@ -120,21 +120,25 @@ $label-color: colors.$light-grey-2;
 .dog-item__editModeUI {
   position: relative;
   cursor: default;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 0.5rem;
   font-size: 0.8rem;
   justify-content: center;
-  align-items: flex-end;
-  gap: 0.6rem;
+
+}
+
+.dog-item__editModeUI__icon {
+  margin-right: 0.5rem;
 }
 
 .dog-item__editModeUI__cancel {
   background: none;
   color: white;
   display: flex;
-  height: 1.5rem;
   justify-content: center;
   align-items: center;
-  gap: 0.4rem;
+  height: 1.5rem;
   border: 1px solid colors.$light-grey-2;
   border-bottom: none;
   padding: 0rem 0.3rem;
@@ -195,6 +199,7 @@ $label-color: colors.$light-grey-2;
   left: auto;
   color: $label-color;
   font-size: 0.6rem;
+  white-space: nowrap;
   z-index: 0;
 }
 

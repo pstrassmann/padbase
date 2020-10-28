@@ -206,7 +206,7 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
   return (
     <div className="add-new-dog-group-wrapper">
       <div className="add-new-dog-group">
-        <div className="add-new-dog-group__generalInfo">
+        <div className="add-new-dog-litter__generalInfo">
           <label className="add-new-dog-group__label-wrapper">
             <span className="add-new-dog-group__label"># Pups</span>
             <input
@@ -214,14 +214,14 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
               placeholder="#"
               value={numDogs === null ? '' : numDogs}
               className="plc-hold-fnt-sz-8 plc-hold-center add-new-dog-group__generalInfo__input"
-              style={{ width: '2.5rem' }}
+              // style={{ width: '2.5rem' }}
               onChange={(e) => handleNumDogsChange(e)}
               onBlur={(e) => handleNumDogsBlur(e)}
             />
           </label>
           <label
             className="add-new-dog-group__label-wrapper"
-            style={{ position: 'relative', paddingBottom: '0.3rem', marginBottom: '-0.3rem' }}
+            // style={{ position: 'relative', paddingBottom: '0.3rem', marginBottom: '-0.3rem' }}
           >
             <DogMomSelect
               state={mother}
@@ -229,7 +229,7 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
               inEditMode={true}
               label="Mama name"
               labelClass="add-new-dog-group__label"
-              editClass="plc-hold-fnt-sz-8 w6rem add-new-dog-group__generalInfo__input"
+              editClass="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
             />
           </label>
           <label className="add-new-dog-group__label-wrapper">
@@ -239,7 +239,7 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
               value={groupName === null ? '' : groupName}
               placeholder="Group name..."
               className="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
-              style={{ width: '7rem' }}
+              // style={{ width: '7rem' }}
               onChange={(e) => setGroupName(e.target.value ? e.target.value : null)}
               onBlur={(e) => setGroupName(e.target.value ? capitalizeWords(e.target.value) : null)}
             />
@@ -251,7 +251,7 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
               value={litterBirthday === null ? '' : litterBirthday}
               placeholder="MM-DD-YY"
               className="plc-hold-red plc-hold-center add-new-dog-group__generalInfo__input"
-              style={{ width: '6rem' }}
+              // style={{ width: '6rem' }}
               onChange={(e) => setLitterBirthday(e.target.value ? dateMask(e.target.value) : null)}
               onBlur={() => handleValidateDate(litterBirthday, setLitterBirthday)}
             />
@@ -263,7 +263,7 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
               value={litterIntakeDate === null ? '' : litterIntakeDate}
               placeholder="MM-DD-YY"
               className="plc-hold-red plc-hold-center add-new-dog-group__generalInfo__input"
-              style={{ width: '6rem' }}
+              // style={{ width: '6rem' }}
               onChange={(e) => setLitterIntakeDate(e.target.value ? dateMask(e.target.value) : null)}
               onBlur={() => handleValidateDate(litterIntakeDate, setLitterIntakeDate)}
             />
@@ -275,7 +275,7 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
               value={groupOrigin === null ? '' : groupOrigin}
               placeholder="Group origin..."
               className="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
-              style={{ width: '7rem' }}
+              // style={{ width: '7rem' }}
               onChange={(e) => setGroupOrigin(e.target.value ? capitalizeWords(e.target.value) : null)}
             />
           </label>
@@ -287,11 +287,11 @@ const AddNewDogLitter = ({ addDogsToAppState, setIsAddingNewDogLitter, inDemoMod
         </div>
         <div className="dog-item__editModeUI">
           <button className="dog-item__editModeUI__cancel" onClick={() => setIsAddingNewDogLitter(false)}>
-            <FontAwesomeIcon icon={faTimesCircle} />
+            <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faTimesCircle} />
             {'Cancel'}
           </button>
           <button className="dog-item__editModeUI__save" onClick={handleAddDogsClick}>
-            <FontAwesomeIcon icon={faSave} />
+            <FontAwesomeIcon className="dog-item__editModeUI__icon" icon={faSave} />
             {'Add Dogs'}
           </button>
         </div>

@@ -2,10 +2,13 @@
 
 .alertError {
   display: flex;
-  gap: 0.3rem;
   align-items: center;
   color: colors.$bright-red-3;
   font-size: 0.8rem;
+  white-space: nowrap;
+  & > * {
+    margin-right: 0.3rem;
+  }
 }
 
 .alertSuccess {

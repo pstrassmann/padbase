@@ -40,7 +40,7 @@ const AddDogsMenu = ({ setIsAddingNewDog, setIsAddingNewDogGroup, setIsAddingNew
     >
     <div className="add-dogs-btn-wrapper">
       <div className="add-dogs-btn" onClick={handleClickDropdown}>
-        <div> Add Dogs </div>
+        <div className="add-dogs-btn__text"> Add Dogs </div>
         <span className="fa-layers fa-fw">
           <FontAwesomeIcon icon={faDog} transform="down-3 up-2" />
           <FontAwesomeIcon icon={faPlus} transform="shrink-9 left-5 up-7" />

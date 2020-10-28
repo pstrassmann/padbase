@@ -1,5 +1,6 @@
 /* autoprefixer grid: autoplace */
 
+@use "scss/normalize";
 @use "scss/colors";
 @use "scss/navbar";
 @use "scss/dogItem";
@@ -16,20 +17,25 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
 
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: colors.$dark-blue-6;
   color: colors.$true-white;
+}
+
+::placeholder {
+  opacity: 1;
+  color: colors.$dark-grey-0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .home-content-wrapper {
@@ -45,7 +51,6 @@ body {
 
 .home-content__header {
   display: flex;
-  column-gap: 0.5rem;
   margin-bottom: 0.5rem;
   height: 2.5rem;
 }
