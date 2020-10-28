@@ -9,6 +9,7 @@ import ConditionalTextInput from './ConditionalTextInput';
 import { updateDog, saveNewDog, deleteDog } from '../api/dogAPI';
 import { updateDogInAppState, addDogsToAppState, setIsAddingNewDog, deleteDogInAppState } from '../actions/dogActions';
 import useAlerts from '../utils/useAlerts';
+import moment from 'moment';
 
 const DogItemBodyTail = ({
   dogState,
@@ -25,6 +26,7 @@ const DogItemBodyTail = ({
   setIsAddingNewDog,
   addDogsToAppState,
   deleteDogInAppState,
+  inDemoMode,
 }) => {
   const [addAlerts, animatedAlerts] = useAlerts();
   const [inDeleteMode, setInDeleteMode] = useState(false);
@@ -124,17 +126,66 @@ const DogItemBodyTail = ({
   };
 
   const handleConfirmDelete = async () => {
-    const response = await deleteDog({ _id: dogState._id });
+    const response = inDemoMode ? {} : await deleteDog({ _id: dogState._id });
     if (!response.error) {
       deleteDogInAppState(dogState._id);
     }
   };
 
+  const formatDogForSubmission = (dogObj) => {
+    return {
+      _id: dogObj.dogID,
+      name: dogObj.name,
+      sex: dogObj.sex,
+      weight: dogObj.weight && !isNaN(parseInt(dogObj.weight)) ? parseInt(dogObj.weight) : undefined,
+      isFixed: dogObj.isFixed === 'Yes' ? true : dogObj.isFixed === 'No' ? false : null,
+      birthday: moment(dogObj.birthday, 'MM-DD-YY').isValid() ? moment(dogObj.birthday, 'MM-DD-YY').toDate() : undefined,
+      intakeDate: moment(dogObj.intakeDate, 'MM-DD-YY').isValid() ? moment(dogObj.intakeDate, 'MM-DD-YY').toDate() : undefined,
+      status: dogObj.primaryStatus ? dogObj.primaryStatus.toLowerCase() : undefined,
+      vettingStatus: dogObj.vettingStatus ? dogObj.vettingStatus.toLowerCase() : undefined,
+      fosterCoordinator: dogObj.fosterCoordinator,
+      vettingCoordinator: dogObj.vettingCoordinator,
+      adoptionCoordinator: dogObj.adoptionCoordinator,
+      currentFoster: dogObj.fosterInfo,
+      initialDateWCurrentFoster: moment(dogObj.initialDateWCurrentFoster, 'MM-DD-YY').isValid() ? moment(dogObj.initialDateWCurrentFoster, 'MM-DD-YY').toDate() : undefined,
+      breed: dogObj.breed ? dogObj.breed.toLowerCase().split(',') : undefined,
+      parents: dogObj.mother._id !== null ? [dogObj.mother] : [],
+      medical: {
+        primaryVet: dogObj.primaryVet ? dogObj.primaryVet.toLowerCase(): undefined,
+        allVetsUsed: [
+          ...new Set([
+            dogObj.primaryVet && dogObj.primaryVet.toLowerCase(),
+            ...(dogObj.otherVetsUsed === null ? '' : dogObj.otherVetsUsed).toLowerCase().split(','),
+          ]),
+        ].filter((entry) => {
+          return entry !== null && entry !== '';
+        }),
+        tvt: dogObj.tvtStatus === 'positive' ? true : dogObj.tvtStatus === 'negative' ? false : null,
+        fourDX: dogObj.fourDXStatus === 'positive' ? true : dogObj.fourDXStatus === 'negative' ? false : null,
+        fleaMedBrand: dogObj.fleaMedBrand ? dogObj.fleaMedBrand.toLowerCase() : undefined,
+        upcomingVetAppts: dogObj.upcomingVetAppts || undefined,
+        medNotes: dogObj.medNotes || undefined,
+      },
+      origin: dogObj.origin ? dogObj.origin.toLowerCase(): undefined,
+      group: dogObj.groupName ? dogObj.groupName.toLowerCase(): undefined,
+      fee: dogObj.fee ? parseInt(dogObj.fee) : undefined,
+      vettingDates: Object.fromEntries(
+        Object.entries(dogObj.vettingDates).map(([key, value]) => [
+          key,
+          moment(value, 'MM-DD-YY').isValid() ? moment(value, 'MM-DD-YY').toDate() : null,
+        ])
+      ),
+      history: dogObj.history || undefined,
+      notes: dogObj.notes || undefined,
+    }
+  }
+
   const handleSaveClick = async () => {
     if (dogState.newDog !== true && validateRequiredFields()) {
       // Updating existing dog
       const dogObj = { dogID: dogState._id, ...dogHeaderData, ...dogBodyData, ...dogBodyTailData };
-      const updatedDog = await updateDog(dogObj);
+      const dogObj_formatted = formatDogForSubmission(dogObj);
+      const updatedDog = inDemoMode ? dogObj_formatted : await updateDog(dogObj_formatted);
       if (!updatedDog.error) {
         setDogState(updatedDog);
         updateDogInAppState(updatedDog);
@@ -149,7 +200,8 @@ const DogItemBodyTail = ({
     } else if (validateRequiredFields()) {
       // Adding new dog
       const dogObj = { ...dogHeaderData, ...dogBodyData, ...dogBodyTailData };
-      const newDog = await saveNewDog(dogObj);
+      const dogObj_formatted = formatDogForSubmission(dogObj);
+      const newDog = inDemoMode ? dogObj_formatted : await saveNewDog(dogObj_formatted);
       if (!newDog.error) {
         addDogsToAppState([newDog]);
         setInEditMode(false);
@@ -272,9 +324,11 @@ const DogItemBodyTail = ({
                 <FontAwesomeIcon icon={faSave} />
                 {dogState.newDog ? 'Add new dog' : 'Save dog'}
               </button>
-              <button className="dog-item__editModeUI__trashButton" onClick={() => setInDeleteMode(true)}>
-                <FontAwesomeIcon icon={faTrashAlt} />
-              </button>
+              {!dogState.newDog &&
+                <button className="dog-item__editModeUI__trashButton" onClick={ () => setInDeleteMode(true) }>
+                  <FontAwesomeIcon icon={ faTrashAlt }/>
+                </button>
+              }
             </div>
           )
         ) : (
@@ -285,6 +339,10 @@ const DogItemBodyTail = ({
   );
 };
 
-export default connect(null, { updateDogInAppState, setIsAddingNewDog, addDogsToAppState, deleteDogInAppState })(
+const mapStateToProps = (state) => ({
+  inDemoMode: state.demo.inDemoMode,
+})
+
+export default connect(mapStateToProps, { updateDogInAppState, setIsAddingNewDog, addDogsToAppState, deleteDogInAppState })(
   DogItemBodyTail
 );
