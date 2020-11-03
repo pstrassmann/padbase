@@ -9,7 +9,7 @@ $label-color: colors.$light-grey-2;
 
 .dog-item {
   position: relative;
-  margin: 0.25rem 0;
+  margin-bottom: 0.25rem;
   background-color: colors.$dark-blue-3;
   border-radius: $dog-item-border-radius;
   overflow: hidden;
@@ -27,7 +27,7 @@ $label-color: colors.$light-grey-2;
 
 .dog-item-header {
   display: grid;
-  width: 41rem;
+  width: 100%;
   grid-template-columns: 2.1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.4fr 1.8fr;
   grid-template-areas: 'name sex dogweight dogfixed age intake status vstatus';
   font-size: 0.9rem;
@@ -106,8 +106,12 @@ $label-color: colors.$light-grey-2;
 .dog-item-body__side-panel__editIcon {
   position: absolute;
   top: 1rem;
-  padding: 0.3rem 1rem 0.3rem 0.5rem;
+  height: 2rem;
+  padding-right: 1rem;
   font-size: 0.8rem;
+  background: none;
+  outline: none;
+  color: white;
   border-left: 1px solid $button-box-shadow-color;
   border-top: 1px solid $button-box-shadow-color;
   border-bottom: 1px solid $button-box-shadow-color;
@@ -150,7 +154,8 @@ $label-color: colors.$light-grey-2;
   height: 1.5rem;
   border: 1px solid colors.$light-grey-2;
   border-bottom: none;
-  padding: 0rem 0.3rem;
+  padding: 0 0.3rem;
+  white-space: nowrap;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   &:hover {
@@ -432,12 +437,7 @@ $label-color: colors.$light-grey-2;
 
 @media all and (max-width: breakpoints.$mobile-sm) {
 
-  .dog-item {
-    width: 18.5rem;
-  }
-
   .dog-item-header {
-    width: 17.5rem;
     grid-template-columns: 1fr 1fr 1.4fr 1fr 1fr 1fr 1.4fr;
     grid-template-areas:
             'name name sex status status vstatus vstatus'

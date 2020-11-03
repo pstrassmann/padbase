@@ -36,7 +36,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '6265fc40-b549-4c33-92cc-4afd3eaa57f3',
       firstName: 'Reginald',
@@ -98,7 +98,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'bd6be4d5-df71-4dc2-8e1c-7ea5c3f717fa',
       firstName: 'Emilie',
@@ -160,7 +160,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd8b42fc1-069c-433c-bfcd-fddb133fb633',
       firstName: 'Audrina',
@@ -223,7 +223,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -286,7 +286,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'ea6e2f79-f167-4188-ba1f-e76560eba012',
       firstName: 'Zaire',
@@ -349,7 +349,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a176cd-f211-4aa8-9d17-32354cd74a01',
       firstName: 'Zoey',
@@ -412,7 +412,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b77a68ba-5169-4fa5-9507-c76123f1b502',
       firstName: 'Daphne',
@@ -475,7 +475,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a03aa261-96d0-45db-b7d7-8a08ef770a11',
       firstName: 'Teagan',
@@ -538,7 +538,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3abea29b-42bd-4b36-9ffc-54b5347bbbd3',
       firstName: 'Willow',
@@ -601,7 +601,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'bbee983e-d81a-4886-b25d-b213676e1032',
       firstName: 'Giana',
@@ -664,7 +664,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3abea29b-42bd-4b36-9ffc-54b5347bbbd3',
       firstName: 'Willow',
@@ -727,7 +727,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -790,7 +790,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7771673f-b384-4b5b-a20a-d20e5e3ca126',
       firstName: 'Makenna',
@@ -853,7 +853,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '97cbe071-1c57-4143-beb4-f347e1046ecd',
       firstName: 'Janiah',
@@ -916,7 +916,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '22ed3ae2-d160-48b7-8287-47ac012e56cd',
       firstName: 'Karsyn',
@@ -979,7 +979,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b2500bb7-7692-4813-a471-048d3ac95649',
       firstName: 'Zaiden',
@@ -1042,7 +1042,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'c0c9926f-0cba-400f-a48b-2c9ef4162cfe',
       firstName: 'Emanuel',
@@ -1105,7 +1105,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd8b42fc1-069c-433c-bfcd-fddb133fb633',
       firstName: 'Audrina',
@@ -1168,7 +1168,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b21766a5-ae27-4f0d-b674-62e42c4bd3ae',
       firstName: 'Rowan',
@@ -1231,7 +1231,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b21766a5-ae27-4f0d-b674-62e42c4bd3ae',
       firstName: 'Rowan',
@@ -1294,7 +1294,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd8b42fc1-069c-433c-bfcd-fddb133fb633',
       firstName: 'Audrina',
@@ -1357,7 +1357,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '1162feb7-b2fd-40ef-b853-1ceaedb82f30',
       firstName: 'Destiny',
@@ -1420,7 +1420,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'c0c9926f-0cba-400f-a48b-2c9ef4162cfe',
       firstName: 'Emanuel',
@@ -1483,7 +1483,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -1546,7 +1546,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -1609,7 +1609,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7c75d5f8-4035-498c-a247-edb987e70034',
       firstName: 'Brenton',
@@ -1672,7 +1672,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd8b42fc1-069c-433c-bfcd-fddb133fb633',
       firstName: 'Audrina',
@@ -1735,7 +1735,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '539f1eb7-2038-4ccb-8213-ebfa798f709e',
       firstName: 'Aiden',
@@ -1798,7 +1798,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'c260a3ef-80e8-4cf3-a152-a3643e7fcfc8',
       firstName: 'Lamar',
@@ -1861,7 +1861,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -1924,7 +1924,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0b558ed6-eb06-4e39-b533-3a7911d9d430',
       firstName: 'Ariel',
@@ -1987,7 +1987,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a176cd-f211-4aa8-9d17-32354cd74a01',
       firstName: 'Zoey',
@@ -2050,7 +2050,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '539f1eb7-2038-4ccb-8213-ebfa798f709e',
       firstName: 'Aiden',
@@ -2113,7 +2113,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -2176,7 +2176,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'ba1aac0d-d3a8-41e8-a7d8-35067641f38d',
       firstName: 'Michaela',
@@ -2239,7 +2239,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a7296933-47e9-431a-86d9-7e3934469156',
       firstName: 'Nathaly',
@@ -2302,7 +2302,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a176cd-f211-4aa8-9d17-32354cd74a01',
       firstName: 'Zoey',
@@ -2365,7 +2365,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b2500bb7-7692-4813-a471-048d3ac95649',
       firstName: 'Zaiden',
@@ -2428,7 +2428,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'bd6be4d5-df71-4dc2-8e1c-7ea5c3f717fa',
       firstName: 'Emilie',
@@ -2491,7 +2491,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '101b0cb5-aa81-4fe7-b4e2-1c7d882909a5',
       firstName: 'Nina',
@@ -2554,7 +2554,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3b22cde2-a3fd-432e-b8c5-031a673f704c',
       firstName: 'Desiree',
@@ -2617,7 +2617,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0b558ed6-eb06-4e39-b533-3a7911d9d430',
       firstName: 'Ariel',
@@ -2680,7 +2680,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '19c2dc41-8a97-415d-bcd3-2898f11a572e',
       firstName: 'Hudson',
@@ -2743,7 +2743,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '22ed3ae2-d160-48b7-8287-47ac012e56cd',
       firstName: 'Karsyn',
@@ -2806,7 +2806,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3db22136-b1f0-4a35-af20-1f71d9ac5f55',
       firstName: 'Sloane',
@@ -2869,7 +2869,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a5d0f9-c66d-4cc6-99da-719ad0ce2c1f',
       firstName: 'Brynlee',
@@ -2932,7 +2932,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7771673f-b384-4b5b-a20a-d20e5e3ca126',
       firstName: 'Makenna',
@@ -2995,7 +2995,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd72b4514-d627-47c5-b4db-81578be547e9',
       firstName: 'Jordyn',
@@ -3058,7 +3058,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a5d0f9-c66d-4cc6-99da-719ad0ce2c1f',
       firstName: 'Brynlee',
@@ -3121,7 +3121,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -3184,7 +3184,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0f1ddb77-b66e-470a-9163-2a5a00f787cf',
       firstName: 'India',
@@ -3247,7 +3247,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a7296933-47e9-431a-86d9-7e3934469156',
       firstName: 'Nathaly',
@@ -3310,7 +3310,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '99d03b4b-4e2f-4e26-a7df-e1551ae1aa09',
       firstName: 'Lawrence',
@@ -3373,7 +3373,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '6265fc40-b549-4c33-92cc-4afd3eaa57f3',
       firstName: 'Reginald',
@@ -3436,7 +3436,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a7296933-47e9-431a-86d9-7e3934469156',
       firstName: 'Nathaly',
@@ -3499,7 +3499,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -3562,7 +3562,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b2500bb7-7692-4813-a471-048d3ac95649',
       firstName: 'Zaiden',
@@ -3625,7 +3625,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a03aa261-96d0-45db-b7d7-8a08ef770a11',
       firstName: 'Teagan',
@@ -3688,7 +3688,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '862740f2-bf31-4580-897b-1bf899a58dce',
       firstName: 'Brylee',
@@ -3751,7 +3751,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7771673f-b384-4b5b-a20a-d20e5e3ca126',
       firstName: 'Makenna',
@@ -3814,7 +3814,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '97cbe071-1c57-4143-beb4-f347e1046ecd',
       firstName: 'Janiah',
@@ -3877,7 +3877,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3db22136-b1f0-4a35-af20-1f71d9ac5f55',
       firstName: 'Sloane',
@@ -3940,7 +3940,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -4003,7 +4003,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -4066,7 +4066,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a7296933-47e9-431a-86d9-7e3934469156',
       firstName: 'Nathaly',
@@ -4129,7 +4129,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '56421876-d3ab-4a6b-bca5-29b81beaa783',
       firstName: 'Emely',
@@ -4192,7 +4192,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '99d03b4b-4e2f-4e26-a7df-e1551ae1aa09',
       firstName: 'Lawrence',
@@ -4255,7 +4255,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '04512f62-8487-4b32-a47b-3204aebf2524',
       firstName: 'Jane',
@@ -4318,7 +4318,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a7296933-47e9-431a-86d9-7e3934469156',
       firstName: 'Nathaly',
@@ -4381,7 +4381,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '1162feb7-b2fd-40ef-b853-1ceaedb82f30',
       firstName: 'Destiny',
@@ -4444,7 +4444,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'bd6be4d5-df71-4dc2-8e1c-7ea5c3f717fa',
       firstName: 'Emilie',
@@ -4507,7 +4507,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -4570,7 +4570,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -4633,7 +4633,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '273efa99-9872-4f6a-903b-4d5c921bfc1a',
       firstName: 'Linda',
@@ -4696,7 +4696,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '5c996cf1-afac-490e-8ef3-0037d4abb9fd',
       firstName: 'Kenzie',
@@ -4759,7 +4759,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0b558ed6-eb06-4e39-b533-3a7911d9d430',
       firstName: 'Ariel',
@@ -4822,7 +4822,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -4885,7 +4885,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0b558ed6-eb06-4e39-b533-3a7911d9d430',
       firstName: 'Ariel',
@@ -4948,7 +4948,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a176cd-f211-4aa8-9d17-32354cd74a01',
       firstName: 'Zoey',
@@ -5011,7 +5011,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '56421876-d3ab-4a6b-bca5-29b81beaa783',
       firstName: 'Emely',
@@ -5074,7 +5074,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2f3c81fa-4e60-43c9-9c9c-08c10a8830f4',
       firstName: 'Landen',
@@ -5137,7 +5137,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '978cb11c-108c-4840-af81-d0cdfbc92557',
       firstName: 'Steven',
@@ -5200,7 +5200,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3abea29b-42bd-4b36-9ffc-54b5347bbbd3',
       firstName: 'Willow',
@@ -5263,7 +5263,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'c260a3ef-80e8-4cf3-a152-a3643e7fcfc8',
       firstName: 'Lamar',
@@ -5326,7 +5326,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd72b4514-d627-47c5-b4db-81578be547e9',
       firstName: 'Jordyn',
@@ -5389,7 +5389,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a7296933-47e9-431a-86d9-7e3934469156',
       firstName: 'Nathaly',
@@ -5452,7 +5452,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b77a68ba-5169-4fa5-9507-c76123f1b502',
       firstName: 'Daphne',
@@ -5515,7 +5515,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '273efa99-9872-4f6a-903b-4d5c921bfc1a',
       firstName: 'Linda',
@@ -5578,7 +5578,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7771673f-b384-4b5b-a20a-d20e5e3ca126',
       firstName: 'Makenna',
@@ -5641,7 +5641,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '5630e4e2-5a23-4ef7-b936-e92c083aa77e',
       firstName: 'Ariel',
@@ -5704,7 +5704,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '5630e4e2-5a23-4ef7-b936-e92c083aa77e',
       firstName: 'Ariel',
@@ -5767,7 +5767,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '99d03b4b-4e2f-4e26-a7df-e1551ae1aa09',
       firstName: 'Lawrence',
@@ -5830,7 +5830,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'bbee983e-d81a-4886-b25d-b213676e1032',
       firstName: 'Giana',
@@ -5893,7 +5893,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b21766a5-ae27-4f0d-b674-62e42c4bd3ae',
       firstName: 'Rowan',
@@ -5956,7 +5956,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '5c996cf1-afac-490e-8ef3-0037d4abb9fd',
       firstName: 'Kenzie',
@@ -6019,7 +6019,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -6082,7 +6082,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7c75d5f8-4035-498c-a247-edb987e70034',
       firstName: 'Brenton',
@@ -6145,7 +6145,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0f1ddb77-b66e-470a-9163-2a5a00f787cf',
       firstName: 'India',
@@ -6208,7 +6208,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -6271,7 +6271,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '56421876-d3ab-4a6b-bca5-29b81beaa783',
       firstName: 'Emely',
@@ -6334,7 +6334,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3b22cde2-a3fd-432e-b8c5-031a673f704c',
       firstName: 'Desiree',
@@ -6397,7 +6397,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2f3c81fa-4e60-43c9-9c9c-08c10a8830f4',
       firstName: 'Landen',
@@ -6460,7 +6460,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -6523,7 +6523,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3db22136-b1f0-4a35-af20-1f71d9ac5f55',
       firstName: 'Sloane',
@@ -6586,7 +6586,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '04512f62-8487-4b32-a47b-3204aebf2524',
       firstName: 'Jane',
@@ -6649,7 +6649,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'ca39c928-c187-448b-a774-7fa369d54420',
       firstName: 'Kiley',
@@ -6712,7 +6712,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -6775,7 +6775,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '12a5d0f9-c66d-4cc6-99da-719ad0ce2c1f',
       firstName: 'Brynlee',
@@ -6838,7 +6838,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd72b4514-d627-47c5-b4db-81578be547e9',
       firstName: 'Jordyn',
@@ -6901,7 +6901,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3abea29b-42bd-4b36-9ffc-54b5347bbbd3',
       firstName: 'Willow',
@@ -6964,7 +6964,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -7027,7 +7027,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '97cbe071-1c57-4143-beb4-f347e1046ecd',
       firstName: 'Janiah',
@@ -7090,7 +7090,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3abea29b-42bd-4b36-9ffc-54b5347bbbd3',
       firstName: 'Willow',
@@ -7153,7 +7153,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -7216,7 +7216,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -7279,7 +7279,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0b558ed6-eb06-4e39-b533-3a7911d9d430',
       firstName: 'Ariel',
@@ -7342,7 +7342,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b21766a5-ae27-4f0d-b674-62e42c4bd3ae',
       firstName: 'Rowan',
@@ -7405,7 +7405,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '539f1eb7-2038-4ccb-8213-ebfa798f709e',
       firstName: 'Aiden',
@@ -7468,7 +7468,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'b21766a5-ae27-4f0d-b674-62e42c4bd3ae',
       firstName: 'Rowan',
@@ -7531,7 +7531,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '1947b20e-909c-421a-aee4-134f48fa1692',
       firstName: 'Troy',
@@ -7594,7 +7594,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '04808a79-d2ff-4239-bd7b-17be34e8a5a8',
       firstName: 'Yadiel',
@@ -7657,7 +7657,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd8b42fc1-069c-433c-bfcd-fddb133fb633',
       firstName: 'Audrina',
@@ -7720,7 +7720,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'f937d688-419e-4ef3-89cc-dfefc17ade70',
       firstName: 'Leila',
@@ -7783,7 +7783,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'bd6be4d5-df71-4dc2-8e1c-7ea5c3f717fa',
       firstName: 'Emilie',
@@ -7846,7 +7846,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7771673f-b384-4b5b-a20a-d20e5e3ca126',
       firstName: 'Makenna',
@@ -7909,7 +7909,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '1162feb7-b2fd-40ef-b853-1ceaedb82f30',
       firstName: 'Destiny',
@@ -7972,7 +7972,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3abea29b-42bd-4b36-9ffc-54b5347bbbd3',
       firstName: 'Willow',
@@ -8035,7 +8035,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '0f1ddb77-b66e-470a-9163-2a5a00f787cf',
       firstName: 'India',
@@ -8098,7 +8098,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3bb8ef84-089f-4ef1-ac2c-c3696eaf6cf9',
       firstName: 'Sergio',
@@ -8161,7 +8161,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -8224,7 +8224,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '01916dab-8157-4931-ba4c-75f7acdeff1d',
       firstName: 'Meadow',
@@ -8287,7 +8287,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '5c996cf1-afac-490e-8ef3-0037d4abb9fd',
       firstName: 'Kenzie',
@@ -8350,7 +8350,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '97cbe071-1c57-4143-beb4-f347e1046ecd',
       firstName: 'Janiah',
@@ -8413,7 +8413,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '19c2dc41-8a97-415d-bcd3-2898f11a572e',
       firstName: 'Hudson',
@@ -8476,7 +8476,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd8b42fc1-069c-433c-bfcd-fddb133fb633',
       firstName: 'Audrina',
@@ -8539,7 +8539,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '3b22cde2-a3fd-432e-b8c5-031a673f704c',
       firstName: 'Desiree',
@@ -8602,7 +8602,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '22ed3ae2-d160-48b7-8287-47ac012e56cd',
       firstName: 'Karsyn',
@@ -8665,7 +8665,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'c05c466e-3737-4112-980a-4db28a1ae476',
       firstName: 'Ashlynn',
@@ -8728,7 +8728,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7c75d5f8-4035-498c-a247-edb987e70034',
       firstName: 'Brenton',
@@ -8791,7 +8791,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'cb833449-65c9-4758-a3ec-c704be13ae17',
       firstName: 'Tatiana',
@@ -8854,7 +8854,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2f3c81fa-4e60-43c9-9c9c-08c10a8830f4',
       firstName: 'Landen',
@@ -8917,7 +8917,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '7c75d5f8-4035-498c-a247-edb987e70034',
       firstName: 'Brenton',
@@ -8980,7 +8980,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '978cb11c-108c-4840-af81-d0cdfbc92557',
       firstName: 'Steven',
@@ -9043,7 +9043,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'c0c9926f-0cba-400f-a48b-2c9ef4162cfe',
       firstName: 'Emanuel',
@@ -9106,7 +9106,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '2a4db3f9-ae18-49d8-bcb2-cac76a87c4e0',
       firstName: 'Aaliyah',
@@ -9169,7 +9169,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'a03aa261-96d0-45db-b7d7-8a08ef770a11',
       firstName: 'Teagan',
@@ -9232,7 +9232,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '97cbe071-1c57-4143-beb4-f347e1046ecd',
       firstName: 'Janiah',
@@ -9295,7 +9295,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd72b4514-d627-47c5-b4db-81578be547e9',
       firstName: 'Jordyn',
@@ -9358,7 +9358,7 @@ export default [
     isFixed: true,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: 'd20649dd-79e7-4029-8cd7-c9ca3b87d398',
       firstName: 'Max',
@@ -9421,7 +9421,7 @@ export default [
     isFixed: false,
     parents: [],
     notes:
-      "Example additional notes about the dog. This can include information about the dogs personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
+      "Example additional notes about the dog. This can include information about the dog's personality or any notes that would be helpful for the kennel team, the dog's coordinators, or the dog's foster.",
     currentFoster: {
       _id: '273efa99-9872-4f6a-903b-4d5c921bfc1a',
       firstName: 'Linda',

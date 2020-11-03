@@ -43,7 +43,7 @@ const FilterMenu = ({ addDogFilter, searchDogs, cachedDogSearchText }) => {
         <div className="select-menu-button" onClick={handleClickDropdown}>
           Add Filter
           <div
-            className={`select-menu-button__icon ${filterByMenuActive ? 'select-menu-button__icon-active' : ''}`}
+            className={`select-menu-button__icon ${filterByMenuActive ? 'select-menu-button__icon-active' : undefined}`}
           >
             <FontAwesomeIcon icon={faPlus} transform='shrink-3' fixedWidth/>
           </div>

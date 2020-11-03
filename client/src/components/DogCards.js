@@ -40,7 +40,7 @@ const DogCards = (props) => {
   } else {
     const dogsToRender = dogs.slice(0, numDogsToShow);
     return (
-      <div className="dog-cards-container">
+      <>
         {dogs.length === 0 ? (
           <p>No matching dogs</p>
         ) : (
@@ -55,7 +55,7 @@ const DogCards = (props) => {
             })}
           </>
         )}
-      </div>
+      </>
     );
   }
 };

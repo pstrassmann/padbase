@@ -525,17 +525,17 @@ const DogItemBody = ({
         )}
       </div>
       <div className="dog-item-body__side-panel">
-        <div className={`dog-item-body__side-panel__editIcon ${inEditMode && 'noVis'}`} onClick={handleClickEditIcon}>
-          <FontAwesomeIcon icon={faEdit} fixedWidth />
-        </div>
-        <div
+        <button className={`dog-item-body__side-panel__editIcon ${inEditMode && 'noVis'}`} onClick={handleClickEditIcon}>
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+        <button
           className={`dog-item-body__side-panel__angleDoubleDownIcon ${inEditMode && 'noVis'}`}
           onClick={handleExpandBodyTail}
         >
           <animated.div style={doubleDownIconAnimation}>
             <FontAwesomeIcon icon={faAngleDoubleDown} />
           </animated.div>
-        </div>
+        </button>
       </div>
     </animated.div>
   );

@@ -190,7 +190,7 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
           <label className="add-new-dog-group__label-wrapper">
             <span className="add-new-dog-group__label"># Dogs</span>
             <input
-              type="text"
+              type="number"
               placeholder="#"
               value={numDogs === null ? '' : numDogs}
               className="plc-hold-fnt-sz-8 plc-hold-center add-new-dog-group__generalInfo__input"
