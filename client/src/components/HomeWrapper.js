@@ -27,14 +27,14 @@ const HomeWrapper = ({ auth, dogsStillLoading, setCurrentUser, setIsAuthenticate
   }, [getDogs, getAllPeopleNames, getFvaCoordinators, setCurrentUser, setIsAuthenticated]);
 
   return (
-    <div>
+    <>
       { auth.loading || ( auth.user.isAuthenticated === true && dogsStillLoading)
         ? <Spinner />
         : (auth.user.isAuthenticated === true && !dogsStillLoading)
           ? <Home />
           : <Redirect to="/login" />
       }
-    </div>
+    </>
     )
 };
 

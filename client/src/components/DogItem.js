@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
+import { useSpring, animated } from 'react-spring';
 
 import Dropdown from './dropdowns/Dropdown';
 import StatusPillDropdown from './dropdowns/StatusPillDropdown';
@@ -8,7 +10,6 @@ import { dateMask, validatedDate, formatDate, formatAge } from '../utils/dates';
 import { capitalizeWords, numbersOnly } from '../utils/text';
 import DogItemBody from './DogItemBody';
 import ConditionalTextInput from './ConditionalTextInput';
-import { connect } from 'react-redux';
 
 // Data processing functions
 const formatWeight = (weight) => {
@@ -41,6 +42,11 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
     const [inEditMode, setInEditMode] = useState(dog.newDog === true );
     const [bodyExpanded, setBodyExpanded] = useState(dog.newDog === true);
     const [dogState, setDogState] = useState(dog);
+
+    let angleDownFlip = useSpring({
+      config: {tension: 250},
+      transform: bodyExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+    });
 
     // Status modifiers
     const expandBody = () => {
@@ -137,10 +143,10 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
           <ConditionalTextInput
             label="Name"
             labelClass="dog-item__label"
-            placeholder="Name (required)"
+            placeholder="Name"
             data={name}
             inEditMode={inEditMode}
-            editClass="plc-hold-fnt-sz-8 plc-hold-red dog-item-header__displayText--editable"
+            editClass="plc-hold-red dog-item-header__displayText--editable"
             noEditClass="dog-item-header__displayText"
             handleOnChange={(e) => setName(e.target.value ? capitalizeWords(e.target.value) : null)}
             handleOnBlur={(e) => !e.target.value && setName(name_init)}
@@ -150,7 +156,7 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
           <label className="dog-item__label">Sex</label>
           <Dropdown options={['M', 'F', 'N/A']} state={sex || 'N/A'} stateSetter={setSex} inEditMode={inEditMode} />
         </div>
-        <div className="dog-item__weight dog-item__header-cell">
+        <div className={`dog-item__weight dog-item__header-cell ${bodyExpanded ? '' : 'noDisplaySmScreen'}`}>
           <ConditionalTextInput
             label="Weight"
             labelClass="dog-item__label"
@@ -163,11 +169,11 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
             handleOnBlur={handleWeightBlur}
           />
         </div>
-        <div className="dog-item__isFixed dog-item__header-cell">
-          <div className="dog-item__label">Fixed?</div>
+        <div className={`dog-item__isFixed dog-item__header-cell ${bodyExpanded ? '' : 'noDisplaySmScreen'}`}>
+          <div className="dog-item__label">Fixed</div>
           <Dropdown options={['Yes', 'No', 'N/A']} state={isFixed || 'N/A'} stateSetter={setIsFixed} inEditMode={inEditMode} />
         </div>
-        <div className="dog-item__age dog-item__header-cell">
+        <div className={`dog-item__age dog-item__header-cell ${bodyExpanded ? '' : 'noDisplaySmScreen'}`}>
           <ConditionalTextInput
             label={ inEditMode ? 'Birthday' : 'Age' }
             labelClass="dog-item__label"
@@ -180,7 +186,7 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
             handleOnBlur={ handleValidateBirthday }
           />
         </div>
-        <div className="dog-item__intake dog-item__header-cell">
+        <div className={`dog-item__intake dog-item__header-cell ${bodyExpanded ? '' : 'noDisplaySmScreen'}`}>
           <ConditionalTextInput
             label="Intake"
             labelClass="dog-item__label"
@@ -218,10 +224,10 @@ const DogItem = React.forwardRef(({ dog }, ref) => {
       <div className={inEditMode ? 'dog-item dog-item--editMode' : 'dog-item'} ref={ref} key={dogState._id + 'item'}>
         <div className="dog-item-header-wrapper" onClick={expandBody}>
           {dogItemHeader}
-          <button className={`dog-item__headerButton ${(inEditMode ? 'noVis' : undefined)}`} onClick={expandBody}>
-            <div className={bodyExpanded ? 'dog-item__headerButton__icon--expanded' : 'dog-item__headerButton__icon'}>
+          <button className={`dog-item__headerButton ${(inEditMode ? 'noVis' : undefined)} ${bodyExpanded ? 'dog-item__headerButton--expanded' : undefined}`} onClick={expandBody}>
+            <animated.div style={angleDownFlip} >
               <FontAwesomeIcon icon={faAngleDown} />
-            </div>
+            </animated.div>
           </button>
         </div>
         {bodyExpanded && (

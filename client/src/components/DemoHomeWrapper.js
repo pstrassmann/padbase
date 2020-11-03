@@ -28,7 +28,7 @@ const DemoHomeWrapper = ({ setInDemoMode, setCurrentUser, dogsStillLoading, getD
   }, [setCurrentUser, getDemoDogs, getDemoAllPeopleNames, getDemoFvaCoordinators]);
 
   return (
-    <div>
+    <>
       {dogsStillLoading ? (
         <Spinner />
       ) : (
@@ -37,7 +37,7 @@ const DemoHomeWrapper = ({ setInDemoMode, setCurrentUser, dogsStillLoading, getD
           <Home />
         </>
       )}
-    </div>
+    </>
   );
 };
 

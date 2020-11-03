@@ -2,6 +2,7 @@
 
 @use "scss/normalize";
 @use "scss/colors";
+@use "scss/breakpoints";
 @use "scss/navbar";
 @use "scss/dogItem";
 @use "scss/dogSearchBar";
@@ -14,8 +15,6 @@
 @use "scss/helpers";
 @use "scss/login";
 @use "scss/inDemoModeMsg";
-
-@import url('https://fonts.googleapis.com/css2?family=Chela+One&display=swap');
 
 * {
   box-sizing: border-box;
@@ -40,7 +39,8 @@ body {
 
 .home-content-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-top: 5vh;
 }
 
@@ -51,13 +51,30 @@ body {
 
 .home-content__header {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 0.5rem;
-  height: 2.5rem;
+  //box-shadow: 0 0 0 1px yellow;
+  min-height: 2.5rem;
+}
+
+.dog-cards-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 @media screen and (min-width: 700px) {
   .home-content-wrapper {
     margin-left: calc(100vw - 100%);
     margin-right: 0;
+  }
+}
+
+@media all and (max-width: breakpoints.$mobile-sm) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .home-content {
+    width: 18.5rem;
   }
 }

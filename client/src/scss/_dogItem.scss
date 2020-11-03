@@ -1,6 +1,8 @@
 @use 'colors';
 @use 'dogItemBody';
 @use 'dogItem_statusPills';
+@use 'breakpoints';
+
 $dog-item-border-radius: 5px;
 $button-box-shadow-color: colors.$dark-blue-1;
 $label-color: colors.$light-grey-2;
@@ -11,6 +13,7 @@ $label-color: colors.$light-grey-2;
   background-color: colors.$dark-blue-3;
   border-radius: $dog-item-border-radius;
   overflow: hidden;
+  //padding-left: 0.5rem;
 }
 
 .dog-item--editMode {
@@ -28,6 +31,7 @@ $label-color: colors.$light-grey-2;
   grid-template-columns: 2.1fr 1fr 1fr 1fr 1.5fr 1.5fr 1.4fr 1.8fr;
   grid-template-areas: 'name sex dogweight dogfixed age intake status vstatus';
   font-size: 0.9rem;
+  padding-left: 0.5rem;
 }
 
 .dog-item__headerButton {
@@ -47,15 +51,20 @@ $label-color: colors.$light-grey-2;
     background-color: $button-box-shadow-color;
   }
 }
-.dog-item__headerButton__icon {
-  transition: transform 300ms ease;
-  transform: rotate(0deg);
+
+.dog-item__headerButton--expanded {
+  max-height: 2.6rem;
 }
 
-.dog-item__headerButton__icon--expanded {
-  transition: transform 300ms ease;
-  transform: rotate(180deg);
-}
+//.dog-item__headerButton__icon {
+//  transition: transform 300ms ease;
+//  transform: rotate(0deg);
+//}
+//
+//.dog-item__headerButton__icon--expanded {
+//  transition: transform 300ms ease;
+//  transform: rotate(180deg);
+//}
 
 .dog-item-body-wrapper {
   display: flex;
@@ -221,6 +230,7 @@ $label-color: colors.$light-grey-2;
   width: 95%;
   margin: 0 0 0 -0.15rem;
   padding: 0 0 0 0.15rem;
+  overflow: hidden;
   &:focus {
     outline: 0;
   }
@@ -273,7 +283,7 @@ $label-color: colors.$light-grey-2;
 
 .dog-item__name {
   grid-area: name;
-  margin-left: 0.5rem;
+  max-width: 7rem;
 }
 
 .dog-item__sex {
@@ -286,7 +296,7 @@ $label-color: colors.$light-grey-2;
 .dog-item__age {
   grid-area: age;
 }
-.dog-item__fixed {
+.dog-item__isFixed {
   grid-area: dogfixed;
 }
 .dog-item__intake {
@@ -301,10 +311,9 @@ $label-color: colors.$light-grey-2;
 
 .dog-item__pic {
   grid-area: pic;
-  padding-left: 0.5rem;
+  //padding-left: 0.5rem;
   img {
     width: 90%;
-    height: 90%;
     border-radius: 10px;
   }
 }
@@ -358,12 +367,12 @@ $label-color: colors.$light-grey-2;
 
 .dog-item__breed {
   grid-area: breed;
-  margin: 0.5rem 0.2rem 0 0.5rem;
+  margin: 0.5rem 0.2rem 0 0;
 }
 
 .dog-item__origin {
   grid-area: origin;
-  margin: 0 0 0 0.5rem;
+  margin: 0 0 0 0;
 }
 
 .dog-item__mother {
@@ -396,7 +405,7 @@ $label-color: colors.$light-grey-2;
 
 .dog-item__history {
   grid-area: history;
-  margin: 0 0 0 0.5rem;
+  margin: 0 0 0 0;
 }
 
 .dog-item__otherVets {
@@ -409,7 +418,7 @@ $label-color: colors.$light-grey-2;
 
 .dog-item__medNotes {
   grid-area: medNotes;
-  margin: 0 0 0 0.5rem;
+  margin: 0 0 0 0;
 }
 
 .dog-item__vetAppts {
@@ -417,5 +426,66 @@ $label-color: colors.$light-grey-2;
 }
 .dog-item__notes {
   grid-area: notes;
-  margin: 0 0 0 0.5rem;
+  margin: 0 0 0 0;
+}
+
+
+@media all and (max-width: breakpoints.$mobile-sm) {
+
+  .dog-item {
+    width: 18.5rem;
+  }
+
+  .dog-item-header {
+    width: 17.5rem;
+    grid-template-columns: 1fr 1fr 1.4fr 1fr 1fr 1fr 1.4fr;
+    grid-template-areas:
+            'name name sex status status vstatus vstatus'
+            'age age age intake intake intake intake'
+            'dogweight dogweight dogweight dogfixed dogfixed dogfixed dogfixed';
+  }
+
+  .noDisplaySmScreen {
+    display: none;
+  }
+
+  .dog-item-body {
+    @extend .dog-item-header;
+    font-size: 0.8rem;
+    grid-template-areas:
+    'pic pic pic fc fc fc fc'
+    'pic pic pic vc vc vc vc'
+    'pic pic pic ac ac ac ac'
+    'fosterName fosterName fosterName fosterName fosterName . .'
+    'fosterInfo fosterInfo fosterInfo fosterInfo fosterInfo fosterInfo fosterInfo'
+    'fosterDate fosterDate fosterDate fosterDate fosterDate fosterDate fosterDate'
+    'groupName groupName groupName groupName mother mother mother'
+    'breed breed breed breed origin origin origin'
+    'vetName vetName vetName vetName fee fee fee'
+    'vetd vetd vetd vetd vetd vetd vetd'
+    'vetd vetd vetd vetd vetd vetd vetd'
+    'vetd vetd vetd vetd vetd vetd vetd';
+  }
+
+  .dog-item__groupName,
+  .dog-item__mother,
+  .dog-item__breed,
+  .dog-item__origin,
+  .dog-item__vetName,
+  .dog-item__fee,
+  .dog-item__vetd,
+  .dog-item__fosterName{
+    margin-top: 0.3rem;
+  }
+
+  .dog-item-body-tail {
+    @extend .dog-item-body;
+    grid-template-areas:
+    'otherVets otherVets otherVets otherVets fleaMedBrand fleaMedBrand fleaMedBrand'
+    'vetAppts vetAppts vetAppts vetAppts vetAppts vetAppts vetAppts'
+    'history history history history history history history'
+    'medNotes medNotes medNotes medNotes medNotes medNotes medNotes'
+    'notes notes notes notes notes notes notes';
+  }
+
 }

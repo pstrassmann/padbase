@@ -4,19 +4,19 @@
   margin: 0 auto 1rem auto;
   font-size: 0.9rem;
   display: flex;
-  max-width: 30rem;
-  //width: 80vw;
+  max-width: 27.5rem;
+  width: 80vw;
   justify-content: center;
   align-items: center;
   color: colors.$true-white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   background-color: colors.$medium-red-2;
-  border-radius: .8rem;
+  border-radius: 14px;
   padding: 0.5rem;
 }
 
 .in-demo-mode-msg {
-  margin: 0 0;
+  margin: 0 0 0 0.5rem;
   text-align: center;
   padding: 0 0;
 }

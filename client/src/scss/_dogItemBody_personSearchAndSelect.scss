@@ -1,4 +1,5 @@
 @use 'colors';
+@use 'breakpoints';
 
 .dog-item-body__personSelect {
   &:focus {
@@ -17,8 +18,7 @@
   font-size: 0.8rem;
   top: 100%;
   width: 100%;
-  border-radius: 6px;
-  border-top-left-radius: 1px;
+  border-radius: 1px 6px 6px 6px;
   overflow-y: scroll;
   max-height: 6rem;
   z-index: 1;
@@ -66,3 +66,11 @@
   color: green;
 }
 
+@media all and (max-width: breakpoints.$mobile-sm) {
+  .dog-item-body__personSelect__fosterName {
+    margin-left: 0rem;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+}

@@ -1,14 +1,16 @@
 @use 'dogSearchBar-search-by-menu';
 @use 'colors';
+@use 'breakpoints';
 
 $search-border-radius: 5px;
 $search-bar-height: 2.5rem;
 
 .home-dog-search-bar-wrapper {
   position: relative;
+  height: 2.5rem;
   width: 55%;
-  //box-shadow: 0 0 0 1px red;
-  ////margin-bottom: 0.3rem;
+  margin-right: 0.5rem;
+
 }
 
 .home-dog-search-bar {
@@ -17,15 +19,13 @@ $search-bar-height: 2.5rem;
   flex-direction: row-reverse;
   justify-content: flex-end;
   height: 100%;
-  //margin-bottom: 3rem;
 }
 .home-dog-search-bar__input {
   border: none;
   width: 100%;
   height: 100%;
   padding-left: 0.5rem;
-  border-top-right-radius: $search-border-radius;
-  border-bottom-right-radius: $search-border-radius;
+  border-radius: 0 $search-border-radius $search-border-radius 0;
   background-color: colors.$medium-blue-5;
   transition: background-color 200ms ease-in;
   color: white;
@@ -58,4 +58,12 @@ $search-bar-height: 2.5rem;
 
 .home-dog-search-bar__search-icon--times:hover {
   color: colors.$dark-grey-3;
+}
+
+@media all and (max-width: breakpoints.$mobile-sm) {
+  .home-dog-search-bar-wrapper {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
 }

@@ -1,4 +1,5 @@
 @use 'colors';
+@use 'breakpoints';
 
 .add-new-dog-group-wrapper {
   display: flex;
@@ -107,5 +108,23 @@
   margin-bottom: 0.5rem;
   &:hover {
     color: colors.$light-grey-3;
+  }
+}
+
+@media all and (max-width: breakpoints.$mobile-sm) {
+  .add-new-dog-group__generalInfo {
+    display: grid;
+    grid-template-columns: 7rem 7rem;
+    row-gap: 1.5rem;
+    margin-top: 1.5rem;
+    column-gap: 0.5rem;
+  }
+
+  .add-new-dog-litter__generalInfo {
+    display: grid;
+    grid-template-columns: 7rem 7rem;
+    row-gap: 1.5rem;
+    margin-top: 1.5rem;
+    column-gap: 0.5rem;
   }
 }

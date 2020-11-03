@@ -22,7 +22,9 @@ const Home = ({isAddingNewDog, isAddingNewDogGroup, isAddingNewDogLitter, getDog
           { isAddingNewDogGroup && <AddNewDogGroup/> }
           { isAddingNewDogLitter && <AddNewDogLitter/> }
           { isAddingNewDog && <DogItem dog={ {newDog: true} } /> }
-          <HomeDogCards />
+          <div className="dog-cards-wrapper">
+            <HomeDogCards />
+          </div>
         </div>
   );
 };

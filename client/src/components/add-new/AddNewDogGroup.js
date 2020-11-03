@@ -212,6 +212,17 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
             />
           </label>
           <label className="add-new-dog-group__label-wrapper">
+            <span className="add-new-dog-group__label">Group Origin</span>
+            <input
+              type="text"
+              value={groupOrigin === null ? '' : groupOrigin}
+              placeholder="Group origin..."
+              className="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
+              // style={{ width: '7rem' }}
+              onChange={(e) => setGroupOrigin(e.target.value ? capitalizeWords(e.target.value) : null)}
+            />
+          </label>
+          <label className="add-new-dog-group__label-wrapper">
             <span className="add-new-dog-group__label">Group Intake Date</span>
             <input
               type="text"
@@ -221,17 +232,6 @@ const AddNewDogGroup = ({ addDogsToAppState, setIsAddingNewDogGroup, inDemoMode 
               // style={{ width: '6rem' }}
               onChange={(e) => setGroupIntakeDate(e.target.value ? dateMask(e.target.value) : null)}
               onBlur={() => handleValidateDate(groupIntakeDate, setGroupIntakeDate)}
-            />
-          </label>
-          <label className="add-new-dog-group__label-wrapper">
-            <span className="add-new-dog-group__label">Group Origin</span>
-            <input
-              type="text"
-              value={groupOrigin === null ? '' : groupOrigin}
-              placeholder="Group origin..."
-              className="plc-hold-fnt-sz-8 add-new-dog-group__generalInfo__input"
-              // style={{ width: '7rem' }}
-              onChange={(e) => setGroupOrigin(e.target.value ? capitalizeWords(e.target.value) : null)}
             />
           </label>
         </div>

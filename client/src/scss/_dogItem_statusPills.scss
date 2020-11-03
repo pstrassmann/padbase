@@ -9,6 +9,8 @@ $pending-records: #baa128;
 $deceased: #2a2929;
 $missing-status: #848383;
 
+@use 'breakpoints';
+
 
 .status-pill {
   padding: 0.2rem 0.4rem;
@@ -61,3 +63,13 @@ $missing-status: #848383;
   background-color: $pending-records;
   color: white;
 }
+
+@media all and (max-width: breakpoints.$mobile-sm) {
+  .status-pill {
+    padding: 0.15rem 0.3rem;
+    border-radius: 6px;
+    font-size: 0.76rem;
+    color: white;
+  }
+}
+

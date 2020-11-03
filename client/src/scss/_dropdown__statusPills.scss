@@ -21,12 +21,10 @@
 .status-dropdown {
   visibility: hidden;
   position: absolute;
-  width: 100%;
+  width: 110%;
   top: 135%;
-  margin-left: -0.3rem;
   box-shadow: 0 0 5px 1px colors.$dark-grey-4;
-  border-radius: 8px;
-  border-top-left-radius: 2px;
+  border-radius: 2px 8px 8px 8px;
   overflow: hidden;
   z-index: 1;
 }
