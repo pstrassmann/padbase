@@ -2,7 +2,7 @@
 :point_right: https://padbase.org :point_left:
 ### Overview
 
-[PadBase](https://padbase.org) is a record management web application for [The Animal Pad](theanimalpad.org), an all-breed dog rescue in San Diego, CA. The application provides an intuitive interface for navigating and maintaining records for all dogs that move through the rescue, including each dogs’ connection to the many Animal Pad volunteers responsible for their individual vetting, fostering, and adoption. Padbase is designed as a single-page web application hoping to make the bloated and typically cumbersome process of record maintenance fast, lean, and bug-free.
+[PadBase](https://padbase.org) is a record management web application for [The Animal Pad](http://theanimalpad.org), an all-breed dog rescue in San Diego, CA. The application provides an intuitive interface for navigating and maintaining records for all dogs that move through the rescue, including each dogs’ connection to the many Animal Pad volunteers responsible for their individual vetting, fostering, and adoption. Padbase is designed as a single-page web application hoping to make the bloated and typically cumbersome process of record maintenance fast, lean, and bug-free.
 
 ### Technical details
 
