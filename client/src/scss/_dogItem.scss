@@ -71,6 +71,7 @@ $label-color: colors.$light-grey-2;
 }
 
 .dog-item-body-all {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
